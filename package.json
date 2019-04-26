@@ -1,0 +1,50 @@
+{
+  "name": "logger-decorator",
+  "version": "0.0.1",
+  "description": "",
+  "main": "./lib",
+  "config": {
+    "MOCHA_OPTS": "--timeout 60000 --exit --reporter spec --ui qunit tests/**/*.js"
+  },
+  "scripts": {
+    "build": "babel src --out-dir ./lib",
+    "prepare": "npm run build",
+    "test:security": "npm audit",
+    "test:lint": "eslint src",
+    "test:mocha": "mocha  --require @babel/register $npm_package_config_MOCHA_OPTS",
+    "test": "npm run test:lint && npm run test:security && npm run test:mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pustovitDmytro/logger-decorator.git"
+  },
+  "author": "Dmytro Pustovit",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pustovitDmytro/logger-decorator/issues"
+  },
+  "homepage": "https://github.com/pustovitDmytro/logger-decorator#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.3.4",
+    "@babel/node": "^7.2.2",
+    "@babel/plugin-proposal-class-properties": "^7.3.4",
+    "@babel/plugin-proposal-decorators": "^7.3.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.3.4",
+    "@babel/plugin-proposal-optional-chaining": "^7.2.0",
+    "@babel/preset-env": "^7.3.4",
+    "@babel/runtime": "^7.3.4",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.15.1",
+    "eslint-config-webbylab": "^4.0.0",
+    "eslint-plugin-fetch": "0.0.1",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-more": "^0.3.2",
+    "eslint-plugin-no-require-lodash": "^1.1.0",
+    "eslint-plugin-prefer-spread": "^1.0.3",
+    "eslint-plugin-react": "^7.12.4",
+    "chai": "^4.2.0",
+    "mocha": "^6.1.4",
+    "fs-extra": "^7.0.1"
+  }
+}

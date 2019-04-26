@@ -1,0 +1,6 @@
+src
+tests
+.travis.yml
+.eslintrc
+.eslintignore 
+.babelrc 
