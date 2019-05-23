@@ -19,7 +19,7 @@ test('Decorate a class', function () {
 
     const res = calculator.sum(5, 7);
 
-    assert(res, 12);
+    assert.equal(res, 12);
 
     verifyStdout(logger, { params: '[ 5, 7 ]', result: '12' });
 });

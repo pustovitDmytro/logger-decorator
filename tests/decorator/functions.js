@@ -1,3 +1,4 @@
+import { assert } from 'chai';
 import Decorator from '../entry';
 import Logger from '../Logger';
 import { verifyStdout } from '../utils';
@@ -11,8 +12,9 @@ test('Decorate a function', function () {
         return a + 1;
     });
 
-    decorated(5);
+    const res = decorated(5);
 
+    assert.equal(res, 6);
     verifyStdout(logger, { params: '[ 5 ]', result: '6' });
 });
 
@@ -23,8 +25,9 @@ test('Decorate a named function', function () {
         return a + b;
     });
 
-    decorated(5, 8);
+    const res = decorated(5, 8);
 
+    assert.equal(res, 13);
     verifyStdout(logger, { method: 'sum', params: '[ 5, 8 ]', result: '13' });
 });
 
@@ -37,14 +40,15 @@ test('Decorate async function', async function () {
             const t = await new Promise((res) => {
                 setTimeout(() => {
                     return res(a * 2);
-                }, 200);
+                }, 50);
             });
 
             return t;
         });
 
-    await decorated(5);
+    const res = await decorated(5);
 
+    assert.equal(res, 10);
     verifyStdout(logger, { method: 'double', params: '[ 5 ]', result: '10' });
 });
 
@@ -56,12 +60,13 @@ test('Decorate function, returning a promise', async function () {
         function (a) {
             return new Promise((res) => {
                 setTimeout(() => {
-                    return res(a * 2);
-                }, 200);
+                    return res(a * 3);
+                }, 50);
             });
         });
 
-    await decorated(5);
+    const res = await decorated(5);
 
-    verifyStdout(logger, { params: '[ 5 ]', result: '10' });
+    assert.equal(res, 15);
+    verifyStdout(logger, { params: '[ 5 ]', result: '15' });
 });
