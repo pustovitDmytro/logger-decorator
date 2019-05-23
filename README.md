@@ -8,13 +8,10 @@
 [![License][badge-lic]][github]
 
 ## Table of Contents
-  - [Motivation](#motivation)
   - [Requirements](#requirements)
   - [Installation](#installation)
   - [Usage](#usage)
 
-## Motivation
-Winston has it's own console transport, but if you will try to use it in the browser, you will find out its inconvenience. You can't access native browser console levels (ex. verbose), so it is impossible to filter those levels using browser console.
 
 ## Requirements
 To use library you need to have [node](https://nodejs.org) and [npm](https://www.npmjs.com) installed in your machine:
@@ -32,6 +29,17 @@ npm i --save logger-decorator
 ## Usage
 
 The package provides simple decorator so you can simply wrap functions or classes with it or use [@babel/plugin-proposal-decorators](https://babeljs.io/docs/en/babel-plugin-proposal-decorators)
+
+### Configuration
+The recommended way for using 'logger-decorator' is to build own decorator singleton inside the app.
+```
+  import Decorator from 'logger-decorator';
+  const log = new Decorator(config);
+```
+attributes in config could be:
+  * logger - logger, decorator will use, *console* by default
+  * name - app name, to include in all logs, could be ommited.
+  * timestamp - if set to true timestamps will be added to all logs.
 
 ### Functions
 To decorate a function with ```logger-decorator``` try next:
