@@ -1,0 +1,22 @@
+{
+    "include": [
+        "src"
+    ],
+    "exclude": [
+        "src/utils/**"
+    ],
+    "reporter": [
+        "html"
+    ],
+    "require": [
+        "@babel/register",
+        "@babel/polyfill"
+    ],
+    "report-dir": "./coverage",
+    "temp-dir": "./coverage",
+    "lines": 95,
+    "statements": 90,
+    "functions": 90,
+    "branches": 85,
+    "check-coverage": true
+}

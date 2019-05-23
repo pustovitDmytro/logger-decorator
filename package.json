@@ -12,6 +12,8 @@
     "test:security": "npm audit",
     "test:lint": "eslint src",
     "test:mocha": "mocha  --require @babel/register $npm_package_config_MOCHA_OPTS",
+    "test:coverage": "MODE=test nyc mocha $npm_package_config_MOCHA_OPTS",
+    "coverage-check": "MODE=test nyc check-coverage",
     "test": "npm run test:lint && npm run test:security && npm run test:mocha"
   },
   "repository": {
@@ -46,5 +48,8 @@
     "chai": "^4.2.0",
     "mocha": "^6.1.4",
     "fs-extra": "^7.0.1"
+  },
+  "dependencies": {
+    "nyc": "^14.1.1"
   }
 }
