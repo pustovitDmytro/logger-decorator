@@ -12,6 +12,7 @@ module.exports = class Decorator {
 
         return (...args) => {
             return target => {
+                console.log('this: ', this);
                 if (isClass(target)) return classDecorator.bind(this)(...args)(target);
                 if (isFunction(target)) return functionDecorator.bind(this)(target, ...args);
             };

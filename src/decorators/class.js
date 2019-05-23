@@ -15,8 +15,8 @@ function getMethodDescriptor(propertyName, target) {
     };
 }
 
-export default function getClassLoggerDecorator(serviceName, config) {
-    return function (target) {
+export default function getClassLoggerDecorator(serviceName, config = {}) {
+    return target => {
         const logServiceName = serviceName || target.name;
 
         getMethodNames(target.prototype).forEach(methodName => {
