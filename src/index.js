@@ -6,14 +6,10 @@ import {
 
 module.exports = class Decorator {
     constructor(opts) {
-        this.logger = opts.logger;
-        this.name = opts.name;
-        this.timestamp = opts.timestamp;
-
         return (...args) => {
             return target => {
-                if (isClass(target)) return classDecorator.bind(this)(...args)(target);
-                if (isFunction(target)) return functionDecorator.bind(this)(target, ...args);
+                if (isClass(target)) return classDecorator.bind(opts)(...args)(target);
+                if (isFunction(target)) return functionDecorator.bind(opts)(target, ...args);
             };
         };
     }

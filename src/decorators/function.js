@@ -15,25 +15,27 @@ export default function functionDecorator(method, {
     paramsSanitizer = defaultSanitizer,
     resultSanitizer = defaultSanitizer,
     errorSanitizer = defaultSanitizer,
+    contextSanitizer,
     level
 } = {}) {
     const logMethodName = methodName || method.name;
     const logLevel = level || this.level || defaultLevel;
     const basicLogObject = {
-        service : serviceName,
-        method  : logMethodName,
-        app     : this.name,
+        service     : serviceName,
+        method      : logMethodName,
+        application : this.name,
         level
     };
 
     const buildLogObject = obj => {
-        const { args, result, error, time } = obj;
+        const { args, result, error, time, context } = obj;
 
         return cleanUndefined({
             ...basicLogObject,
             params    : paramsSanitizer(args),
             result    : result && resultSanitizer(result),
             error     : error && errorSanitizer(error),
+            context   : (contextSanitizer && context) ? contextSanitizer(context) : undefined,
             benchmark : getBenchmark(time),
             timestamp : this.timestamp ? new Date() : undefined
         });
@@ -53,19 +55,20 @@ export default function functionDecorator(method, {
 
     return function (...args) {
         const time = startBenchmark();
+        const loggerData = { args, time, context: this };
 
         try {
             const promise = method.apply(this, args);
 
             if (isPromise(promise)) {
                 return promise // eslint-disable-line more/no-then
-                    .then(result => onSuccess({ args, result, time }))
-                    .catch(error => onError({ args, error, time }));
+                    .then(result => onSuccess({ result, ...loggerData }))
+                    .catch(error => onError({ error, ...loggerData }));
             }
 
-            return onSuccess({ args, result: promise, time });
+            return onSuccess({ result: promise, ...loggerData });
         } catch (error) {
-            onError({ args, error, time });
+            onError({ error, ...loggerData });
         }
     };
 }

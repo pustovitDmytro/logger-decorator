@@ -70,3 +70,23 @@ test('Decorate function, returning a promise', async function () {
     assert.equal(res, 15);
     verifyStdout(logger, { params: '[ 5 ]', result: '15' });
 });
+
+
+test('Function context', async function () {
+    const logger = new Logger();
+    const decorator = new Decorator({ logger });
+
+    function increment(a) {
+        console.log('<increment> this: ', this);
+
+        return this.base + a;
+    }
+    const decorated = decorator()(
+        increment.bind({ base: 10, _secret: 'wHHXHkd8n' })
+    );
+
+    const res = decorated(5);
+
+    assert.equal(res, 15);
+    verifyStdout(logger, { params: '[ 5 ]', result: '15', context: '10' });
+});
