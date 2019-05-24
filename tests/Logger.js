@@ -1,5 +1,5 @@
 export default class Logger {
-    constructor({ levels = [ 'info', 'error' ] } = {}) {
+    constructor({ levels = [ 'info', 'verbose', 'error' ] } = {}) {
         this.stack = {};
         levels.forEach(level => {
             this.stack[level] = [];

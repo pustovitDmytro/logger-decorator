@@ -77,16 +77,13 @@ test('Function context', async function () {
     const decorator = new Decorator({ logger });
 
     function increment(a) {
-        console.log('<increment> this: ', this);
-
         return this.base + a;
     }
-    const decorated = decorator()(
-        increment.bind({ base: 10, _secret: 'wHHXHkd8n' })
-    );
+    const contextSanitizer = data => data.base;
+    const context = { base: 10, _secret: 'wHHXHkd8n' };
+    const decorated = decorator({ contextSanitizer })(increment).bind(context);
+    const result = decorated(5);
 
-    const res = decorated(5);
-
-    assert.equal(res, 15);
-    verifyStdout(logger, { params: '[ 5 ]', result: '15', context: '10' });
+    assert.equal(result, 15);
+    verifyStdout(logger, { params: '[ 5 ]', result: '15', context: 10 });
 });

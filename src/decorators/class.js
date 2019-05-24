@@ -15,21 +15,33 @@ function getMethodDescriptor(propertyName, target) {
     };
 }
 
-export default function getClassLoggerDecorator(config = {}) {
-    return target => {
-        const logServiceName = config.serviceName || target.name;
+export function classMethodDecorator({ target, methodName, descriptor }, config = {}) {
+    descriptor.value = functionDecorator.call( // eslint-disable-line no-param-reassign
+        this,
+        descriptor.value,
+        {
+            ...config,
+            methodName,
+            serviceName : config.serviceName || target.constructor.name
+        }
+    );
 
-        getMethodNames(target.prototype).forEach(methodName => {
-            const descriptor = getMethodDescriptor(methodName, target);
-            const originalMethod = descriptor.value;
-
-            descriptor.value = functionDecorator.bind(this)(originalMethod, {
-                ...config,
-                methodName,
-                serviceName : logServiceName
-            });
-
-            Object.defineProperty(target.prototype, methodName, descriptor);
-        });
-    };
+    return descriptor;
 }
+
+export default function getClassLoggerDecorator(target, config = {}) {
+    getMethodNames(target.prototype).forEach(methodName => {
+        const descriptor = getMethodDescriptor(methodName, target);
+
+        Object.defineProperty(
+            target.prototype,
+            methodName,
+            classMethodDecorator.call(
+                this,
+                { target, methodName, descriptor },
+                { serviceName: target.name,  ...config }
+            )
+        );
+    });
+}
+

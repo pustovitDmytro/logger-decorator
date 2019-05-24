@@ -1,7 +1,8 @@
 import functionDecorator from './function';
-import classDecorator from './class';
+import classDecorator, { classMethodDecorator } from './class';
 
 module.exports = {
     functionDecorator,
-    classDecorator
+    classDecorator,
+    classMethodDecorator
 };

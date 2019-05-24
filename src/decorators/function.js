@@ -9,20 +9,23 @@ import {
     startBenchmark
 } from '../utils/benchmark';
 
-export default function functionDecorator(method, {
-    serviceName,
-    methodName,
-    paramsSanitizer = defaultSanitizer,
-    resultSanitizer = defaultSanitizer,
-    errorSanitizer = defaultSanitizer,
-    contextSanitizer,
-    level
-} = {}) {
-    const logMethodName = methodName || method.name;
-    const logLevel = level || this.level || defaultLevel;
+// serviceName,
+// methodName,
+// paramsSanitizer = defaultSanitizer,
+// resultSanitizer = defaultSanitizer,
+// errorSanitizer = defaultSanitizer,
+// contextSanitizer,
+// level
+export default function functionDecorator(method, config = {}) {
+    const methodName = config.methodName || method.name;
+    const level = config.level || this.level || defaultLevel;
+    const paramsSanitizer = config.paramsSanitizer || defaultSanitizer;
+    const resultSanitizer = config.resultSanitizer || defaultSanitizer;
+    const errorSanitizer = config.errorSanitizer || defaultSanitizer;
+    const contextSanitizer = config.contextSanitizer || this.contextSanitizer;
     const basicLogObject = {
-        service     : serviceName,
-        method      : logMethodName,
+        service     : config.serviceName,
+        method      : methodName,
         application : this.name,
         level
     };
@@ -42,7 +45,7 @@ export default function functionDecorator(method, {
     };
 
     const onSuccess = data => {
-        this.logger[logLevel](buildLogObject(data));
+        this.logger[level](buildLogObject(data));
 
         return data.result;
     };
