@@ -6,7 +6,8 @@
         "src/utils/**"
     ],
     "reporter": [
-        "html"
+        "html",
+        "lcovonly"
     ],
     "require": [
         "@babel/register",

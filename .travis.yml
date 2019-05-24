@@ -4,12 +4,14 @@ node_js:
   - "10"
 before_script:
   - "npm run build"
+after_success:
+  - "npm run coveralls"
 jobs:
   include:
     - stage: test
       script: "npm run test:lint"
     - stage: test
-      script: "npm run test:mocha"
+      script: "npm run test:coverage"
     - stage: test
       script: "npm run test:security"
 notifications:
