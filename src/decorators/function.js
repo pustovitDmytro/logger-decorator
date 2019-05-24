@@ -9,20 +9,28 @@ import {
     startBenchmark
 } from '../utils/benchmark';
 
-// serviceName,
-// methodName,
-// paramsSanitizer = defaultSanitizer,
-// resultSanitizer = defaultSanitizer,
-// errorSanitizer = defaultSanitizer,
-// contextSanitizer,
-// level
+const defaults = {
+    level           : defaultLevel,
+    paramsSanitizer : defaultSanitizer,
+    resultSanitizer : defaultSanitizer,
+    errorSanitizer  : defaultSanitizer
+};
+
 export default function functionDecorator(method, config = {}) {
-    const methodName = config.methodName || method.name;
-    const level = config.level || this.level || defaultLevel;
-    const paramsSanitizer = config.paramsSanitizer || defaultSanitizer;
-    const resultSanitizer = config.resultSanitizer || defaultSanitizer;
-    const errorSanitizer = config.errorSanitizer || defaultSanitizer;
-    const contextSanitizer = config.contextSanitizer || this.contextSanitizer;
+    const {
+        methodName,
+        level,
+        paramsSanitizer,
+        resultSanitizer,
+        errorSanitizer,
+        contextSanitizer,
+        timestamp
+    } = {
+        methodName : method.name,
+        ...defaults,
+        ...this,
+        ...config
+    };
     const basicLogObject = {
         service     : config.serviceName,
         method      : methodName,
@@ -40,7 +48,7 @@ export default function functionDecorator(method, config = {}) {
             error     : error && errorSanitizer(error),
             context   : (contextSanitizer && context) ? contextSanitizer(context) : undefined,
             benchmark : getBenchmark(time),
-            timestamp : this.timestamp ? new Date() : undefined
+            timestamp : timestamp ? new Date() : undefined
         });
     };
 
