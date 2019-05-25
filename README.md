@@ -5,6 +5,7 @@
 [![Dependencies][badge-deps]][npm]
 [![Vulnerabilities][badge-vuln]](https://snyk.io/)
 [![Build Status][badge-tests]][travis]
+[![Coverage Status][badge-coverage]](https://coveralls.io/github/pustovitDmytro/logger-decorator?branch=master)
 [![License][badge-lic]][github]
 
 ## Table of Contents
@@ -88,8 +89,10 @@ class MyClass {
 [npm]: https://www.npmjs.com/package/logger-decorator
 [github]: https://github.com/pustovitDmytro/logger-decorator
 [travis]: https://travis-ci.org/pustovitDmytro/logger-decorator
+[coveralls]: https://coveralls.io/github/pustovitDmytro/logger-decorator?branch=master
 [badge-deps]: https://img.shields.io/david/pustovitDmytro/logger-decorator.svg
 [badge-tests]: https://img.shields.io/travis/pustovitDmytro/logger-decorator.svg
 [badge-vuln]: https://img.shields.io/snyk/vulnerabilities/npm/logger-decorator.svg?style=popout
 [badge-vers]: https://img.shields.io/npm/v/logger-decorator.svg
 [badge-lic]: https://img.shields.io/github/license/pustovitDmytro/logger-decorator.svg
+[badge-coverage]: https://coveralls.io/repos/github/pustovitDmytro/logger-decorator/badge.svg?branch=master
