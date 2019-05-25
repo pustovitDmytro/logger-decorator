@@ -1,5 +1,5 @@
 
-import { defaultSanitizer, defaultLevel } from '../defaults';
+import defaults from '../defaults';
 import {
     isPromise,
     cleanUndefined
@@ -8,13 +8,6 @@ import {
     getBenchmark,
     startBenchmark
 } from '../utils/benchmark';
-
-const defaults = {
-    level           : defaultLevel,
-    paramsSanitizer : defaultSanitizer,
-    resultSanitizer : defaultSanitizer,
-    errorSanitizer  : defaultSanitizer
-};
 
 export default function functionDecorator(method, config = {}) {
     const {
