@@ -1,5 +1,5 @@
 {
-    "branch": "semantic-release",
+    "branch": "master",
     "ci": false,
     "plugins": [
         [
