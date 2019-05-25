@@ -46,9 +46,9 @@ Config must be a JavaScript ```Object``` with  the following attributes:
 Next values could also be passed to constructor config, but are customizable from ```decorator(custom)``` invokation:
   * **timestamp** - if set to true timestamps will be added to all logs.
   * **level** - default log-level, pay attention then logger must support it as ```logger.level(data)```, *info* by default
-  * **paramsSanitizer** - function to sanitize input parametrs from sensitive or redundant data, see [sanitizers](##sanitizers) for more details, by default [dataSanitizer](##sanitizers).
-  * **resultSanitizer** - output data sanitizer, by default [dataSanitizer](##sanitizers)
-  * **errorSanitizer** - error sanitizer, by default [simpleSanitizer](##sanitizers)
+  * **paramsSanitizer** - function to sanitize input parametrs from sensitive or redundant data, see [sanitizers](#sanitizers) for more details, by default [dataSanitizer](#sanitizers).
+  * **resultSanitizer** - output data sanitizer, by default [dataSanitizer](#sanitizers)
+  * **errorSanitizer** - error sanitizer, by default [simpleSanitizer](#sanitizers)
   * **contextSanitizer** - function context sanitizer, if ommited, no context will be logged.
 
 
