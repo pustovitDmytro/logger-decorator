@@ -1,6 +1,6 @@
 {
     "branch": "semantic-release",
-    "ci": true,
+    "ci": false,
     "plugins": [
         [
             "@semantic-release/commit-analyzer",

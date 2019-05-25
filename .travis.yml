@@ -12,20 +12,15 @@ jobs:
       script: "npm run test:lint"
     - stage: test
       script: "npm run test:coverage"
-<<<<<<< HEAD
     # - stage: test
-    #   script: "npm run test:security" // Due to semantic release vuln
-=======
-    - stage: test
-      script: "npm run test:security"
->>>>>>> 3b7a24a... Build: add semantic realease with eslint preset config (refs #1)
-    - stage: release
-      node_js: lts/*
-      deploy:
-        provider: script
-        skip_cleanup: true
-        script:
-          - npx semantic-release
+    #   script: "npm run test:security"
+    # - stage: release
+    #   node_js: lts/*
+    #   deploy:
+    #     provider: script
+    #     skip_cleanup: true
+    #     script:
+    #       - npx semantic-release
 notifications:
   email:
     recipients: dipustovit@gmail.com
