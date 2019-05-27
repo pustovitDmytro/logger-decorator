@@ -2,6 +2,7 @@
 import defaults from '../defaults';
 import {
     isPromise,
+    isFunction,
     cleanUndefined
 } from '../utils';
 import {
@@ -11,6 +12,7 @@ import {
 
 export default function functionDecorator(method, config = {}) {
     const {
+        logger,
         methodName,
         level,
         paramsSanitizer,
@@ -45,14 +47,20 @@ export default function functionDecorator(method, config = {}) {
         });
     };
 
+    const log = (logLevel, data) => {
+        if (isFunction(logger)) return logger(logLevel, data);
+        if (isFunction(logger[logLevel])) return logger[logLevel](data);
+        throw new Error(`logger not supports ${logLevel} level`);
+    };
+
     const onSuccess = data => {
-        this.logger[level](buildLogObject(data));
+        log(level, buildLogObject(data));
 
         return data.result;
     };
 
     const onError = (data) => {
-        this.logger.error(buildLogObject(data));
+        log('error', buildLogObject(data));
 
         throw data.error;
     };
