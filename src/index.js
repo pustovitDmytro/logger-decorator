@@ -17,8 +17,6 @@ module.exports = class Decorator {
                     );
                 }
                 if (isClass(target)) {
-                    console.log('args: ', args);
-
                     return classDecorator.call(opts, target, ...args);
                 }
                 if (isFunction(target)) {
