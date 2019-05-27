@@ -7,7 +7,7 @@
         "@semantic-release/npm",
         [
             "@semantic-release/git", {
-                "message": "Chore: ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+                "message": "Chore(release): add version ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
             }
         ]
     ],
