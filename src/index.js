@@ -6,7 +6,7 @@ import {
 } from  './decorators';
 
 module.exports = class Decorator {
-    constructor(opts) {
+    constructor(opts = {}) {
         return (...args) => {
             return (target, methodName, descriptor) => {
                 if (methodName && descriptor) {
@@ -17,11 +17,14 @@ module.exports = class Decorator {
                     );
                 }
                 if (isClass(target)) {
+                    console.log('args: ', args);
+
                     return classDecorator.call(opts, target, ...args);
                 }
                 if (isFunction(target)) {
                     return functionDecorator.call(opts, target, ...args);
                 }
+                throw new Error(`Can't decorate ${typeof target}, only functions, classes and class methods are allowed`);
             };
         };
     }
