@@ -41,7 +41,7 @@ export default function functionDecorator(method, config = {}) {
             error     : error && errorSanitizer(error),
             context   : (contextSanitizer && context) ? contextSanitizer(context) : undefined,
             benchmark : getBenchmark(time),
-            timestamp : timestamp ? new Date() : undefined
+            timestamp : timestamp ? (new Date()).toISOString() : undefined
         });
     };
 
