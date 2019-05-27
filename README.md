@@ -23,8 +23,8 @@ To use library you need to have [node](https://nodejs.org) and [npm](https://www
 ## Installation
 
 To install the library run following command
-```
-npm i --save logger-decorator
+```bash
+  npm i --save logger-decorator
 ```
 
 ## Usage
@@ -32,7 +32,8 @@ npm i --save logger-decorator
 The package provides simple decorator, so you can simply wrap functions or classes with it or use [@babel/plugin-proposal-decorators](https://babeljs.io/docs/en/babel-plugin-proposal-decorators) in case you love to complicate things.
 
 The recommended way for using 'logger-decorator' is to build own decorator singleton inside the app.
-```
+
+```javascript
   import Decorator from 'logger-decorator';
   const decorator = new Decorator(config);
 ```
@@ -40,7 +41,7 @@ The recommended way for using 'logger-decorator' is to build own decorator singl
 ### Configuration
 
 Config must be a JavaScript ```Object``` with  the following attributes:
-  * **logger** - logger, which build decorator will use, *console* by default
+  * **logger** - logger, which build decorator will use, *console* by default, see [logger](#logger) for more details 
   * **name** - the app name, to include in all logs, could be omitted.
   
 Next values could also be passed to constructor config, but are customizable from ```decorator(custom)``` invokation:
@@ -143,6 +144,24 @@ default *logger-decorator* sanitizers are:
 * ```simpleSanitizer``` - default [inspect](https://nodejs.org/api/util.html#util_util_inspect_object_options) function
 * ```dataSanitizer``` - firstly replace all values with key ```%password%``` replaced to ```***```, and then ```simpleSanitizer```.
 
+### Logger
+
+*Logger* can be a function, with next structure:
+
+```javascript
+  const logger = (level, data) => {
+    console.log(level, data)
+  }
+```
+Otherwise, you can define each logLevel separately in *Object* / *Class* logger:
+
+```javascript
+  const logger = {
+    info    : console.log,
+    verbose : console.log,
+    error   : console.error
+  }
+```
 
 ## Contribute
 
@@ -161,10 +180,9 @@ The Tag is one of the following:
 * **Build** - changes to build process only.
 * **New** - implemented a new feature.
 * **Upgrade** - for a dependency upgrade.
+* **Chore** - for tests, refactor, style, etc.
 
 The message summary should be a one-sentence description of the change. The issue number should be mentioned at the end.
-
-
 
 
 [npm]: https://www.npmjs.com/package/logger-decorator
