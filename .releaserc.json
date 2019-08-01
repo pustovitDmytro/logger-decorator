@@ -1,0 +1,31 @@
+{
+    "branch": "master",
+    "ci": false,
+    "plugins": [
+        "@semantic-release/commit-analyzer",
+        "@semantic-release/release-notes-generator",
+        [
+            "@semantic-release/changelog", {
+                "changelogFile": "CHANGELOG.md"
+            }
+        ],
+            "@semantic-release/npm",
+        [
+            "@semantic-release/git", {
+                "message": "Chore: (release) add version ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+            }
+        ]
+    ],
+    "preset": "eslint",
+    "releaseRules": [
+        { "type": "Fix", "release": "patch" },
+        { "type": "Update", "release": "minor" },
+        { "type": "New", "release": "minor" },
+        { "type": "Breaking", "release": "major" },
+        { "type": "Docs", "release": "patch" },
+        { "type": "Upgrade", "release": "patch" }
+    ],
+    "parserOpts": {
+        "noteKeywords": ["BREAKING CHANGE", "BREAKING CHANGES"]
+    }
+}

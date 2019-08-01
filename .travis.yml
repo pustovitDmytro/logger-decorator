@@ -1,0 +1,26 @@
+language: node_js
+node_js: lts/*
+before_script:
+  - "npm run build"
+after_success:
+  - "npm run coveralls"
+jobs:
+  include:
+    - stage: test
+      script: "npm run test:lint"
+    - stage: test
+      script: "npm run test:coverage"
+    - stage: test
+      script: "npm run test:security"
+    - stage: release
+      node_js: lts/*
+      deploy:
+        provider: script
+        skip_cleanup: true
+        script:
+          - npx semantic-release
+notifications:
+  email:
+    recipients: dipustovit@gmail.com
+    on_success: change
+    on_failure: always

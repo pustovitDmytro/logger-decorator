@@ -1,0 +1,60 @@
+{
+  "name": "npm-boilerplate",
+  "version": "0.0.1",
+  "description": "boilerplate for creating npm packages",
+  "main": "./lib",
+  "scripts": {
+    "build": "babel src --out-dir ./lib",
+    "prepare": "npm run build",
+    "coveralls": "cat ./coverage/lcov.info | coveralls",
+    "test:security": "npm audit",
+    "test:lint": "eslint src",
+    "test:mocha": "mocha  --config .mocharc.json tests/**/*.js",
+    "test:coverage": "MODE=test nyc mocha --config .mocharc.json tests/**/*.js",
+    "coverage-check": "MODE=test nyc check-coverage",
+    "test": "npm run test:lint && npm run test:security && npm run test:coverage",
+    "semantic-release": "semantic-release"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pustovitDmytro/npm-boilerplate.git"
+  },
+  "author": "Dmytro Pustovit",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pustovitDmytro/npm-boilerplate/issues"
+  },
+  "homepage": "https://github.com/pustovitDmytro/npm-boilerplate#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.3.4",
+    "@babel/node": "^7.2.2",
+    "@babel/plugin-proposal-class-properties": "^7.3.4",
+    "@babel/plugin-proposal-decorators": "^7.3.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.3.4",
+    "@babel/plugin-proposal-optional-chaining": "^7.2.0",
+    "@babel/preset-env": "^7.3.4",
+    "@babel/runtime": "^7.3.4",
+    "@semantic-release/changelog": "^3.0.4",
+    "@semantic-release/commit-analyzer": "^6.1.0",
+    "@semantic-release/git": "^7.0.8",
+    "@semantic-release/npm": "^5.1.7",
+    "@semantic-release/release-notes-generator": "^7.1.4",
+    "babel-eslint": "^10.0.1",
+    "babel-plugin-module-resolver": "^3.2.0",
+    "chai": "^4.2.0",
+    "conventional-changelog-eslint": "^3.0.1",
+    "coveralls": "^3.0.3",
+    "eslint": "^5.16.0",
+    "eslint-config-webbylab": "^4.0.0",
+    "eslint-plugin-fetch": "0.0.1",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-more": "^0.3.2",
+    "eslint-plugin-no-require-lodash": "^1.1.0",
+    "eslint-plugin-prefer-spread": "^1.0.3",
+    "eslint-plugin-react": "^7.12.4",
+    "mocha": "^6.1.4",
+    "nyc": "^14.1.1",
+    "semantic-release": "^15.13.19"
+  }
+}
