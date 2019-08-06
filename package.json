@@ -43,6 +43,7 @@
     "babel-eslint": "^10.0.1",
     "babel-plugin-module-resolver": "^3.2.0",
     "chai": "^4.2.0",
+    "chance": "^1.0.18",
     "conventional-changelog-eslint": "^3.0.1",
     "coveralls": "^3.0.3",
     "eslint": "^5.16.0",
@@ -53,8 +54,10 @@
     "eslint-plugin-no-require-lodash": "^1.1.0",
     "eslint-plugin-prefer-spread": "^1.0.3",
     "eslint-plugin-react": "^7.12.4",
+    "fs-extra": "^8.1.0",
     "mocha": "^6.1.4",
     "nyc": "^14.1.1",
-    "semantic-release": "^15.13.19"
+    "semantic-release": "^15.13.19",
+    "uuid": "^3.3.2"
   }
 }
