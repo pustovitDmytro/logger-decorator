@@ -4,3 +4,4 @@ tests
 .eslintrc
 .eslintignore 
 .babelrc
+tmp
