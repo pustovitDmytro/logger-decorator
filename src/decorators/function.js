@@ -5,6 +5,7 @@ import {
     isFunction,
     cleanUndefined
 } from '../utils';
+
 import {
     getBenchmark,
     startBenchmark
@@ -22,7 +23,8 @@ export default function functionDecorator(method, config = {}) {
         errorSanitizer,
         contextSanitizer,
         timestamp,
-        dublicates
+        dublicates,
+        errorLevel
     } = {
         methodName : method.name,
         ...defaults,
@@ -50,20 +52,29 @@ export default function functionDecorator(method, config = {}) {
         });
     };
 
+    const buildLogLevel = (logLevel, data) => {
+        if (isFunction(logLevel)) return logLevel(data);
+
+        return logLevel;
+    };
+
     const log = (logLevel, data) => {
-        if (isFunction(logger)) return logger(logLevel, data);
-        if (isFunction(logger[logLevel])) return logger[logLevel](data);
-        throw new Error(`logger not supports ${logLevel} level`);
+        const lev = buildLogLevel(logLevel, data);
+        const dat = buildLogObject(data);
+
+        if (isFunction(logger)) return logger(lev, dat);
+        if (isFunction(logger[lev])) return logger[lev](dat);
+        throw new Error(`logger not supports ${lev} level`);
     };
 
     const onSuccess = data => {
-        log(level, buildLogObject(data));
+        log(level, data);
 
         return data.result;
     };
 
     const onError = (data) => {
-        log('error', buildLogObject(data));
+        log(errorLevel, data);
 
         throw data.error;
     };

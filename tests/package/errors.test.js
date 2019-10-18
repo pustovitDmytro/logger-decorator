@@ -67,3 +67,25 @@ test('Negative: function return rejected promise', async function () {
     assert.isEmpty(logger.stack.verbose);
     assert.include(logger.stack.error[0].error, error.toString());
 });
+
+test('Negative: different errorLevels on different errors', function () {
+    const logger = new Logger({ levels: [ 'warn', 'error' ] });
+    const decorator = new Decorator({
+        logger,
+        errorLevel : ({ error }) => error.message === 'NOT_FOUND' ? 'warn' : 'error'
+    });
+
+    const decorated = decorator()(function (err) {
+        throw err;
+    });
+
+    assert.throws(decorated.bind(null, new Error('NOT_FOUND')));
+    assert.isEmpty(logger.stack.error);
+    assert.notEmpty(logger.stack.warn);
+
+    logger.clear();
+
+    assert.throws(decorated.bind(null, new Error('FORMAT_ERROR')));
+    assert.notEmpty(logger.stack.error);
+    assert.isEmpty(logger.stack.warn);
+});

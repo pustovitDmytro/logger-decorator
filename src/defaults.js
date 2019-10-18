@@ -5,9 +5,11 @@ function defaultDataSanitizer(data) {
 }
 
 const defaultLevel = 'info';
+const defaultErrorLevel = 'error';
 
 export default {
     level           : defaultLevel,
+    errorLevel      : defaultErrorLevel,
     paramsSanitizer : defaultDataSanitizer,
     resultSanitizer : defaultDataSanitizer,
     errorSanitizer  : simpleSanitizer,
