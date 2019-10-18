@@ -1,24 +1,34 @@
 import { inspect } from 'util';
 import { isFunction, isArray, isObject } from './index';
 
-function sanitizeRegexp(regexp) {
-    return function sanitize(data) {
-        if (isFunction(data)) return '[Function]';
-        if (isArray(data)) return data.map(sanitize);
-        if (isObject(data)) {
-            const sanitized = {};
-
-            Object.entries(data)
-                .forEach(([ key, value ]) => {
-                    sanitized[key] = regexp.test(key)
-                        ? '***'
-                        : sanitize(value);
-                });
-
-            return sanitized;
+function sanitize(data, { regexp, cache }) {
+    if (isFunction(data)) return '[Function]';
+    if (isArray(data)) return data.map(i => sanitize(i, { regexp, cache }));
+    if (isObject(data)) {
+        if (~cache.indexOf(data)) {
+            return '[Circular]';
         }
+        cache.push(data);
+        const sanitized = {};
 
-        return data;
+        Object.entries(data)
+            .forEach(([ key, value ]) => {
+                sanitized[key] = regexp.test(key)
+                    ? '***'
+                    : sanitize(value, { regexp, cache });
+            });
+
+        return sanitized;
+    }
+
+    return data;
+}
+
+export function sanitizeRegexp(regexp) {
+    return function (data) {
+        const cache = [];
+
+        return sanitize(data, { regexp, cache });
     };
 }
 
