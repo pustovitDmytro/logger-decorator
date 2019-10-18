@@ -4,8 +4,8 @@ import {
     classMethodDecorator,
     classDecorator
 } from  './decorators';
-
-module.exports = class Decorator {
+// TODO change from log(opts)(func) to log(func, opts)
+export class Decorator {
     constructor(opts = {}) {
         return (...args) => {
             return (target, methodName, descriptor) => {
@@ -26,4 +26,4 @@ module.exports = class Decorator {
             };
         };
     }
-};
+}
