@@ -10,6 +10,8 @@ import {
     startBenchmark
 } from '../utils/benchmark';
 
+const _decorated = Symbol('_decorated');
+
 export default function functionDecorator(method, config = {}) {
     const {
         logger,
@@ -19,7 +21,8 @@ export default function functionDecorator(method, config = {}) {
         resultSanitizer,
         errorSanitizer,
         contextSanitizer,
-        timestamp
+        timestamp,
+        dublicates
     } = {
         methodName : method.name,
         ...defaults,
@@ -65,7 +68,9 @@ export default function functionDecorator(method, config = {}) {
         throw data.error;
     };
 
-    return function (...args) {
+    if (!dublicates && method[_decorated]) return method;
+
+    const f =  function (...args) {
         const time = startBenchmark();
         const loggerData = { args, time, context: this };
 
@@ -83,4 +88,8 @@ export default function functionDecorator(method, config = {}) {
             onError({ error, ...loggerData });
         }
     };
+
+    f[_decorated] = true;
+
+    return f;
 }

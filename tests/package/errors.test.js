@@ -1,5 +1,5 @@
 import { assert } from 'chai';
-import Decorator from '../entry';
+import { Decorator } from '../entry';
 import Logger from '../Logger';
 
 suite('Errors');
