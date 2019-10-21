@@ -9,7 +9,7 @@ const deepFunctions = x =>
 
 const distinctDeepFunctions = x => Array.from(new Set(deepFunctions(x)));
 
-export const getMethodNames = x => distinctDeepFunctions(x).filter(name => name !== 'constructor' && name.indexOf('_') !== 0);
+export const getMethodNames = x => distinctDeepFunctions(x);
 /* eslint-enable func-style*/
 
 export function isString(x) {

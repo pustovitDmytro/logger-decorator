@@ -27,3 +27,6 @@ export class Decorator {
         };
     }
 }
+
+export default new Decorator();
+

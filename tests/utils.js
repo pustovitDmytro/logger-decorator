@@ -12,7 +12,9 @@ export function verifyStdout(logger, expected, { level = 'info', single = true }
     if (single) {
         assert.deepOwnInclude(logger.stdout(level)[0], expected);
     } else {
-        assert.deepEqual(logger.stdout(level), toArray(expected));
+        logger.stdout(level).forEach((item, ind) => {
+            assert.deepOwnInclude(item, toArray(expected)[ind]);
+        });
     }
 }
 
