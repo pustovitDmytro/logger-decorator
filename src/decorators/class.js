@@ -1,5 +1,6 @@
 
-import { getMethodNames } from '../utils';
+import { getMethodNames, isFunction } from '../utils';
+import defaults from '../defaults';
 import functionDecorator from './function';
 
 function getMethodDescriptor(propertyName, target) {
@@ -30,18 +31,32 @@ export function classMethodDecorator({ target, methodName, descriptor }, config 
 }
 
 export default function getClassLoggerDecorator(target, config = {}) {
-    getMethodNames(target.prototype).forEach(methodName => {
-        const descriptor = getMethodDescriptor(methodName, target);
+    getMethodNames(target.prototype)
+        .filter(methodName => {
+            if (config.include && config.include.includes(methodName)) {
+                return true;
+            }
 
-        Object.defineProperty(
-            target.prototype,
-            methodName,
-            classMethodDecorator.call(
-                this,
-                { target, methodName, descriptor },
-                { serviceName: target.name,  ...config }
-            )
-        );
-    });
+            if (config.exclude && config.exclude.includes(methodName)) {
+                return false;
+            }
+
+            return isFunction(config.methodNameFilter)
+                ? config.methodNameFilter(methodName)
+                : defaults.methodNameFilter(methodName);
+        })
+        .forEach(methodName => {
+            const descriptor = getMethodDescriptor(methodName, target);
+
+            Object.defineProperty(
+                target.prototype,
+                methodName,
+                classMethodDecorator.call(
+                    this,
+                    { target, methodName, descriptor },
+                    { serviceName: target.name,  ...config }
+                )
+            );
+        });
 }
 
