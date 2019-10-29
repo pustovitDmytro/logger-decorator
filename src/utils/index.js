@@ -1,16 +1,12 @@
-/* eslint-disable func-style*/
 const isGetter = (x, name) => (Object.getOwnPropertyDescriptor(x, name) || {}).get;
 
 const deepFunctions = x =>
-    x && x !== Object.prototype &&
-  Object.getOwnPropertyNames(x)
-      .filter(name => isGetter(x, name) || isFunction(x[name]))
-      .concat(deepFunctions(Object.getPrototypeOf(x)) || []);
+    x && x !== Object.prototype && Object.getOwnPropertyNames(x)
+        .filter(name => isGetter(x, name) || isFunction(x[name]))
+        .concat(deepFunctions(Object.getPrototypeOf(x)) || []);
 
-const distinctDeepFunctions = x => Array.from(new Set(deepFunctions(x)));
 
-export const getMethodNames = x => distinctDeepFunctions(x);
-/* eslint-enable func-style*/
+export const getMethodNames = x => Array.from(new Set(deepFunctions(x)));
 
 export function isString(x) {
     return x && Object.prototype.toString.call(x) === '[object String]';
@@ -53,4 +49,16 @@ export function cleanUndefined(obj) {
     });
 
     return obj;
+}
+
+export function mergeConfigs(...configs) {
+    const config = {};
+
+    for (const [ conf = {} ] of configs.reverse()) {
+        Object.keys(conf).forEach(key => {
+            config[key] = conf[key];
+        });
+    }
+
+    return [ config ];
 }
