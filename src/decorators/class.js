@@ -34,15 +34,9 @@ export function classMethodDecorator({ target, methodName, descriptor }, config 
 
             descriptor[key] = key === 'initializer'// eslint-disable-line no-param-reassign
                 ? function () {
-                    return functionDecorator(
-                        old.call(target),
-                        functionDecoratorConfig
-                    );
+                    return functionDecorator(old.call(target), functionDecoratorConfig);
                 }
-                : functionDecorator(
-                    descriptor[key],
-                    functionDecoratorConfig
-                );
+                : functionDecorator(descriptor[key], functionDecoratorConfig);
         });
 
     return descriptor;
@@ -51,13 +45,8 @@ export function classMethodDecorator({ target, methodName, descriptor }, config 
 function decorateClass(target, config) {
     getMethodNames(target)
         .filter(methodName => {
-            if (config.include?.includes(methodName)) {
-                return true;
-            }
-
-            if (config.exclude?.includes(methodName)) {
-                return false;
-            }
+            if (config.include?.includes(methodName)) return true;
+            if (config.exclude?.includes(methodName)) return false;
 
             return isFunction(config.methodNameFilter)
                 ? config.methodNameFilter(methodName)

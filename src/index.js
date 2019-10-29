@@ -5,9 +5,9 @@ import {
     classDecorator
 } from  './decorators';
 import defaultConfig from './defaults';
+import { sanitizeRegexp } from './utils/sanitizers';
 
 const dfc = [ defaultConfig ];
-// TODO change from log(opts)(func) to log(func, opts)
 
 export class Decorator {
     constructor(...opts) {
@@ -32,4 +32,8 @@ export class Decorator {
 }
 
 export default new Decorator();
+
+export {
+    sanitizeRegexp
+};
 
