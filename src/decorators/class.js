@@ -4,15 +4,15 @@ import defaults from '../defaults';
 import functionDecorator from './function';
 
 function getMethodDescriptor(propertyName, target) {
-    if (target.prototype.hasOwnProperty(propertyName)) {
-        return Object.getOwnPropertyDescriptor(target.prototype, propertyName);
+    if (target.hasOwnProperty(propertyName)) {
+        return Object.getOwnPropertyDescriptor(target, propertyName);
     }
 
     return {
         configurable : true,
         enumerable   : true,
         writable     : true,
-        value        : target.prototype[propertyName]
+        value        : target[propertyName]
     };
 }
 
@@ -48,8 +48,8 @@ export function classMethodDecorator({ target, methodName, descriptor }, config 
     return descriptor;
 }
 
-export default function getClassLoggerDecorator(target, config = {}) {
-    getMethodNames(target.prototype)
+function decorateClass(target, config) {
+    getMethodNames(target)
         .filter(methodName => {
             if (config.include?.includes(methodName)) {
                 return true;
@@ -69,7 +69,7 @@ export default function getClassLoggerDecorator(target, config = {}) {
             if (!descriptor) return;
 
             Object.defineProperty(
-                target.prototype,
+                target,
                 methodName,
                 classMethodDecorator(
                     { target, methodName, descriptor },
@@ -77,5 +77,17 @@ export default function getClassLoggerDecorator(target, config = {}) {
                 )
             );
         });
+}
+
+export default function getClassLoggerDecorator(target, config = {}) {
+    if (config.classProperties) {
+        return class extends target {
+            constructor(...args) {
+                super(...args);
+                decorateClass(this, config);
+            }
+        };
+    }
+    decorateClass(target.prototype, config);
 }
 

@@ -10,8 +10,10 @@ export const testFunction = func => (input, expected) => {
 
 export function verifyStdout(logger, expected, { level = 'info', single = true } = {}) {
     if (single) {
+        assert.notEmpty(logger.stdout(level));
         assert.deepOwnInclude(logger.stdout(level)[0], expected);
     } else {
+        assert.lengthOf(logger.stdout(level), toArray(expected).length);
         logger.stdout(level).forEach((item, ind) => {
             assert.deepOwnInclude(item, toArray(expected)[ind]);
         });
