@@ -116,3 +116,55 @@ test('include/exlude methods', function () {
     assert.equal(calculator.addOne(15), 16);
     verifyStdout(logger, [ { method: '_sum', params: '[ 15, 1 ]', result: '16' } ], { level: 'info', single: false });
 });
+
+test('Class with getters and setters', function () {
+    const logger = new Logger();
+    const decorator = new Decorator({ logger });
+    const verbose = decorator({ level: 'verbose', getters: true });
+
+    @verbose
+    class Calculator {
+        get one() {
+            return 1;
+        }
+        two = 2
+        addOne = a => {
+            return this._sum(a, this.one);
+        }
+        _sum(a, b) {
+            return a + b;
+        }
+    }
+    const calculator = new Calculator();
+    const res = calculator.addOne(13);
+
+    assert.equal(res, 14);
+    verifyStdout(logger, { params: '[]', result: '1', method: 'one' }, { level: 'verbose' });
+});
+
+
+// test('Class with getters and setters', function () {
+//     const logger = new Logger();
+//     const decorator = new Decorator({ logger });
+//     const verbose = decorator({ level: 'verbose' });
+
+//     decorator({ level: 'info', getters: false });
+//     class Calculator {
+//         get one() {
+//             return 1;
+//         }
+//         two = 2
+//         @verbose
+//         addOne = a => {
+//             return this._sum(a, this.one);
+//         }
+//         _sum(a, b) {
+//             return a + b;
+//         }
+//     }
+//     const calculator = new Calculator();
+//     const res = calculator.addOne(13);
+
+//     assert.equal(res, 14);
+//     verifyStdout(logger, { params: '[ 13 ]', result: '14', method: 'addOne' }, { level: 'verbose' });
+// });

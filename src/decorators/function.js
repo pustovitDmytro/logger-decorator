@@ -1,5 +1,4 @@
 
-import defaults from '../defaults';
 import {
     isPromise,
     isFunction,
@@ -27,14 +26,13 @@ export default function functionDecorator(method, config = {}) {
         errorLevel
     } = {
         methodName : method.name,
-        ...defaults,
-        ...this,
         ...config
     };
+
     const basicLogObject = {
         service     : config.serviceName,
         method      : methodName,
-        application : this.name,
+        application : config.name,
         level
     };
 

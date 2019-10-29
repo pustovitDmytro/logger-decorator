@@ -17,15 +17,33 @@ function getMethodDescriptor(propertyName, target) {
 }
 
 export function classMethodDecorator({ target, methodName, descriptor }, config = {}) {
-    descriptor.value = functionDecorator.call( // eslint-disable-line no-param-reassign
-        this,
-        descriptor.value,
-        {
-            ...config,
-            methodName,
-            serviceName : config.serviceName || target.constructor.name
-        }
-    );
+    const methods = [ 'value', 'initializer' ];
+
+    if (config.getters) methods.push('get');
+    if (config.setters) methods.push('set');
+    const functionDecoratorConfig = {
+        ...config,
+        methodName,
+        serviceName : config.serviceName || target.constructor.name
+    };
+
+    methods
+        .filter(key => descriptor[key] && isFunction(descriptor[key]))
+        .forEach(key => {
+            const old = descriptor[key];
+
+            descriptor[key] = key === 'initializer'// eslint-disable-line no-param-reassign
+                ? function () {
+                    return functionDecorator(
+                        old.call(target),
+                        functionDecoratorConfig
+                    );
+                }
+                : functionDecorator(
+                    descriptor[key],
+                    functionDecoratorConfig
+                );
+        });
 
     return descriptor;
 }
@@ -33,11 +51,11 @@ export function classMethodDecorator({ target, methodName, descriptor }, config 
 export default function getClassLoggerDecorator(target, config = {}) {
     getMethodNames(target.prototype)
         .filter(methodName => {
-            if (config.include && config.include.includes(methodName)) {
+            if (config.include?.includes(methodName)) {
                 return true;
             }
 
-            if (config.exclude && config.exclude.includes(methodName)) {
+            if (config.exclude?.includes(methodName)) {
                 return false;
             }
 
@@ -48,11 +66,12 @@ export default function getClassLoggerDecorator(target, config = {}) {
         .forEach(methodName => {
             const descriptor = getMethodDescriptor(methodName, target);
 
+            if (!descriptor) return;
+
             Object.defineProperty(
                 target.prototype,
                 methodName,
-                classMethodDecorator.call(
-                    this,
+                classMethodDecorator(
                     { target, methodName, descriptor },
                     { serviceName: target.name,  ...config }
                 )
