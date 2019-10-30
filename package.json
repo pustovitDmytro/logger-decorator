@@ -15,7 +15,7 @@
     "test:mocha": "mocha  --require @babel/register $npm_package_config_MOCHA_OPTS",
     "test:coverage": "MODE=test nyc mocha $npm_package_config_MOCHA_OPTS",
     "coverage-check": "MODE=test nyc check-coverage",
-    "test": "npm run test:lint && npm run test:security && npm run test:coverage",
+    "test": "npm run test:mocha",
     "semantic-release": "semantic-release"
   },
   "repository": {
