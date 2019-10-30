@@ -93,3 +93,102 @@ test('disable double logging', function () {
     verifyStdout(logger, { params: '[ 5, 7 ]', result: '22', context: { base: 10 } }, { level: 'info' });
     verifyStdout(logger, [], { level: 'verbose', single: false });
 });
+
+
+test('include/exlude methods', function () {
+    const logger = new Logger();
+    const decorator = new Decorator({ logger, level: 'info' });
+
+    @decorator({ exclude: [ 'addOne' ], include: [ '_sum' ] })
+    class Calculator {
+        _one() {
+            return 1;
+        }
+        _sum(a, b) {
+            return a + b;
+        }
+        addOne(num) {
+            return this._sum(num, this._one());
+        }
+    }
+    const calculator = new Calculator();
+
+    assert.equal(calculator.addOne(15), 16);
+    verifyStdout(logger, [ { method: '_sum', params: '[ 15, 1 ]', result: '16' } ], { level: 'info', single: false });
+});
+
+test('Class with getters and setters', function () {
+    const logger = new Logger();
+    const decorator = new Decorator({ logger });
+    const verbose = decorator({ level: 'verbose', getters: true });
+
+    @verbose
+    class Calculator {
+        get one() {
+            return 1;
+        }
+        two = 2
+        addOne = a => {
+            return this._sum(a, this.one);
+        }
+        _sum(a, b) {
+            return a + b;
+        }
+    }
+    const calculator = new Calculator();
+    const res = calculator.addOne(13);
+
+    assert.equal(res, 14);
+    verifyStdout(logger, { params: '[]', result: '1', method: 'one' }, { level: 'verbose' });
+});
+
+
+test('Class support for class-properties (as-class method)', function () {
+    const logger = new Logger();
+    const decorator = new Decorator({ logger });
+    const verbose = decorator({ level: 'verbose' });
+
+    decorator({ level: 'info', getters: false });
+    class Calculator {
+        get one() {
+            return 1;
+        }
+        two = 2
+        @verbose
+        addOne = a => {
+            return this._sum(a, this.one);
+        }
+        _sum(a, b) {
+            return a + b;
+        }
+    }
+    const calculator = new Calculator();
+    const res = calculator.addOne(13);
+
+    assert.equal(res, 14);
+    verifyStdout(logger, { params: '[ 13 ]', result: '14', method: 'addOne' }, { level: 'verbose' });
+});
+
+test('Class support for class-properties in class decorator', function () {
+    const logger = new Logger();
+    const decorator = new Decorator({ logger });
+    const verbose = decorator({ level: 'verbose', classProperties: true });
+
+    @verbose
+    class Calculator {
+        get one() {
+            return 1;
+        }
+        two = 2
+        addOne = a => {
+            return this._sum(a, this.one);
+        }
+        _sum(a, b) {
+            return a + b;
+        }
+    }
+    const calculator = new Calculator();
+
+    assert.equal(calculator.addOne(13), 14);
+    verifyStdout(logger, { params: '[ 13 ]', result: '14', method: 'addOne' }, { level: 'verbose' });
+});

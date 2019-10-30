@@ -34,23 +34,54 @@ The package provides simple decorator, so you can simply wrap functions or class
 The recommended way for using 'logger-decorator' is to build own decorator singleton inside the app.
 
 ```javascript
-  import Decorator from 'logger-decorator';
+  import { Decorator } from 'logger-decorator';
+
   const decorator = new Decorator(config);
+```
+
+Or just use decorator with default configuration: 
+
+```javascript
+  import log from 'logger-decorator';
+
+  @log({level: 'verbose'})
+  class Rectangle {
+    constructor(height, width) {
+      this.height = height;
+      this.width = width;
+    }
+    get area() {
+      return this.calcArea();
+    }
+    calcArea() {
+      return this.height * this.width;
+    }
+  }
 ```
 
 ### Configuration
 
 Config must be a JavaScript ```Object``` with  the following attributes:
-  * **logger** - logger, which build decorator will use, *console* by default, see [logger](#logger) for more details 
+  * **logger** - logger, which build decorator will use, *[console](https://nodejs.org/api/console.html)* by default, see [logger](#logger) for more details 
   * **name** - the app name, to include in all logs, could be omitted.
   
-Next values could also be passed to constructor config, but are customizable from ```decorator(custom)``` invokation:
-  * **timestamp** - if set to true timestamps will be added to all logs.
-  * **level** - default log-level, pay attention then logger must support it as ```logger.level(data)```, *info* by default
+Next values could also be passed to constructor config, but are customizable from ```decorator(customConfig)``` invokation:
+  * **timestamp** - if set to *true* timestamps will be added to all logs.
+  * **level** - default log-level, pay attention that logger must support it as ```logger.level(smth)```, *'info'* by default. Also *function* could be passed. Function will receive logged data and should return log-level as *string*.
+  *  **errorLevel** - level, used for errors. *'error'* by default. Also *function* could be passed. Function will receive logged data and should return log-level as *string*.
   * **paramsSanitizer** - function to sanitize input parametrs from sensitive or redundant data, see [sanitizers](#sanitizers) for more details, by default [dataSanitizer](#sanitizers).
   * **resultSanitizer** - output data sanitizer, by default [dataSanitizer](#sanitizers)
   * **errorSanitizer** - error sanitizer, by default [simpleSanitizer](#sanitizers)
   * **contextSanitizer** - function context sanitizer, if ommited, no context will be logged.
+  *  **dublicates** - if set to *true*, it is possible to use multiple decorators at once (see [example](#dublicates))
+  
+Next parametrs could help in class method filtering:
+  *  **getters** - if set to *true*, [getters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get) will also be logged (applied to class and class-method decorators)
+  *  **setters** - if set to *true*, [setters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set) will also be logged (applied to class and class-method decorators)
+  *  **classProperties** - if set to *true*, [class-properties](https://babeljs.io/docs/en/babel-plugin-proposal-class-properties) will also be logged (applied to class decorators only)
+  *  **include** - array with method names, for which loggs will be added.
+  *  **exclude** - array with method names, for which loggs will not be added.
+  *  **methodNameFilter** - function, to filter method names
 
 
 ### Functions
@@ -58,7 +89,7 @@ Next values could also be passed to constructor config, but are customizable fro
 To decorate a function with ```logger-decorator``` the next approach can be applied:
 
 ```javascript
-  import Decorator from 'logger-decorator';
+  import { Decorator } from 'logger-decorator';
   
   const decorator = new Decorator({ logger });
   const decorated = decorator()(function sum(a, b) {
@@ -81,14 +112,14 @@ const decorated = log({ methodName })(sumAsync);
 await decorated(5, 8); // 13
 ```
 
-Besides ```methodName``` any of the  ```timestamp, level, paramsSanitizer, resultSanitizer, errorSanitizer, contextSanitizer``` can be transferred to ```log(customConfig)``` and will replace global values.
+Besides ```methodName``` any of the  ```timestamp, level, paramsSanitizer, resultSanitizer, errorSanitizer, contextSanitizer, etc...``` can be transferred to ```log(customConfig)``` and will replace global values.
 
 ### Classes
 
 To embed logging for all class methods follow next approach:
 
 ```javascript
-import Decorator from 'logger-decorator';
+import { Decorator } from 'logger-decorator';
 const log = new Decorator();
 
 @log()
@@ -107,12 +138,12 @@ class MyClass {
     }
 ```
 
-When needed, the decorator can be applied to a specific class method. It is also possible to use multiple decorators at once:
+When needed, the decorator can be applied to a specific class method. It is also possible to use multiple decorators <a name="dublicates"></a> at once:
 
 ```javascript
     const decorator = new Decorator({ logger, contextSanitizer: data => ({ base: data.base }) }); // level info by default
 
-    @decorator({ level: 'verbose', contextSanitizer: data => data.base })
+    @decorator({ level: 'verbose', contextSanitizer: data => data.base, dublicates: true })
     class Calculator {
         base = 10;
         _secret = 'x0Hdxx2o1f7WZJ';

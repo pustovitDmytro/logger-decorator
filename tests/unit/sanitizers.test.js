@@ -44,3 +44,15 @@ test('password sanitizer', function () {
     verify(sensitive, blured);
     verify([ unsensitive, { ...unsensitive, sensitive } ], [ unsensitive, { ...unsensitive, sensitive: blured  } ]);
 });
+
+test('circular expressions', function () {
+    const obj = {
+        a : 'abc',
+        b : 123
+    };
+
+    obj.circular = obj;
+    // assert.equal(simpleSanitizer(obj), "{ a: 'abc', b: 123, circular: [Circular] }"); // depends on node version
+    assert.exists(simpleSanitizer(obj));
+    assert.deepEqual(sanitizePasswords(obj), { a: 'abc', b: 123, circular: '[Circular]' });
+});

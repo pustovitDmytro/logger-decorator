@@ -1,6 +1,6 @@
 {
   "name": "logger-decorator",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "provides a unified and simple approach for class and function logging",
   "main": "./lib",
   "config": {
@@ -15,7 +15,7 @@
     "test:mocha": "mocha  --require @babel/register $npm_package_config_MOCHA_OPTS",
     "test:coverage": "MODE=test nyc mocha $npm_package_config_MOCHA_OPTS",
     "coverage-check": "MODE=test nyc check-coverage",
-    "test": "npm run test:lint && npm run test:security && npm run test:coverage",
+    "test": "npm run test:mocha",
     "semantic-release": "semantic-release"
   },
   "repository": {
@@ -57,7 +57,7 @@
     "fs-extra": "^8.0.1",
     "mocha": "^6.1.4",
     "nyc": "^14.1.1",
-    "semantic-release": "^15.13.14",
+    "semantic-release": "^15.13.27",
     "test-console": "^1.1.0"
   }
 }
