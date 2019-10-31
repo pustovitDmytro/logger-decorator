@@ -1,3 +1,14 @@
+# [1.1.0](https://github.com/pustovitDmytro/logger-decorator/compare/v1.0.0...v1.1.0) (2019-10-31)
+
+
+### Chore
+
+* (test) test for default decorator ([d775eb16323d0cf6399fdbec3f3e5e9724200c43](https://github.com/pustovitDmytro/logger-decorator/commit/d775eb16323d0cf6399fdbec3f3e5e9724200c43))
+
+### New
+
+* stream alias for sanitizeRegexp ([3c4b4e4aa36e5e503a8fe89130055f2523299956](https://github.com/pustovitDmytro/logger-decorator/commit/3c4b4e4aa36e5e503a8fe89130055f2523299956))
+
 # [1.0.0](https://github.com/pustovitDmytro/logger-decorator/compare/v0.3.2...v1.0.0) (2019-10-30)
 
 
