@@ -42,6 +42,10 @@ export function toArray(value) {
     return isArray(value) ? value : [ value ];
 }
 
+export function isStream(x) {
+    return x && isFunction(x.pipe);
+}
+
 export function cleanUndefined(obj) {
     Object.keys(obj).forEach(key => {
         if (obj[key] && typeof obj[key] === 'object') cleanUndefined(obj[key]);

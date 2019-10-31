@@ -1,7 +1,8 @@
 import { inspect } from 'util';
-import { isFunction, isArray, isObject } from './index';
+import { isFunction, isArray, isObject, isStream } from './index';
 
 function sanitize(data, { regexp, cache }) {
+    if (isStream(data)) return '[Stream]';
     if (isFunction(data)) return '[Function]';
     if (isArray(data)) return data.map(i => sanitize(i, { regexp, cache }));
     if (isObject(data)) {

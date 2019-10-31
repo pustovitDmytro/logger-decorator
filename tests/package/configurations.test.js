@@ -16,12 +16,20 @@ test('Import regexp sanitizer', function () {
         a : 'abc',
         b : 123,
         f : async () => {},
-        s : fs.createReadStream('./configurations.test.js')
+        s : fs.createReadStream('./package.json')
     };
 
     obj.circular = obj;
-    assert.exists(sanitizeRegexp(obj));
-    assert.deepEqual(sanitizeRegexp(obj, { regexp: 'ab' }), { a: 'abc', b: 123, circular: '[Circular]' });
+    const sanitizer = sanitizeRegexp(/ab/);
+
+    assert.exists(sanitizer(obj));
+    assert.deepEqual(sanitizer(obj), {
+        a        : 'abc',
+        b        : 123,
+        circular : '[Circular]',
+        f        : '[Function]',
+        s        : '[Stream]'
+    });
 });
 
 test('Default logger', function () {
