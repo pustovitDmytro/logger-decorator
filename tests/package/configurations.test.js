@@ -1,5 +1,6 @@
+import fs from 'fs';
 import { assert } from 'chai';
-import { Decorator } from '../entry';
+import log, { Decorator, sanitizeRegexp } from '../entry';
 import { verifyConsoleStdout } from '../utils';
 
 suite('Configurations');
@@ -9,6 +10,40 @@ const isIsoRegexp = /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+([+-][0-2
 function sum(a, b) {
     return a + b;
 }
+
+test('Import regexp sanitizer', function () {
+    const obj = {
+        a : 'abc',
+        b : 123,
+        f : async () => {},
+        s : fs.createReadStream('./configurations.test.js')
+    };
+
+    obj.circular = obj;
+    assert.exists(sanitizeRegexp(obj));
+    assert.deepEqual(sanitizeRegexp(obj, { regexp: 'ab' }), { a: 'abc', b: 123, circular: '[Circular]' });
+});
+
+test('Default logger', function () {
+    const decorated = log()(
+        function (a) {
+            return a + 1;
+        }
+    );
+
+    const expected = [
+        /level.*:.*'info'/,
+        /params.*:.*'\[ 5 \]'/,
+        /result.*:.*'6'/,
+        /benchmark.*:.*'\d+\.\d+'/
+    ];
+
+    verifyConsoleStdout(() => {
+        const res = decorated(5);
+
+        assert.equal(res, 6);
+    }, expected, { regexp: true });
+});
 
 test('Default configuration for functions', function () {
     const decorator = new Decorator();
