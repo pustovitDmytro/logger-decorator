@@ -1,5 +1,5 @@
 {
-    "branch": "master",
+    "branches": "master",
     "ci": false,
     "plugins": [
         "@semantic-release/commit-analyzer",
@@ -12,18 +12,19 @@
             "@semantic-release/npm",
         [
             "@semantic-release/git", {
-                "message": "Chore: (release) add version ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+                "assets": ["README.md", "CHANGELOG.md", "package.json"],
+                "message": "Chore(release): add version ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
             }
         ]
     ],
     "preset": "eslint",
     "releaseRules": [
-        { "type": "Fix", "release": "patch" },
-        { "type": "Update", "release": "minor" },
-        { "type": "New", "release": "minor" },
-        { "type": "Breaking", "release": "major" },
-        { "type": "Docs", "release": "patch" },
-        { "type": "Upgrade", "release": "patch" }
+        { "tag": "Fix", "release": "patch" },
+        { "tag": "Update", "release": "minor" },
+        { "tag": "New", "release": "minor" },
+        { "tag": "Breaking", "release": "minor" },
+        { "tag": "Docs", "release": "patch" },
+        { "tag": "Upgrade", "release": "patch" }
     ],
     "parserOpts": {
         "noteKeywords": ["BREAKING CHANGE", "BREAKING CHANGES"]
