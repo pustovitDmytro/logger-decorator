@@ -6,13 +6,13 @@
 			2,
 			"always",
 			[
-				"chore",
-				"fix",
+				"Chore",
+				"Fix",
 				"New",
 				"Update",
-				"breaking",
-				"docs",
-				"upgrade"
+				"Breaking",
+				"Docs",
+				"Upgrade"
 			]
 		]
     }

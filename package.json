@@ -29,7 +29,7 @@
   },
   "homepage": "https://github.com/pustovitDmytro/logger-decorator#readme",
   "devDependencies": {
-    "@babel/cli": "^7.2.3",
+    "@babel/cli": "^7.13.14",
     "@babel/core": "^7.3.4",
     "@babel/node": "^7.2.2",
     "@babel/plugin-proposal-class-properties": "^7.3.4",
@@ -38,7 +38,7 @@
     "@babel/plugin-proposal-optional-chaining": "^7.2.0",
     "@babel/preset-env": "^7.3.4",
     "@babel/runtime": "^7.3.4",
-    "@commitlint/cli": "^8.3.5",
+    "@commitlint/cli": "^12.1.1",
     "@semantic-release/changelog": "^3.0.5",
     "@semantic-release/commit-analyzer": "^6.1.0",
     "@semantic-release/git": "^7.0.8",
@@ -58,9 +58,9 @@
     "eslint-plugin-react": "^7.12.4",
     "fs-extra": "^8.0.1",
     "husky": "^4.0.10",
-    "mocha": "^6.1.4",
+    "mocha": "^8.3.2",
     "nyc": "^14.1.1",
-    "semantic-release": "^15.13.27",
+    "semantic-release": "^17.4.2",
     "test-console": "^1.1.0"
   }
 }
