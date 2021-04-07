@@ -18,6 +18,15 @@
     "test": "npm run test:mocha",
     "semantic-release": "semantic-release"
   },
+  "keywords": [
+    "log",
+    "logger",
+    "decorator",
+    "winston",
+    "es6",
+    "logging",
+    "class"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/pustovitDmytro/logger-decorator.git"
