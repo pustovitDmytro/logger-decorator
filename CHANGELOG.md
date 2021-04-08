@@ -1,3 +1,17 @@
+## [1.1.1](https://github.com/pustovitDmytro/logger-decorator/compare/v1.1.0...v1.1.1) (2021-04-08)
+
+
+### Chore
+
+* adds commit-message linting ([0582523e2cc0de962ee487ae058bf6d5be280fb3](https://github.com/pustovitDmytro/logger-decorator/commit/0582523e2cc0de962ee487ae058bf6d5be280fb3))
+* adds keywords ([db4d21cb1131bd80baa642a89afb60d635a9c0fa](https://github.com/pustovitDmytro/logger-decorator/commit/db4d21cb1131bd80baa642a89afb60d635a9c0fa))
+* update semantic rules to trigger patch releases ([3ffcb6b649725eff07c5e02a025b4ddc84a93347](https://github.com/pustovitDmytro/logger-decorator/commit/3ffcb6b649725eff07c5e02a025b4ddc84a93347))
+* update semantic-release config ([7439e43c83287b5fc9d5604ada8678a77eccb88e](https://github.com/pustovitDmytro/logger-decorator/commit/7439e43c83287b5fc9d5604ada8678a77eccb88e))
+
+### Upgrade
+
+* fixes npm audit ([75b068ab74af621a13cc18c8ac128e28971ce7bc](https://github.com/pustovitDmytro/logger-decorator/commit/75b068ab74af621a13cc18c8ac128e28971ce7bc))
+
 # [1.1.0](https://github.com/pustovitDmytro/logger-decorator/compare/v1.0.0...v1.1.0) (2019-10-31)
 
 
