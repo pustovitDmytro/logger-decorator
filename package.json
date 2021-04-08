@@ -10,7 +10,7 @@
     "test:security": "npm audit",
     "test:lint": "eslint src",
     "test:mocha": "mocha  --config .mocharc.json tests/**/*test.js",
-    "test:coverage": "MODE=test nyc mocha --config .mocharc.json tests/**/*test.js",
+    "test:coverage": "BUILD=0 MODE=test nyc mocha --config .mocharc.json tests/**/*test.js",
     "coverage-check": "MODE=test nyc check-coverage",
     "test": "npm run test:lint && npm run test:security && npm run test:coverage",
     "semantic-release": "semantic-release"
