@@ -14,7 +14,7 @@
     "test:coverage": "BUILD=0 MODE=test nyc mocha --config .mocharc.json tests/**/*test.js",
     "coverage-check": "MODE=test nyc check-coverage",
     "test": "npm run test:lint && npm run test:security && BUILD=1 npm run test:mocha",
-    "semantic-release": "semantic-release"
+    "semantic-release": "./bin/pack.sh && npx semantic-release"
   },
   "repository": {
     "type": "git",
@@ -62,7 +62,7 @@
     "husky": "^6.0.0",
     "mocha": "^6.2.3",
     "nyc": "^14.1.1",
-    "semantic-release": "^15.13.19",
+    "semantic-release": "^17.4.2",
     "uuid": "^3.3.2"
   }
 }

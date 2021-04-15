@@ -19,9 +19,7 @@ jobs:
       deploy:
         provider: script
         skip_cleanup: true
-        script:
-          - ./bin/pack.sh
-          - npx semantic-release
+        script: npm run semantic-release
 notifications:
   email:
     recipients: dipustovit@gmail.com

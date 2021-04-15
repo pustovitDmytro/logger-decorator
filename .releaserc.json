@@ -20,7 +20,7 @@
         [
             "@semantic-release/github", {
                 "assets": [
-                    { "path": "*.tgz" }
+                    { "path": "*.tgz", "label": "version, uploaded to npm" }
                 ]
             }
         ]
