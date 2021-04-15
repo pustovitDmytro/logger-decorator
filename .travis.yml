@@ -12,12 +12,15 @@ jobs:
       script: "npm run test:coverage"
     - stage: test
       script: "npm run test:security"
+    - stage: test
+      script: "npm run test:package"
     - stage: release
       node_js: lts/*
       deploy:
         provider: script
         skip_cleanup: true
         script:
+          - ./bin/pack.sh
           - npx semantic-release
 notifications:
   email:

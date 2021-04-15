@@ -1,8 +1,8 @@
 import { assert } from 'chai';
-import logger from '../entry';
-import { verifyStdout } from '../utils';
+import entry from '../entry';
 
 suite('Configurations');
 
 test('Default configuration', function () {
+    assert.exists(entry);
 });

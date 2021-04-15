@@ -16,6 +16,13 @@
                 "assets": ["README.md", "CHANGELOG.md", "package.json"],
                 "message": "Chore(release): add version ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
             }
+        ],
+        [
+            "@semantic-release/github", {
+                "assets": [
+                    { "path": "*.tgz" }
+                ]
+            }
         ]
     ],
     "preset": "eslint",
