@@ -12,3 +12,4 @@ bin
 .mocharc.json
 .nycrc.json
 .releaserc.json
+coverage/*
