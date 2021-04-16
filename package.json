@@ -14,7 +14,7 @@
     "test:coverage": "BUILD=0 MODE=test nyc mocha --config .mocharc.json tests/**/*test.js",
     "coverage-check": "MODE=test nyc check-coverage",
     "test": "npm run test:lint && npm run test:security && BUILD=1 npm run test:mocha",
-    "semantic-release": "./bin/pack.sh && npx semantic-release"
+    "semantic-release": "npx semantic-release"
   },
   "repository": {
     "type": "git",
