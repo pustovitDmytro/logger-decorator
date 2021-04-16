@@ -24,7 +24,7 @@
         [
             "@semantic-release/github", {
                 "assets": [
-                    { "path": "*.tgz", "label": "npm tarblall" }
+                    { "path": "*.tgz", "label": "npm tarball" }
                 ]
             }
         ]
