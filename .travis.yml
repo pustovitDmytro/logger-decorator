@@ -14,6 +14,8 @@ jobs:
       script: "npm run test:security"
     - stage: test
       script: "npm run test:package"
+    - stage: test
+      script: "npm run test:dept"
     - stage: release
       node_js: lts/*
       deploy:
