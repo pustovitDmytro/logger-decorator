@@ -22,7 +22,7 @@ jobs:
     - stage: test
       script: "npm run test:package"
     - stage: test
-      script: "npm run test:dept"
+      script: "npm run test:debt"
     - stage: release
       node_js: lts/*
       deploy:
