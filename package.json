@@ -8,7 +8,7 @@
   },
   "scripts": {
     "build": "babel src --out-dir ./lib",
-    "prepare": "npm run build",
+    "prepare": "npm run build && husky install",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
     "test:security": "npm audit && npm run test:lock",
     "test:lint": "eslint src",
