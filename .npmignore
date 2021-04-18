@@ -13,3 +13,5 @@ bin
 .nycrc.json
 .releaserc.json
 coverage/*
+.jscpd.json
+./reports/jscpd/*

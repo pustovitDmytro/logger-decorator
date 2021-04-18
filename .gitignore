@@ -8,3 +8,4 @@ tmp/*
 logs/*
 *.log
 *.tgz
+./reports/jscpd/*
