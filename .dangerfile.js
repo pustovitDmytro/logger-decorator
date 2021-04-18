@@ -6,7 +6,7 @@ const src = danger.git.fileMatch('src/*');
 const tests = danger.git.fileMatch('tests/*');
 const system = danger.git.fileMatch('.*', '.*/**', 'LICENSE.md', 'package-lock.json', 'package.json');
 const isOwner = danger.github.pr.user.login === danger.github.thisPR.owner;
-const modifiedList = danger.git.modified_files.join('- ');
+const modifiedList = danger.git.modified_files.join('\n - ');
 
 export default async function () {
     message(`Changed Files in this PR: \n - ${modifiedList}`);
