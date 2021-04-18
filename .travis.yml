@@ -4,8 +4,15 @@ before_script:
   - "npm run build"
 after_success:
   - "npm run coveralls"
+stages:
+  - analyze
+  - test
+  - name: deploy
+    if: branch = master
 jobs:
   include:
+    - stage: analyze
+      script: "npx danger ci -d .dangerfile.js"
     - stage: test
       script: "npm run test:lint"
     - stage: test
