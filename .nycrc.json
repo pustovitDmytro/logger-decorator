@@ -2,9 +2,7 @@
     "include": [
         "src"
     ],
-    "exclude": [
-        "src/utils/**"
-    ],
+    "exclude": [],
     "reporter": [
         "html",
         "lcovonly"

@@ -17,11 +17,16 @@
         }
       ],
       [
-        "@babel/plugin-proposal-class-properties",
+        "module-resolver",
         {
-          "loose": true
+          "root": ["./src"],
+          "alias": {
+            "tests": "./tests",
+            "package": "./package.json",
+          }
         }
       ],
+      "@babel/plugin-proposal-class-properties",
       "@babel/plugin-proposal-optional-chaining"
     ],
     "ignore": [

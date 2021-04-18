@@ -1,28 +1,34 @@
 language: node_js
-node_js:
-  - "node"
-  - "10"
+node_js: lts/*
 before_script:
   - "npm run build"
 after_success:
   - "npm run coveralls"
+stages:
+  - analyze
+  - test
+  - name: deploy
+    if: branch = master
 jobs:
-  allow_failures:
-    - script: "npm run test:security"
   include:
+    - stage: analyze
+      script: "npx danger ci -d .dangerfile.js"
     - stage: test
       script: "npm run test:lint"
     - stage: test
       script: "npm run test:coverage"
     - stage: test
       script: "npm run test:security"
+    - stage: test
+      script: "npm run test:package"
+    - stage: test
+      script: "npm run test:debt"
     - stage: release
       node_js: lts/*
       deploy:
         provider: script
         skip_cleanup: true
-        script:
-          - npx semantic-release
+        script: npm run semantic-release
 notifications:
   email:
     recipients: dipustovit@gmail.com

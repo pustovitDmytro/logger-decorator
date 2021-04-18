@@ -10,11 +10,22 @@
                 "changelogFile": "CHANGELOG.md"
             }
         ],
-            "@semantic-release/npm",
+        [
+            "@semantic-release/npm",{
+                "tarballDir": "./"
+            }
+        ],
         [
             "@semantic-release/git", {
                 "assets": ["README.md", "CHANGELOG.md", "package.json"],
                 "message": "Chore(release): add version ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+            }
+        ],
+        [
+            "@semantic-release/github", {
+                "assets": [
+                    { "path": "*.tgz", "label": "npm tarball" }
+                ]
             }
         ]
     ],
