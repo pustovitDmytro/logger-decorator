@@ -2,12 +2,12 @@
 **npm-boilerplate** boilerplate for creating npm packages.
 
 [![Version][badge-vers]][npm]
-[![CodeFactor][codefactor-badge]]([codefactor-url])
-[![Fossa status][fossa-badge]]([fossa-url])
+[![CodeFactor][codefactor-badge]][codefactor-url]
 [![Dependencies][badge-deps]][npm]
 [![Vulnerabilities][badge-vuln]](https://snyk.io/)
 [![Build Status][badge-tests]][travis]
-[![Coverage Status][badge-coverage]](https://coveralls.io/github/pustovitDmytro/npm-boilerplate?branch=master)
+[![Coverage Status][badge-coverage]][url-coverage])
+[![Fossa status][fossa-badge]][fossa-url]
 [![License][badge-lic]][github]
 
 ## Table of Contents
@@ -68,6 +68,7 @@ The message summary should be a one-sentence description of the change. The issu
 [badge-vers]: https://img.shields.io/npm/v/npm-boilerplate.svg
 [badge-lic]: https://img.shields.io/github/license/pustovitDmytro/npm-boilerplate.svg
 [badge-coverage]: https://coveralls.io/repos/github/pustovitDmytro/npm-boilerplate/badge.svg?branch=master
+[url-coverage]: https://coveralls.io/github/pustovitDmytro/npm-boilerplate?branch=master
 
 [codefactor-badge]: https://www.codefactor.io/repository/github/pustovitdmytro/npm-boilerplate/badge
 [codefactor-url]: https://www.codefactor.io/repository/github/pustovitdmytro/npm-boilerplate
