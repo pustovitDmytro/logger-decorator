@@ -2,6 +2,7 @@
 **npm-boilerplate** boilerplate for creating npm packages.
 
 [![Version][badge-vers]][npm]
+[![CodeFactor][codefactor-badge]]([codefactor-url])
 [![Dependencies][badge-deps]][npm]
 [![Vulnerabilities][badge-vuln]](https://snyk.io/)
 [![Build Status][badge-tests]][travis]
@@ -66,3 +67,6 @@ The message summary should be a one-sentence description of the change. The issu
 [badge-vers]: https://img.shields.io/npm/v/npm-boilerplate.svg
 [badge-lic]: https://img.shields.io/github/license/pustovitDmytro/npm-boilerplate.svg
 [badge-coverage]: https://coveralls.io/repos/github/pustovitDmytro/npm-boilerplate/badge.svg?branch=master
+
+[codefactor-badge]: https://www.codefactor.io/repository/github/pustovitdmytro/npm-boilerplate/badge
+[codefactor-url]: https://www.codefactor.io/repository/github/pustovitdmytro/npm-boilerplate
