@@ -3,6 +3,7 @@
 
 [![Version][badge-vers]][npm]
 [![CodeFactor][codefactor-badge]]([codefactor-url])
+[![Fossa status][fossa-badge]]([fossa-url])
 [![Dependencies][badge-deps]][npm]
 [![Vulnerabilities][badge-vuln]](https://snyk.io/)
 [![Build Status][badge-tests]][travis]
@@ -70,3 +71,6 @@ The message summary should be a one-sentence description of the change. The issu
 
 [codefactor-badge]: https://www.codefactor.io/repository/github/pustovitdmytro/npm-boilerplate/badge
 [codefactor-url]: https://www.codefactor.io/repository/github/pustovitdmytro/npm-boilerplate
+
+[fossa-badge]: https://app.fossa.com/api/projects/git%2Bgithub.com%2FpustovitDmytro%2Fnpm-boilerplate.svg?type=shield
+[fossa-url]: https://app.fossa.com/projects/git%2Bgithub.com%2FpustovitDmytro%2Fnpm-boilerplate?ref=badge_shield
