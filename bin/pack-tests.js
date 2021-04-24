@@ -49,4 +49,4 @@ async function run() {
 }
 
 
-if (isMain) run(process.argv.slice(2));
+if (isMain) run();
