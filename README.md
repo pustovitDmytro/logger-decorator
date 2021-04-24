@@ -2,12 +2,23 @@
 **npm-boilerplate** boilerplate for creating npm packages.
 
 [![Version][badge-vers]][npm]
+[![Bundle size][npm-size-badge]][npm]
+[![Downloads][npm-downloads-badge]][npm]
+
 [![CodeFactor][codefactor-badge]][codefactor-url]
+[![SonarCloud][sonarcloud-badge]][sonarcloud-url]
+[![Codacy][codacy-badge]][codacy-url]
+[![Total alerts][lgtm-alerts-badge]][lgtm-alerts-url]
+[![Language grade][lgtm-lg-badge]][lgtm-lg-url]
+[![Scrutinizer][scrutinizer-badge]][scrutinizer-url]
+
 [![Dependencies][badge-deps]][npm]
 [![Vulnerabilities][badge-vuln]](https://snyk.io/)
 [![Build Status][badge-tests]][travis]
 [![Coverage Status][badge-coverage]][url-coverage]
-[![Fossa status][fossa-badge]][fossa-url]
+
+[![Commit activity][commit-activity-badge]][github]
+[![Fossa][fossa-badge]][fossa-url]
 [![License][badge-lic]][github]
 
 ## Table of Contents
@@ -75,3 +86,23 @@ The message summary should be a one-sentence description of the change. The issu
 
 [fossa-badge]: https://app.fossa.com/api/projects/git%2Bgithub.com%2FpustovitDmytro%2Fnpm-boilerplate.svg?type=shield
 [fossa-url]: https://app.fossa.com/projects/git%2Bgithub.com%2FpustovitDmytro%2Fnpm-boilerplate?ref=badge_shield
+
+[commit-activity-badge]: https://img.shields.io/github/commit-activity/m/pustovitDmytro/npm-boilerplate
+
+[scrutinizer-badge]: https://scrutinizer-ci.com/g/pustovitDmytro/npm-boilerplate/badges/quality-score.png?b=master
+[scrutinizer-url]: https://scrutinizer-ci.com/g/pustovitDmytro/npm-boilerplate/?branch=master
+
+[lgtm-lg-badge]: https://img.shields.io/lgtm/grade/javascript/g/pustovitDmytro/npm-boilerplate.svg?logo=lgtm&logoWidth=18
+[lgtm-lg-url]: https://lgtm.com/projects/g/pustovitDmytro/npm-boilerplate/context:javascript
+
+[lgtm-alerts-badge]: https://img.shields.io/lgtm/alerts/g/pustovitDmytro/npm-boilerplate.svg?logo=lgtm&logoWidth=18
+[lgtm-alerts-url]: https://lgtm.com/projects/g/pustovitDmytro/npm-boilerplate/alerts/
+
+[codacy-badge]: https://app.codacy.com/project/badge/Grade/8667aa23afaa4725854f098c4b5e8890
+[codacy-url]: https://www.codacy.com/gh/pustovitDmytro/npm-boilerplate/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=pustovitDmytro/npm-boilerplate&amp;utm_campaign=Badge_Grade
+
+[sonarcloud-badge]: https://sonarcloud.io/api/project_badges/measure?project=pustovitDmytro_npm-boilerplate&metric=alert_status
+[sonarcloud-url]: https://sonarcloud.io/dashboard?id=pustovitDmytro_npm-boilerplate
+
+[npm-downloads-badge]: https://img.shields.io/npm/dw/npm-boilerplate
+[npm-size-badge]: https://img.shields.io/bundlephobia/min/npm-boilerplate
