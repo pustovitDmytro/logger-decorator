@@ -6,7 +6,7 @@
 [![Dependencies][badge-deps]][npm]
 [![Vulnerabilities][badge-vuln]](https://snyk.io/)
 [![Build Status][badge-tests]][travis]
-[![Coverage Status][badge-coverage]][url-coverage])
+[![Coverage Status][badge-coverage]][url-coverage]
 [![Fossa status][fossa-badge]][fossa-url]
 [![License][badge-lic]][github]
 
