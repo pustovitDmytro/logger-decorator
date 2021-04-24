@@ -71,7 +71,6 @@
     "jscpd": "^3.3.25",
     "lockfile-lint": "^4.6.2",
     "mocha": "^6.2.3",
-    "myrmidon": "^1.4.5",
     "nyc": "^14.1.1",
     "rollup": "^2.45.2",
     "semantic-release": "^17.4.2",
