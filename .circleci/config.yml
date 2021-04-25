@@ -1,0 +1,95 @@
+defaults: &defaults
+  docker:
+    - image: circleci/node:14
+cache-defaults: &cache-defaults
+  keys:
+    - -{{ checksum "package-lock.json" }}
+
+aliases:
+  - &coveralls
+    name: Upload to coveralls
+    command: npm run coveralls
+  - &coverage
+    name: Test Coverage
+    command: npm run test:coverage
+  - &lint
+    name: JavaScript Linter
+    command: npm run test:lint
+  - &debt
+    name: Technical Debt
+    command: npm run test:debt
+  - &test-package
+    name: Test packed app
+    command: npm run test:package
+  - &security
+    name: Validate dependencies
+    command: npm run test:security
+  - &install
+    name: Installing Dependencies
+    command: npm ci
+  - &cache-modules
+    key: -{{ checksum "package-lock.json" }}
+    paths:
+      - ~/.npm
+      - node_modules
+      - lib
+
+version: 2
+debug: true
+jobs:
+  install:
+    <<: *defaults
+    steps:
+      - checkout
+      - run: *install
+      - run: *security
+      - save_cache: *cache-modules
+  tests:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache:
+          <<: *cache-defaults
+      - run: *lint
+      - run: *debt
+      - run: *coverage
+      - store_test_results:
+          path: reports
+      - store_artifacts:
+          path: reports
+      - run: *coveralls
+  test-package:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache:
+          <<: *cache-defaults
+      - run: *test-package          
+  deploy:
+    <<: *defaults
+    steps:
+        - checkout
+        - restore_cache:
+            <<: *cache-defaults
+        - run:
+            name: Create Release
+            command: npm semantic-release
+
+workflows:
+  version: 2
+  main:
+    jobs:
+      - install
+      - tests:
+          requires:
+            - install
+      - test-package:
+          requires:
+            - install
+      - deploy:
+          requires:
+            - tests
+            - test-package
+          filters:
+            branches:
+                only: master
