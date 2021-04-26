@@ -58,7 +58,7 @@
     "conventional-changelog-eslint": "^3.0.1",
     "coveralls": "^3.0.3",
     "danger": "^10.6.4",
-    "eslint": "^5.16.0",
+    "eslint": "^7.0.0",
     "eslint-config-webbylab": "^4.0.0",
     "eslint-plugin-fetch": "0.0.1",
     "eslint-plugin-import": "^2.16.0",
