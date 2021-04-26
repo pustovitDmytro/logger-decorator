@@ -1,6 +1,7 @@
 .*
 *
 !lib/*
+!lib/**/*
 !README.md
 !package.json
 !package-lock.json

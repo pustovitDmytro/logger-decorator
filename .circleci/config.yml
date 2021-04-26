@@ -1,4 +1,5 @@
 defaults: &defaults
+  resource_class: small
   docker:
     - image: circleci/node:14
 cache-defaults: &cache-defaults
@@ -11,10 +12,10 @@ aliases:
     command: npm run coveralls
   - &coverage
     name: Test Coverage
-    command: npm run test:coverage
+    command: npm run test:coverage -- --reporter mocha-junit-reporter --reporter-options mochaFile=reports/test-results/mocha/test-results.xml
   - &lint
     name: JavaScript Linter
-    command: npm run test:lint
+    command: npm run test:lint -- --format junit --output-file ./reports/test-results/eslint/eslint.xml
   - &debt
     name: Technical Debt
     command: npm run test:debt
@@ -54,9 +55,11 @@ jobs:
       - run: *debt
       - run: *coverage
       - store_test_results:
-          path: reports
+          path: reports/test-results
       - store_artifacts:
           path: reports
+      - store_artifacts:
+          path: tmp/tests
       - run: *coveralls
   test-package:
     <<: *defaults
@@ -64,7 +67,9 @@ jobs:
       - checkout
       - restore_cache:
           <<: *cache-defaults
-      - run: *test-package          
+      - run: *test-package
+      - store_artifacts:
+          path: tmp          
   deploy:
     <<: *defaults
     steps:
