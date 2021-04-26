@@ -78,7 +78,7 @@ jobs:
             <<: *cache-defaults
         - run:
             name: Create Release
-            command: npm semantic-release
+            command: npm run semantic-release
 
 workflows:
   version: 2
