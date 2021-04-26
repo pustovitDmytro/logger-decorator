@@ -2,7 +2,12 @@
     "extends": [
         "config:base",
         ":semanticCommits",
-        ":semanticCommitScopeDisabled"
+        ":semanticCommitScopeDisabled",
+        ":preserveSemverRanges",
+        ":pinDependencies",
+        ":prHourlyLimit1",
+        ":maintainLockFilesMonthly",
+        ":combinePatchMinorReleases"
     ],
     "packageRules": [
         {
