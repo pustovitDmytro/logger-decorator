@@ -1,8 +1,22 @@
 {
-  "extends": [
-    "config:base",
-    ":semanticCommits",
-    ":semanticCommitTypeAll(Chore)",
-    ":semanticCommitScope()"
-  ]
+    "extends": [
+        "config:base",
+        ":semanticCommits",
+        ":semanticCommitScopeDisabled"
+    ],
+    "packageRules": [
+        {
+            "matchPackagePatterns": [
+                "*"
+            ],
+            "semanticCommitType": "Chore"
+        },
+        {
+            "matchDepTypes": [
+                "dependencies",
+                "require"
+            ],
+            "semanticCommitType": "Fix"
+        }
+    ]
 }
