@@ -8,6 +8,7 @@
     ],
     "packageRules": [
         {
+            "matchPackagePatterns": [ "*" ],
             "prConcurrentLimit": 5,
             "prHourlyLimit": 1,
             "semanticCommitType": "Chore",
