@@ -17,7 +17,7 @@ export default async function () {
         fail(`Only owner can change system files [${files.join(', ')}], please provide issue instead`, files[0]);
     }
 
-    if (!src.modified && !tests.modified) {
+    if (src.modified && !tests.modified) {
         warn('Source files were changed without tests');
     }
 

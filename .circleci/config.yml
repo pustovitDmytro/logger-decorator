@@ -6,7 +6,15 @@ cache-defaults: &cache-defaults
   keys:
     - -{{ checksum "package-lock.json" }}
 
+parameters:
+  env-tests:
+    type: boolean
+    default: false
+
 aliases:
+  - &danger-pr
+    name: Upload to coveralls
+    command: npx danger ci -d .dangerfile.js
   - &coveralls
     name: Upload to coveralls
     command: npm run coveralls
@@ -38,6 +46,15 @@ aliases:
 version: 2
 debug: true
 jobs:
+  analyze-pr:
+    <<: *defaults
+    environment:
+      DANGER_GITHUB_API_TOKEN: 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
+    steps:
+      - checkout
+      - run: *install
+      - run: *analyze
+      
   install:
     <<: *defaults
     steps:
@@ -98,3 +115,11 @@ workflows:
           filters:
             branches:
                 only: master
+  pr:
+    when: << pipeline.git.branch >>
+    jobs:
+      - danger-pr
+  env-tests:
+    when: << pipeline.parameters.env-tests >>
+    jobs:
+      - install
