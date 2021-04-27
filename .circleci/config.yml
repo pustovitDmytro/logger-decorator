@@ -140,11 +140,11 @@ workflows:
             branches:
                 only: master
   pr:
-    filters:
-        branches:
-          only: /pull\/[0-9]+/
     jobs:
-      - danger-pr
+      - danger-pr:
+          filters:
+            branches:
+              only: /pull\/[0-9]+/
   env-tests:
     when: << pipeline.parameters.env-tests >>
     jobs:
