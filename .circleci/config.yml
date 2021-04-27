@@ -46,14 +46,14 @@ aliases:
 version: 2
 debug: true
 jobs:
-  analyze-pr:
+  danger-pr:
     <<: *defaults
     environment:
       DANGER_GITHUB_API_TOKEN: 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
     steps:
       - checkout
       - run: *install
-      - run: *analyze
+      - run: *danger-pr
       
   install:
     <<: *defaults
