@@ -66,22 +66,36 @@ jobs:
       - run: *install
       - run: *security
       - save_cache: *cache-modules
-  tests:
+  test-coverage:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache:
+          <<: *cache-defaults
+      - run: *coverage
+      - store_test_results:
+          path: reports/test-results
+      - store_artifacts:
+          path: reports
+      - run: *coveralls
+  test-lint:
     <<: *defaults
     steps:
       - checkout
       - restore_cache:
           <<: *cache-defaults
       - run: *lint
-      - run: *debt
-      - run: *coverage
       - store_test_results:
           path: reports/test-results
+  test-debt:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache:
+          <<: *cache-defaults
+      - run: *debt
       - store_artifacts:
           path: reports
-      - store_artifacts:
-          path: tmp/tests
-      - run: *coveralls
   test-package:
     <<: *defaults
     steps:
@@ -103,26 +117,32 @@ jobs:
 
 workflows:
   version: 2
-  # main:
-  #   jobs:
-  #     - install
-  #     - tests:
-  #         requires:
-  #           - install
-  #     - test-package:
-  #         requires:
-  #           - install
-  #     - deploy:
-  #         requires:
-  #           - tests
-  #           - test-package
-  #         filters:
-  #           branches:
-  #               only: master
+  main:
+    jobs:
+      - install
+      - test-package:
+          requires:
+            - install
+      - test-lint:
+          requires:
+            - install
+      - test-debt:
+          requires:
+            - install
+      - test-coverage:
+          requires:
+            - install
+      - deploy:
+          requires:
+            - test-coverage
+            - test-package
+          filters:
+            branches:
+                only: master
   pr:
-    # filters:
-    #     branches:
-    #       only: /pull\/[0-9]+/
+    filters:
+        branches:
+          only: /pull\/[0-9]+/
     jobs:
       - danger-pr
   env-tests:

@@ -9,7 +9,7 @@ const isOwner = danger.github.pr.user.login === danger.github.thisPR.owner;
 const modifiedList = danger.git.modified_files.join('\n\n- ');
 
 export default async function () {
-    message(`Changed Files in this PR: \n- ${modifiedList}`);
+    message(`Changed Files in this PR:\n\n- ${modifiedList}`);
 
     if (system.modified && !isOwner) {
         const files = system.getKeyedPaths().modified;
