@@ -1,5 +1,5 @@
 # npm-boilerplate
-**npm-boilerplate** boilerplate for creating npm packages.
+Boilerplate for creating npm packages.
 
 [![Version][badge-vers]][npm]
 [![Bundle size][npm-size-badge]][npm-size-url]
@@ -35,7 +35,7 @@ To use library you need to have [node](https://nodejs.org) and [npm](https://www
 
 ## Installation
 
-To install the library run following command
+To install the library run the following command
 
 ```bash
   npm i --save npm-boilerplate
@@ -49,7 +49,7 @@ To install the library run following command
 
 ## Contribute
 
-Make the changes to the code and tests and then commit to your branch. Be sure to follow the commit message conventions.
+Make the changes to the code and tests. Then commit to your branch. Be sure to follow the commit message conventions.
 
 Commit message summaries must follow this basic format:
 ```
