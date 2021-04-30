@@ -34,7 +34,7 @@
         { "tag": "Fix", "release": "patch" },
         { "tag": "Update", "release": "minor" },
         { "tag": "New", "release": "minor" },
-        { "tag": "Breaking", "release": "minor" },
+        { "tag": "Breaking", "release": "major" },
         { "tag": "Docs", "release": "patch" },
         { "tag": "Upgrade", "release": "patch" }
     ],
