@@ -14,7 +14,7 @@ Boilerplate for creating npm packages.
 
 [![Dependencies][badge-deps]][npm]
 [![Vulnerabilities][badge-vuln]](https://snyk.io/)
-[![Build Status][badge-tests]][travis]
+[![Build Status][tests-badge]][tests-url]
 [![Coverage Status][badge-coverage]][url-coverage]
 
 [![Commit activity][commit-activity-badge]][github]
@@ -71,15 +71,16 @@ The message summary should be a one-sentence description of the change. The issu
 
 [npm]: https://www.npmjs.com/package/npm-boilerplate
 [github]: https://github.com/pustovitDmytro/npm-boilerplate
-[travis]: https://travis-ci.org/pustovitDmytro/npm-boilerplate
 [coveralls]: https://coveralls.io/github/pustovitDmytro/npm-boilerplate?branch=master
 [badge-deps]: https://img.shields.io/david/pustovitDmytro/npm-boilerplate.svg
-[badge-tests]: https://travis-ci.com/pustovitDmytro/npm-boilerplate.svg?branch=master
 [badge-vuln]: https://img.shields.io/snyk/vulnerabilities/npm/npm-boilerplate.svg?style=popout
 [badge-vers]: https://img.shields.io/npm/v/npm-boilerplate.svg
 [badge-lic]: https://img.shields.io/github/license/pustovitDmytro/npm-boilerplate.svg
 [badge-coverage]: https://coveralls.io/repos/github/pustovitDmytro/npm-boilerplate/badge.svg?branch=master
 [url-coverage]: https://coveralls.io/github/pustovitDmytro/npm-boilerplate?branch=master
+
+[tests-badge]: https://img.shields.io/circleci/build/github/pustovitDmytro/npm-boilerplate
+[tests-url]: https://app.circleci.com/pipelines/github/pustovitDmytro/npm-boilerplate
 
 [codefactor-badge]: https://www.codefactor.io/repository/github/pustovitdmytro/npm-boilerplate/badge
 [codefactor-url]: https://www.codefactor.io/repository/github/pustovitdmytro/npm-boilerplate
