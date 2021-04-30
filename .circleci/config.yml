@@ -109,6 +109,7 @@ workflows:
           requires:
             - install
       - deploy:
+          context: npm-packages
           requires:
             - tests
             - test-package
