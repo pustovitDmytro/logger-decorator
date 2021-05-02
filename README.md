@@ -18,7 +18,6 @@ Boilerplate for creating npm packages.
 [![Coverage Status][badge-coverage]][url-coverage]
 
 [![Commit activity][commit-activity-badge]][github]
-[![Fossa][fossa-badge]][fossa-url]
 [![License][badge-lic]][github]
 
 ## Table of Contents
@@ -84,9 +83,6 @@ The message summary should be a one-sentence description of the change. The issu
 
 [codefactor-badge]: https://www.codefactor.io/repository/github/pustovitdmytro/npm-boilerplate/badge
 [codefactor-url]: https://www.codefactor.io/repository/github/pustovitdmytro/npm-boilerplate
-
-[fossa-badge]: https://app.fossa.com/api/projects/git%2Bgithub.com%2FpustovitDmytro%2Fnpm-boilerplate.svg?type=shield
-[fossa-url]: https://app.fossa.com/projects/git%2Bgithub.com%2FpustovitDmytro%2Fnpm-boilerplate?ref=badge_shield
 
 [commit-activity-badge]: https://img.shields.io/github/commit-activity/m/pustovitDmytro/npm-boilerplate
 
