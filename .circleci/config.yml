@@ -113,7 +113,7 @@ jobs:
             <<: *cache-defaults
         - run:
             name: Create Release
-            command: "[ ! -z ${CIRCLE_SKIP_DEPLOY+x} ] && npm run semantic-release"
+            command: "[ -z ${CIRCLE_SKIP_DEPLOY+x} ] && npm run semantic-release"
 
 workflows:
   version: 2
