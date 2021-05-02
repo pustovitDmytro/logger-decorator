@@ -65,6 +65,7 @@ jobs:
       - checkout
       - run: *install
       - run: *security
+      - run: *danger-pr
       - save_cache: *cache-modules
   test-coverage:
     <<: *defaults
