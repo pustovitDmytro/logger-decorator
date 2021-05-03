@@ -1,20 +1,5 @@
 {
-    "extends": "webbylab",
-    "env": {
-        "browser": true
-    },
-    "rules": {
-        "import/no-commonjs": 0,
-        "func-names": 0,
-        "func-style": 0,
-        "prefer-arrow-callback": 0,
-        "linebreak-style": 0,
-        "max-len": ["error", { 
-            "comments": 800, 
-            "code": 120,
-            "ignoreUrls": true,
-            "ignoreTemplateLiterals": true,
-            "ignoreStrings": true 
-        } ]
-    }
+    "extends": [
+        "incredible"
+    ]
 }

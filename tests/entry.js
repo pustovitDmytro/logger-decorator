@@ -1,3 +1,4 @@
+/* eslint-disable security/detect-non-literal-require */
 import path from 'path';
 
 const isBuild = process.env.BUILD && [ '1', 'true' ].includes(process.env.BUILD);

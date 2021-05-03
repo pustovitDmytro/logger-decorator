@@ -40,6 +40,7 @@ async function run() {
         } finally {
             // await fs.move(backup, path.resolve('tests/entry.js'), { overwrite: true });
         }
+
         console.log('Done');
         process.exit(0);
     } catch (error) {

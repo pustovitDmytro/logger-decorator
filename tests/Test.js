@@ -5,6 +5,7 @@ export default class Test {
     async setTmpFolder() {
         await fse.ensureDir(tmpFolder);
     }
+
     async cleanTmpFolder() {
         await fse.remove(tmpFolder);
     }
