@@ -15,6 +15,7 @@
     "test:lock": "lockfile-lint --path package-lock.json --validate-https --allowed-hosts npm",
     "coverage-check": "MODE=test nyc check-coverage",
     "test": "npm run test:lint && npm run test:security && BUILD=1 npm run test:mocha",
+    "sort-deps": "npm remove --save example; npm remove --save-dev example",
     "semantic-release": "npx semantic-release"
   },
   "repository": {

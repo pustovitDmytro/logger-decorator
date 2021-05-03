@@ -121,6 +121,7 @@ workflows:
   main:
     jobs:
       - install
+          context: pr
       - test-package:
           requires:
             - install
