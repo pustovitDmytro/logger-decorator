@@ -75,6 +75,7 @@
     "nyc": "^15.0.0",
     "rollup": "^2.45.2",
     "semantic-release": "^17.4.2",
+    "semantic-release-telegram": "^1.0.1",
     "uuid": "^8.0.0"
   }
 }

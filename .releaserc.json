@@ -27,6 +27,11 @@
                     { "path": "*.tgz", "label": "npm tarball" }
                 ]
             }
+        ],
+        [ 
+            "semantic-release-telegram", {
+                "chats": [ 238585617 ]
+            } 
         ]
     ],
     "preset": "eslint",
