@@ -64,7 +64,7 @@
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-more": "^1.0.3",
     "eslint-plugin-security": "^1.4.0",
-    "fs-extra": "^8.1.0",
+    "fs-extra": "^10.0.0",
     "husky": "^6.0.0",
     "jscpd": "^3.3.25",
     "lockfile-lint": "^4.6.2",
