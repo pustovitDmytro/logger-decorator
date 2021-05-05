@@ -77,6 +77,7 @@ export default function getClassLoggerDecorator(target, config = {}) {
             }
         };
     }
+
     decorateClass(target.prototype, config);
 }
 

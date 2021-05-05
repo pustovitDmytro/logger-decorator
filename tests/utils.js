@@ -30,13 +30,16 @@ export function verifyConsoleStdout(functionUnderTest, expected, opts = { json: 
     if (!expected) {
         return assert.notExists(output);
     }
+
     if (opts.json) {
         const { level, ...message } = JSON.parse(output); // eslint-disable-line no-unused-vars
 
         return assert.deepEqual(message, expected);
     }
+
     if (opts.regexp) {
         return expected.forEach(reg => assert.match(output, reg));
     }
+
     assert.equal(output, expected);
 }

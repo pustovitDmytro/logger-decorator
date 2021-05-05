@@ -22,7 +22,7 @@ export default function functionDecorator(method, config = {}) {
         errorSanitizer,
         contextSanitizer,
         timestamp,
-        dublicates,
+        dublicates, // TODO: rename to duplicates
         errorLevel
     } = {
         methodName : method.name,
@@ -79,6 +79,7 @@ export default function functionDecorator(method, config = {}) {
 
     if (!dublicates && method[_decorated]) return method;
 
+    // eslint-disable-next-line func-style
     const f =  function (...args) {
         const time = startBenchmark();
         const loggerData = { args, time, context: this };

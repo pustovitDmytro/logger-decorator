@@ -9,6 +9,7 @@ function sanitize(data, { regexp, cache }) {
         if (~cache.indexOf(data)) {
             return '[Circular]';
         }
+
         cache.push(data);
         const sanitized = {};
 

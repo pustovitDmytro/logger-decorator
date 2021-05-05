@@ -18,7 +18,7 @@
         [
             "@semantic-release/git", {
                 "assets": ["README.md", "CHANGELOG.md", "package.json"],
-                "message": "Chore(release): add version ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+                "message": "Chore: (release) add version ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
             }
         ],
         [
@@ -27,6 +27,11 @@
                     { "path": "*.tgz", "label": "npm tarball" }
                 ]
             }
+        ],
+        [ 
+            "semantic-release-telegram", {
+                "chats": [ 238585617 ]
+            } 
         ]
     ],
     "preset": "eslint",
@@ -34,7 +39,7 @@
         { "tag": "Fix", "release": "patch" },
         { "tag": "Update", "release": "minor" },
         { "tag": "New", "release": "minor" },
-        { "tag": "Breaking", "release": "minor" },
+        { "tag": "Breaking", "release": "major" },
         { "tag": "Docs", "release": "patch" },
         { "tag": "Upgrade", "release": "patch" }
     ],

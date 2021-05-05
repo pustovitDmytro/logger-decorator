@@ -33,11 +33,9 @@ test('Import regexp sanitizer', function () {
 });
 
 test('Default logger', function () {
-    const decorated = log()(
-        function (a) {
-            return a + 1;
-        }
-    );
+    const decorated = log()(function (a) {
+        return a + 1;
+    });
 
     const expected = [
         /level.*:.*'info'/,
@@ -55,11 +53,9 @@ test('Default logger', function () {
 
 test('Default configuration for functions', function () {
     const decorator = new Decorator();
-    const decorated = decorator()(
-        function (a) {
-            return a + 1;
-        }
-    );
+    const decorated = decorator()(function (a) {
+        return a + 1;
+    });
 
     const expected = [
         /level.*:.*'info'/,

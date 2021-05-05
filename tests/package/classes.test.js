@@ -12,7 +12,9 @@ test('Decorate a class', function () {
     @decorator({ contextSanitizer: data => data.base })
     class Calculator {
         base = 10;
+
         _secret = 'x0Hdxx2o1f7WZJ';
+
         sum(a, b) {
             return a + b + this.base;
         }
@@ -33,7 +35,9 @@ test('Logger in class method', function () {
     @decorator({ level: 'verbose', contextSanitizer: data => data.base, dublicates: true })
     class Calculator {
         base = 10;
+
         _secret = 'x0Hdxx2o1f7WZJ';
+
         @decorator()
         sum(a, b) {
             return a + b + this.base;
@@ -79,7 +83,9 @@ test('disable double logging', function () {
     @decorator({ level: 'verbose', contextSanitizer: data => data.base })
     class Calculator {
         base = 10;
+
         _secret = 'x0Hdxx2o1f7WZJ';
+
         @decorator()
         sum(a, b) {
             return a + b + this.base;
@@ -104,9 +110,11 @@ test('include/exlude methods', function () {
         _one() {
             return 1;
         }
+
         _sum(a, b) {
             return a + b;
         }
+
         addOne(num) {
             return this._sum(num, this._one());
         }
@@ -127,10 +135,13 @@ test('Class with getters and setters', function () {
         get one() {
             return 1;
         }
+
         two = 2
+
         addOne = a => {
             return this._sum(a, this.one);
         }
+
         _sum(a, b) {
             return a + b;
         }
@@ -153,11 +164,14 @@ test('Class support for class-properties (as-class method)', function () {
         get one() {
             return 1;
         }
+
         two = 2
+
         @verbose
         addOne = a => {
             return this._sum(a, this.one);
         }
+
         _sum(a, b) {
             return a + b;
         }
@@ -179,10 +193,13 @@ test('Class support for class-properties in class decorator', function () {
         get one() {
             return 1;
         }
+
         two = 2
+
         addOne = a => {
             return this._sum(a, this.one);
         }
+
         _sum(a, b) {
             return a + b;
         }

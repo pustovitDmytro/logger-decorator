@@ -35,16 +35,15 @@ test('Decorate a named function', function () {
 test('Decorate async function', async function () {
     const logger = new Logger();
     const decorator = new Decorator({ logger });
-    const decorated = decorator()(
-        async function double(a) {
-            const t = await new Promise((res) => {
-                setTimeout(() => {
-                    return res(a * 2);
-                }, 50);
-            });
-
-            return t;
+    const decorated = decorator()(async function double(a) {
+        const t = await new Promise((res) => {
+            setTimeout(() => {
+                return res(a * 2);
+            }, 50);
         });
+
+        return t;
+    });
 
     const res = await decorated(5);
 
@@ -56,14 +55,13 @@ test('Decorate async function', async function () {
 test('Decorate function, returning a promise', async function () {
     const logger = new Logger();
     const decorator = new Decorator({ logger });
-    const decorated = decorator()(
-        function (a) {
-            return new Promise((res) => {
-                setTimeout(() => {
-                    return res(a * 3);
-                }, 50);
-            });
+    const decorated = decorator()(function (a) {
+        return new Promise((res) => {
+            setTimeout(() => {
+                return res(a * 3);
+            }, 50);
         });
+    });
 
     const res = await decorated(5);
 
@@ -79,6 +77,7 @@ test('Function context', async function () {
     function increment(a) {
         return this.base + a;
     }
+
     const contextSanitizer = data => data.base;
     const context = { base: 10, _secret: 'wHHXHkd8n' };
     const decorated = decorator({ contextSanitizer })(increment).bind(context);

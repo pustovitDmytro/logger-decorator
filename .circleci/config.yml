@@ -1,0 +1,154 @@
+defaults: &defaults
+  resource_class: small
+  docker:
+    - image: circleci/node:14
+cache-defaults: &cache-defaults
+  keys:
+    - -{{ checksum "package-lock.json" }}
+
+parameters:
+  env-tests:
+    type: boolean
+    default: false
+
+aliases:
+  - &set-github-read-token
+    name: Set Danger Token
+    command: |
+            echo 'export DANGER_GITHUB_API_TOKEN=$(echo Z2hwXzFldFVxODNZTUhCa0ZQUjk0WVV1blFXZTFCVmkzajRSOEpxRQo= | base64 --decode)' >> $BASH_ENV
+            source $BASH_ENV
+  - &danger-pr
+    name: Run danger
+    command: npx danger ci -d .dangerfile.js
+  - &coveralls
+    name: Upload to coveralls
+    command: npm run coveralls
+  - &coverage
+    name: Test Coverage
+    command: npm run test:coverage -- --reporter mocha-junit-reporter --reporter-options mochaFile=reports/test-results/mocha/test-results.xml
+  - &lint
+    name: JavaScript Linter
+    command: npm run test:lint -- --format junit --output-file ./reports/test-results/eslint/eslint.xml
+  - &debt
+    name: Technical Debt
+    command: npm run test:debt
+  - &test-package
+    name: Test packed app
+    command: npm run test:package
+  - &security
+    name: Validate dependencies
+    command: npm run test:security
+  - &install
+    name: Installing Dependencies
+    command: npm ci
+  - &cache-modules
+    key: -{{ checksum "package-lock.json" }}
+    paths:
+      - ~/.npm
+      - node_modules
+      - lib
+
+version: 2.1
+debug: true
+jobs:
+  danger-pr:
+    <<: *defaults
+    steps:
+      - checkout
+      - run: *install
+      - run: *set-github-read-token
+      - run: *danger-pr
+      
+  install:
+    <<: *defaults
+    steps:
+      - checkout
+      - run: *install
+      - run: *security
+      - run: *danger-pr
+      - save_cache: *cache-modules
+  test-coverage:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache:
+          <<: *cache-defaults
+      - run: *coverage
+      - store_test_results:
+          path: reports/test-results
+      - store_artifacts:
+          path: reports
+      - run: *coveralls
+  test-lint:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache:
+          <<: *cache-defaults
+      - run: *lint
+      - store_test_results:
+          path: reports/test-results
+  test-debt:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache:
+          <<: *cache-defaults
+      - run: *debt
+      - store_artifacts:
+          path: reports
+  test-package:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache:
+          <<: *cache-defaults
+      - run: *test-package
+      - store_artifacts:
+          path: tmp
+  deploy:
+    <<: *defaults
+    steps:
+        - checkout
+        - restore_cache:
+            <<: *cache-defaults
+        - run:
+            name: Create Release
+            command: "[ -z ${CIRCLE_SKIP_DEPLOY+x} ] && npm run semantic-release || echo 'job skipped'"
+
+workflows:
+  version: 2
+  main:
+    jobs:
+      - install:
+          context: pr
+      - test-package:
+          requires:
+            - install
+      - test-lint:
+          requires:
+            - install
+      - test-debt:
+          requires:
+            - install
+      - test-coverage:
+          requires:
+            - install
+      - deploy:
+          context: npm-packages
+          requires:
+            - test-coverage
+            - test-package
+          filters:
+            branches:
+                only: master
+  pr:
+    jobs:
+      - danger-pr:
+          filters:
+            branches:
+              only: /pull\/[0-9]+/
+  env-tests:
+    when: << pipeline.parameters.env-tests >>
+    jobs:
+      - install

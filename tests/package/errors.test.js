@@ -23,15 +23,13 @@ test('Negative: async function throws error', async function () {
     const decorator = new Decorator({ logger });
 
     const error = new Error('care toy degree shirt heart');
-    const decorated = decorator()(
-        async function double() {
-            await new Promise((res, rej) => {
-                setTimeout(() => {
-                    return rej(error);
-                }, 50);
-            });
-        }
-    );
+    const decorated = decorator()(async function double() {
+        await new Promise((res, rej) => {
+            setTimeout(() => {
+                return rej(error);
+            }, 50);
+        });
+    });
 
     try {
         await decorated();
@@ -48,15 +46,13 @@ test('Negative: function return rejected promise', async function () {
     const decorator = new Decorator({ logger });
 
     const error = new Error('mill share from cattle muscle musical structure progress');
-    const decorated = decorator()(
-        function double() {
-            return new Promise((res, rej) => {
-                setTimeout(() => {
-                    return rej(error);
-                }, 50);
-            });
-        }
-    );
+    const decorated = decorator()(function double() {
+        return new Promise((res, rej) => {
+            setTimeout(() => {
+                return rej(error);
+            }, 50);
+        });
+    });
 
     try {
         await decorated();

@@ -1,13 +1,8 @@
 {
-    "extends": "webbylab",
-    "env": {
-        "browser": true
-    },
-    "rules": {
-        "import/no-commonjs": 0,
-        "func-names": 0,
-        "func-style": 0,
-        "prefer-arrow-callback": 0,
-        "linebreak-style": 0
+    "extends": [
+        "incredible"
+    ],
+    "globals": {
+        "performance": true
     }
 }

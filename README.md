@@ -1,11 +1,23 @@
 # logger-decorator
-**logger-decorator** provides a unified and simple approach for class and function logging.
+Provides a unified and simple approach for class and function logging.
 
 [![Version][badge-vers]][npm]
+[![Bundle size][npm-size-badge]][npm-size-url]
+[![Downloads][npm-downloads-badge]][npm]
+
+[![CodeFactor][codefactor-badge]][codefactor-url]
+[![SonarCloud][sonarcloud-badge]][sonarcloud-url]
+[![Codacy][codacy-badge]][codacy-url]
+[![Total alerts][lgtm-alerts-badge]][lgtm-alerts-url]
+[![Language grade][lgtm-lg-badge]][lgtm-lg-url]
+[![Scrutinizer][scrutinizer-badge]][scrutinizer-url]
+
 [![Dependencies][badge-deps]][npm]
 [![Vulnerabilities][badge-vuln]](https://snyk.io/)
-[![Build Status][badge-tests]][travis]
-[![Coverage Status][badge-coverage]](https://coveralls.io/github/pustovitDmytro/logger-decorator?branch=master)
+[![Build Status][tests-badge]][tests-url]
+[![Coverage Status][badge-coverage]][url-coverage]
+
+[![Commit activity][commit-activity-badge]][github]
 [![License][badge-lic]][github]
 
 ## Table of Contents
@@ -22,14 +34,14 @@ To use library you need to have [node](https://nodejs.org) and [npm](https://www
 
 ## Installation
 
-To install the library run following command
+To install the library run the following command:
 ```bash
   npm i --save logger-decorator
 ```
 
 ## Usage
 
-The package provides simple decorator, so you can simply wrap functions or classes with it or use [@babel/plugin-proposal-decorators](https://babeljs.io/docs/en/babel-plugin-proposal-decorators) in case you love to complicate things.
+The package provides a simple decorator, so you can simply wrap functions or classes with it or use [@babel/plugin-proposal-decorators](https://babeljs.io/docs/en/babel-plugin-proposal-decorators) in case you love to complicate things.
 
 The recommended way for using 'logger-decorator' is to build own decorator singleton inside the app.
 
@@ -39,7 +51,7 @@ The recommended way for using 'logger-decorator' is to build own decorator singl
   const decorator = new Decorator(config);
 ```
 
-Or just use decorator with default configuration: 
+Or just use decorator with the default configuration: 
 
 ```javascript
   import log from 'logger-decorator';
@@ -67,20 +79,20 @@ Config must be a JavaScript ```Object``` with  the following attributes:
   
 Next values could also be passed to constructor config, but are customizable from ```decorator(customConfig)``` invokation:
   * **timestamp** - if set to *true* timestamps will be added to all logs.
-  * **level** - default log-level, pay attention that logger must support it as ```logger.level(smth)```, *'info'* by default. Also *function* could be passed. Function will receive logged data and should return log-level as *string*.
-  *  **errorLevel** - level, used for errors. *'error'* by default. Also *function* could be passed. Function will receive logged data and should return log-level as *string*.
+  * **level** - default log-level, pay attention that logger must support it as ```logger.level(smth)```, *'info'* by default. Also *function* could be passed. The function will receive logged data and should return log-level as *string*.
+  *  **errorLevel** - level, used for errors. *'error'* by default. Also *function* could be passed. The function will receive logged data and should return log-level as *string*.
   * **paramsSanitizer** - function to sanitize input parametrs from sensitive or redundant data, see [sanitizers](#sanitizers) for more details, by default [dataSanitizer](#sanitizers).
   * **resultSanitizer** - output data sanitizer, by default [dataSanitizer](#sanitizers)
   * **errorSanitizer** - error sanitizer, by default [simpleSanitizer](#sanitizers)
   * **contextSanitizer** - function context sanitizer, if ommited, no context will be logged.
-  *  **dublicates** - if set to *true*, it is possible to use multiple decorators at once (see [example](#dublicates))
+  *  **dublicates** - if set to *true*, it is possible to use multiple decorators at once (see [example](#duplicates))
   
 Next parametrs could help in class method filtering:
   *  **getters** - if set to *true*, [getters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get) will also be logged (applied to class and class-method decorators)
   *  **setters** - if set to *true*, [setters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set) will also be logged (applied to class and class-method decorators)
   *  **classProperties** - if set to *true*, [class-properties](https://babeljs.io/docs/en/babel-plugin-proposal-class-properties) will also be logged (applied to class decorators only)
-  *  **include** - array with method names, for which loggs will be added.
-  *  **exclude** - array with method names, for which loggs will not be added.
+  *  **include** - array with method names, for which logs will be added.
+  *  **exclude** - array with method names, for which logs won't be added.
   *  **methodNameFilter** - function, to filter method names
 
 
@@ -116,7 +128,7 @@ Besides ```methodName``` any of the  ```timestamp, level, paramsSanitizer, resul
 
 ### Classes
 
-To embed logging for all class methods follow next approach:
+To embed logging for all class methods, follow the next approach:
 
 ```javascript
 import { Decorator } from 'logger-decorator';
@@ -138,7 +150,7 @@ class MyClass {
     }
 ```
 
-When needed, the decorator can be applied to a specific class method. It is also possible to use multiple decorators <a name="dublicates"></a> at once:
+When needed, the decorator can be applied to a specific class method. It is also possible to use multiple decorators <a name="duplicates"></a> at once:
 
 ```javascript
     const decorator = new Decorator({ logger, contextSanitizer: data => ({ base: data.base }) }); // level info by default
@@ -169,7 +181,7 @@ When needed, the decorator can be applied to a specific class method. It is also
 
 ### Sanitizers
 
-*Sanitizer* is a function, that recieves data as first argument, and returns sanitized data.
+*Sanitizer* is a function, that recieves data as the first argument, and returns sanitized data.
 default *logger-decorator* sanitizers are:
 
 * ```simpleSanitizer``` - default [inspect](https://nodejs.org/api/util.html#util_util_inspect_object_options) function
@@ -177,7 +189,7 @@ default *logger-decorator* sanitizers are:
 
 ### Logger
 
-*Logger* can be a function, with next structure:
+*Logger* can be a function, with the next structure:
 
 ```javascript
   const logger = (level, data) => {
@@ -196,7 +208,7 @@ Otherwise, you can define each logLevel separately in *Object* / *Class* logger:
 
 ## Contribute
 
-Make the changes to the code and tests and then commit to your branch. Be sure to follow the commit message conventions.
+Make the changes to the code and tests. Then commit to your branch. Be sure to follow the commit message conventions.
 
 Commit message summaries must follow this basic format:
 ```
@@ -218,11 +230,37 @@ The message summary should be a one-sentence description of the change. The issu
 
 [npm]: https://www.npmjs.com/package/logger-decorator
 [github]: https://github.com/pustovitDmytro/logger-decorator
-[travis]: https://travis-ci.org/pustovitDmytro/logger-decorator
 [coveralls]: https://coveralls.io/github/pustovitDmytro/logger-decorator?branch=master
 [badge-deps]: https://img.shields.io/david/pustovitDmytro/logger-decorator.svg
-[badge-tests]: https://img.shields.io/travis/pustovitDmytro/logger-decorator.svg
 [badge-vuln]: https://img.shields.io/snyk/vulnerabilities/npm/logger-decorator.svg?style=popout
 [badge-vers]: https://img.shields.io/npm/v/logger-decorator.svg
 [badge-lic]: https://img.shields.io/github/license/pustovitDmytro/logger-decorator.svg
 [badge-coverage]: https://coveralls.io/repos/github/pustovitDmytro/logger-decorator/badge.svg?branch=master
+[url-coverage]: https://coveralls.io/github/pustovitDmytro/logger-decorator?branch=master
+
+[tests-badge]: https://img.shields.io/circleci/build/github/pustovitDmytro/logger-decorator
+[tests-url]: https://app.circleci.com/pipelines/github/pustovitDmytro/logger-decorator
+
+[codefactor-badge]: https://www.codefactor.io/repository/github/pustovitdmytro/logger-decorator/badge
+[codefactor-url]: https://www.codefactor.io/repository/github/pustovitdmytro/logger-decorator
+
+[commit-activity-badge]: https://img.shields.io/github/commit-activity/m/pustovitDmytro/logger-decorator
+
+[scrutinizer-badge]: https://scrutinizer-ci.com/g/pustovitDmytro/logger-decorator/badges/quality-score.png?b=master
+[scrutinizer-url]: https://scrutinizer-ci.com/g/pustovitDmytro/logger-decorator/?branch=master
+
+[lgtm-lg-badge]: https://img.shields.io/lgtm/grade/javascript/g/pustovitDmytro/logger-decorator.svg?logo=lgtm&logoWidth=18
+[lgtm-lg-url]: https://lgtm.com/projects/g/pustovitDmytro/logger-decorator/context:javascript
+
+[lgtm-alerts-badge]: https://img.shields.io/lgtm/alerts/g/pustovitDmytro/logger-decorator.svg?logo=lgtm&logoWidth=18
+[lgtm-alerts-url]: https://lgtm.com/projects/g/pustovitDmytro/logger-decorator/alerts/
+
+[codacy-badge]: https://app.codacy.com/project/badge/Grade/735696cc49164e52a890530e974e7377
+[codacy-url]: https://www.codacy.com/gh/pustovitDmytro/logger-decorator/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=pustovitDmytro/logger-decorator&amp;utm_campaign=Badge_Grade
+
+[sonarcloud-badge]: https://sonarcloud.io/api/project_badges/measure?project=pustovitDmytro_logger-decorator&metric=alert_status
+[sonarcloud-url]: https://sonarcloud.io/dashboard?id=pustovitDmytro_logger-decorator
+
+[npm-downloads-badge]: https://img.shields.io/npm/dw/logger-decorator
+[npm-size-badge]: https://img.shields.io/bundlephobia/min/logger-decorator
+[npm-size-url]: https://bundlephobia.com/result?p=logger-decorator

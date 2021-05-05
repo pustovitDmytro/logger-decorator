@@ -1,0 +1,37 @@
+{
+    "extends": [
+        "config:base",
+        ":semanticCommits",
+        ":semanticCommitScopeDisabled",
+        ":maintainLockFilesMonthly",
+        ":combinePatchMinorReleases"
+    ],
+    "packageRules": [
+        {
+            "matchPackagePatterns": [ "*" ],
+            "prConcurrentLimit": 5,
+            "prHourlyLimit": 1,
+            "semanticCommitType": "Chore",
+            "rangeStrategy": "replace",
+            "labels": ["dependencies"]
+        },
+        {
+            "matchDepTypes": ["devDependencies"],
+            "automerge": true
+        },
+        {
+            "matchDepTypes": ["dependencies"],
+            "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+            "automerge": true
+        },                
+        {
+            "matchDepTypes": [ "dependencies", "require" ],
+            "rangeStrategy": "pin",
+            "semanticCommitType": "Upgrade"
+        },
+        {
+          "matchDepTypes": [ "peerDependencies"],
+          "rangeStrategy": "widen"
+        }
+    ]
+}
