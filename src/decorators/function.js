@@ -88,7 +88,7 @@ export default function functionDecorator(method, config = {}) {
             const promise = method.apply(this, args);
 
             if (isPromise(promise)) {
-                return promise // eslint-disable-line more/no-then
+                return promise
                     .then(result => onSuccess({ result, ...loggerData }))
                     .catch(error => onError({ error, ...loggerData }));
             }

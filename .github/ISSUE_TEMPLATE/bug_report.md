@@ -8,17 +8,17 @@ assignees: pustovitDmytro
 ---
 
 **Issue Description**
-A clear and concise description of what the bug is. Paste here brief summary of your issue.
+A clear and concise description of what the bug is. Paste here a brief summary of your issue.
 
 **Please follow the general troubleshooting steps first:**
 - [ ] I've searched on the [issue tracker](../) before creating one.
-- [ ] I'm running latest package version.
-- [ ] I'm ready to provide help with fix, if needed.
+- [ ] I'm running the latest package version.
+- [ ] I'm ready to provide help with a fix if needed.
 
 **To Reproduce**
 Steps to reproduce the behavior:
 1. Go to '...'
-2. See error
+2. See an error
 
 ### What do you expect to happen?
 
