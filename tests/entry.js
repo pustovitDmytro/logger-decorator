@@ -7,7 +7,13 @@ const entry = process.env.ENTRY && path.resolve(process.env.ENTRY)
 || path.resolve(__dirname, '../src');
 
 export default require(entry);
-
-export function _load(relPath) {
+module.exports = require(entry);
+function _load(relPath) {
     return require(path.join(entry, relPath));
 }
+
+_load.resolve = function (relPath) {
+    return require.resolve(path.join(entry, relPath));
+};
+
+export { _load };
