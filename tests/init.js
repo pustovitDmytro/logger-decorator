@@ -7,18 +7,18 @@ function clearRequireCache() {
     });
 }
 
+const ROOT_FOLDER = process.cwd();
+
 function preventParentScopeModules() {
-    const nodeModulePaths = Module._nodeModulePaths; // backup the original method
+    const nodeModulePaths = Module._nodeModulePaths;
 
     Module._nodeModulePaths = function (from) {
-        let paths = nodeModulePaths.call(this, from); // call the original method
-
-        // add your logic here to exclude parent dirs, I did a simple match with current dir
-        paths = paths.filter(function (path) {
-            return path.match(__dirname);
+        const originalPath = nodeModulePaths.call(this, from);
+        const insideRootPaths = originalPath.filter(function (path) {
+            return path.match(ROOT_FOLDER);
         });
 
-        return paths;
+        return insideRootPaths;
     };
 }
 
