@@ -9,5 +9,5 @@
   "color": true,
   "full-trace": true,
   "recursive": true,
-  "require": ["./tests/init.js"]
+  "require": ["./tests-init.js"]
 } 

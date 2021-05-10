@@ -1,6 +1,9 @@
-import path from 'path';
 import fse from 'fs-extra';
-import { tmpFolder, entry } from './constants';
+import { tmpFolder } from './constants';
+
+export * from './utils';
+// eslint-disable-next-line import/export
+export * from './constants';
 
 export default class Test {
     async setTmpFolder() {
@@ -12,18 +15,3 @@ export default class Test {
     }
 }
 
-function load(relPath) {
-    // eslint-disable-next-line security/detect-non-literal-require
-    return require(path.join(entry, relPath));
-}
-
-function resolve(relPath) {
-    return require.resolve(path.join(entry, relPath));
-}
-
-export {
-    tmpFolder,
-    entry,
-    load,
-    resolve
-};
