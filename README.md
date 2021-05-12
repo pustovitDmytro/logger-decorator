@@ -27,10 +27,12 @@ Boilerplate for creating npm packages.
   - [Contribute](#contribute)
 
 ## Requirements
+[![Platform Status][appveyor-badge]][appveyor-url]
+
 To use library you need to have [node](https://nodejs.org) and [npm](https://www.npmjs.com) installed in your machine:
 
-* node `6.0+`
-* npm `3.0+`
+* node `>=10`
+* npm `>=6`
 
 ## Installation
 
@@ -104,3 +106,8 @@ The message summary should be a one-sentence description of the change. The issu
 [npm-downloads-badge]: https://img.shields.io/npm/dw/npm-boilerplate
 [npm-size-badge]: https://img.shields.io/bundlephobia/min/npm-boilerplate
 [npm-size-url]: https://bundlephobia.com/result?p=npm-boilerplate
+
+[appveyor-badge]: https://ci.appveyor.com/api/projects/status/lik73h3vxd7687pr/branch/master?svg=true
+[appveyor-url]: https://ci.appveyor.com/project/pustovitDmytro/npm-boilerplate/branch/master
+
+

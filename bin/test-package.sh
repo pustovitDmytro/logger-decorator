@@ -1,11 +1,12 @@
 #!/bin/bash
 set -e
 
-echo "Packing ..."    
-TAR_NAME="$(npm pack 2>&1 | tail -1)"
-./bin/pack-tests.js $TAR_NAME
+echo "Packing ..."
+./bin/pack-tests.sh
 
-echo "Testing ..."    
+echo "Install ..."    
 cd ./tmp/package-tests
-npm i
+npm i --no-audit
+
+echo "Test ..."    
 npm test

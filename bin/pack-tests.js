@@ -26,14 +26,18 @@ const TEST_MODULES = [
 const resolveIgnoreRegexp = `^(?!${TEST_MODULES.join('|')}).*$`;
 
 async function run(tarFilePath) {
+    const nodeModulesPath = [ 'node_modules', packajeInfo.name, 'lib' ];
+
+    COPY.push([ tarFilePath, tarFilePath ]);
     const testConfig = {
         'name'    : `${packajeInfo.name}-tests`,
-        'version' : '1.0.0',
+        'version' : packajeInfo.version,
         'scripts' : {
-            'test' : `ENTRY="./node_modules/${packajeInfo.name}/lib" mocha --config .mocharc.json tests.js`
+            'test-win' : `set ENTRY=${path.win32.join(...nodeModulesPath)}&& mocha --config .mocharc.json tests.js`,
+            'test'     : `ENTRY="${path.join(...nodeModulesPath)}" mocha --config .mocharc.json tests.js`
         },
         'dependencies' : {
-            [packajeInfo.name] : path.resolve(tarFilePath)
+            [packajeInfo.name] : tarFilePath
         },
         'devDependencies' : TEST_MODULES.reduce((prev, cur) => ({
             [cur] : packajeInfo.devDependencies[cur],
