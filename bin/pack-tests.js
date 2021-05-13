@@ -37,7 +37,8 @@ async function run(tarFilePath) {
             'test'     : `ENTRY="${path.join(...nodeModulesPath)}" mocha --config .mocharc.json tests.js`
         },
         'dependencies' : {
-            [packajeInfo.name] : tarFilePath
+            [packajeInfo.name] : tarFilePath,
+            ...packajeInfo.peerDependencies
         },
         'devDependencies' : TEST_MODULES.reduce((prev, cur) => ({
             [cur] : packajeInfo.devDependencies[cur],
@@ -62,8 +63,9 @@ async function run(tarFilePath) {
                         resolveOnly    : [ new RegExp(resolveIgnoreRegexp) ]
                     }),
                     commonjs({
-                        include   : [ /node_modules/ ],
-                        sourceMap : false
+                        include               : [ /node_modules/ ],
+                        sourceMap             : false,
+                        ignoreDynamicRequires : true
                     }),
                     json({
                         include : 'node_modules/**',
