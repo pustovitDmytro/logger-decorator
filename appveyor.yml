@@ -124,7 +124,7 @@ for:
           [bool]$success = $false  
     
           while(!$success -and ([datetime]::Now) -lt $stop) {
-              $project = Invoke-RestMethod -Uri "https://ci.appveyor.com/api/projects/$env:APPVEYOR_ACCOUNT_NAME/$env:APPVEYOR_PROJECT_SLUG" -Headers $headers -Method GET
+              $project = Invoke-RestMethod -Uri "https://ci.appveyor.com/api/projects/$env:APPVEYOR_ACCOUNT_NAME/$env:APPVEYOR_PROJECT_SLUG/builds/$env:APPVEYOR_BUILD_ID" -Headers $headers -Method GET
 
               $jobToWaitJson = $project.build.jobs | where {$_.name -eq "Build"}  
               $success = $jobToWaitJson.status -eq "success"
