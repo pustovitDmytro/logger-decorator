@@ -11,9 +11,9 @@
     "coveralls": "cat ./reports/coverage/lcov.info | coveralls",
     "test:security": "npm audit && npm run test:lock",
     "test:lint": "eslint src bin tests",
-    "test:mocha": "mocha  --config .mocharc.json tests/**/*test.js",
-    "test:package": "./bin/pack.sh && ENTRY=./tmp/package/lib npm run test:mocha",
-    "test:coverage": "BUILD=0 MODE=test nyc mocha --config .mocharc.json tests/**/*test.js",
+    "test:mocha": "mocha  --config .mocharc.json 'tests/**/*test.js'",
+    "test:package": "./bin/test-package.sh",
+    "test:coverage": "BUILD=0 MODE=test nyc mocha --config .mocharc.json 'tests/**/*test.js'",
     "test:debt": "jscpd src --config .jscpd.json",
     "test:lock": "lockfile-lint --path package-lock.json --validate-https --allowed-hosts npm",
     "coverage-check": "MODE=test nyc check-coverage",
@@ -38,6 +38,9 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/pustovitDmytro/logger-decorator/issues"
+  },
+  "engines": {
+    "node": ">=10"
   },
   "homepage": "https://github.com/pustovitDmytro/logger-decorator#readme",
   "devDependencies": {

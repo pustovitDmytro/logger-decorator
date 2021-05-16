@@ -1,24 +1,47 @@
 {
     "extends": [
-        "config:base",
-        ":semanticCommits",
-        ":semanticCommitScopeDisabled",
-        ":maintainLockFilesMonthly",
-        ":combinePatchMinorReleases"
+        "config:base"
     ],
+
+    "rangeStrategy": "replace",
+    "ignoreUnstable": true,
+    
+    "semanticCommits": "enabled",
+    "semanticCommitScope": null,
+    "semanticCommitType": "Chore",
+
+    "separateMinorPatch": false,
+    "dependencyDashboard": true,
+    "dependencyDashboardAutoclose": true,
+
+    "lockFileMaintenance": {
+       "enabled": true,
+       "automerge": true,
+       "extends": [
+            "schedule:monthly"
+       ]
+    },
+
+    "circleci": {
+      "enabled": false
+    },
+
+    "prConcurrentLimit": 5,
+    "prHourlyLimit": 1,
+    "rebaseWhen": "conflicted",
+    "assigneesFromCodeOwners": true,
+    "labels": ["dependencies"],
+
+    "vulnerabilityAlerts": {
+        "labels": ["dependencies", "security"],
+        "enabled": true
+    },
+
     "packageRules": [
         {
-            "matchPackagePatterns": [ "*" ],
-            "prConcurrentLimit": 5,
-            "prHourlyLimit": 1,
-            "semanticCommitType": "Chore",
-            "rangeStrategy": "replace",
-            "labels": ["dependencies"],
-            "assigneesFromCodeOwners": true
-        },
-        {
             "matchDepTypes": ["devDependencies"],
-            "automerge": true
+            "automerge": true,
+            "semanticCommitType": "Chore"
         },
         {
             "matchDepTypes": ["dependencies"],

@@ -7,7 +7,11 @@ const entry = process.env.ENTRY && path.resolve(process.env.ENTRY)
 
 const tmpFolder = path.join(__dirname, '../tmp/tests');
 
+
+const testsRootFolder = __dirname;
+
 export {
     tmpFolder,
-    entry
+    entry,
+    testsRootFolder
 };

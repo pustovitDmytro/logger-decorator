@@ -75,7 +75,7 @@ jobs:
           <<: *cache-defaults
       - run: *coverage
       - store_test_results:
-          path: reports/test-results
+          path: reports
       - store_artifacts:
           path: reports
       - run: *coveralls
@@ -87,7 +87,7 @@ jobs:
           <<: *cache-defaults
       - run: *lint
       - store_test_results:
-          path: reports/test-results
+          path: reports
   test-debt:
     <<: *defaults
     steps:
@@ -104,8 +104,6 @@ jobs:
       - restore_cache:
           <<: *cache-defaults
       - run: *test-package
-      - store_artifacts:
-          path: tmp
   deploy:
     <<: *defaults
     steps:
