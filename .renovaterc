@@ -40,7 +40,8 @@
     "packageRules": [
         {
             "matchDepTypes": ["devDependencies"],
-            "automerge": true
+            "automerge": true,
+            "semanticCommitType": "Chore"
         },
         {
             "matchDepTypes": ["dependencies"],
