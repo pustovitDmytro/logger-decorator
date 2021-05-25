@@ -34,6 +34,8 @@ To use library you need to have [node](https://nodejs.org) and [npm](https://www
 * node `>=10`
 * npm `>=6`
 
+Package is [continuously tested][appveyor-url] on darwin, linux, win32 platforms. All active and maintenance [LTS](https://nodejs.org/en/about/releases/) node releases are supported.
+
 ## Installation
 
 To install the library run the following command
