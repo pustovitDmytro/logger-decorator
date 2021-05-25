@@ -34,6 +34,8 @@ To use library you need to have [node](https://nodejs.org) and [npm](https://www
 * node `>=10`
 * npm `>=6`
 
+Package is [continuously tested][appveyor-url] on darwin, linux, win32 platforms. All active and maintenance [LTS](https://nodejs.org/en/about/releases/) node releases are supported.
+
 ## Installation
 
 To install the library run the following command:
@@ -210,25 +212,7 @@ Otherwise, you can define each logLevel separately in *Object* / *Class* logger:
 
 ## Contribute
 
-Make the changes to the code and tests. Then commit to your branch. Be sure to follow the commit message conventions.
-
-Commit message summaries must follow this basic format:
-```
-  Tag: Message (fixes #1234)
-```
-
-The Tag is one of the following:
-* **Fix** - for a bug fix.
-* **Update** - for a backwards-compatible enhancement.
-* **Breaking** - for a backwards-incompatible enhancement.
-* **Docs** - changes to documentation only.
-* **Build** - changes to build process only.
-* **New** - implemented a new feature.
-* **Upgrade** - for a dependency upgrade.
-* **Chore** - for tests, refactor, style, etc.
-
-The message summary should be a one-sentence description of the change. The issue number should be mentioned at the end.
-
+Make the changes to the code and tests. Then commit to your branch. Be sure to follow the commit message conventions. Read [Contributing Guidelines](.github/CONTRIBUTING.md) for details.
 
 [npm]: https://www.npmjs.com/package/logger-decorator
 [github]: https://github.com/pustovitDmytro/logger-decorator
