@@ -52,25 +52,7 @@ To install the library run the following command
 
 ## Contribute
 
-Make the changes to the code and tests. Then commit to your branch. Be sure to follow the commit message conventions.
-
-Commit message summaries must follow this basic format:
-```
-  Tag: Message (fixes #1234)
-```
-
-The Tag is one of the following:
-* **Fix** - for a bug fix.
-* **Update** - for a backwards-compatible enhancement.
-* **Breaking** - for a backwards-incompatible enhancement.
-* **Docs** - changes to documentation only.
-* **Build** - changes to build process only.
-* **New** - implemented a new feature.
-* **Upgrade** - for a dependency upgrade.
-* **Chore** - for tests, refactor, style, etc.
-
-The message summary should be a one-sentence description of the change. The issue number should be mentioned at the end.
-
+Make the changes to the code and tests. Then commit to your branch. Be sure to follow the commit message conventions. Read [Contributing Guidelines](.github/CONTRIBUTING.md) for details.
 
 [npm]: https://www.npmjs.com/package/npm-boilerplate
 [github]: https://github.com/pustovitDmytro/npm-boilerplate
