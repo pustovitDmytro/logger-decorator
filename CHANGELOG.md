@@ -1,3 +1,15 @@
+## [1.3.2](https://github.com/pustovitDmytro/logger-decorator/compare/v1.3.1...v1.3.2) (2021-05-25)
+
+
+### Chore
+
+* contributor login in danger message ([76349e6](https://github.com/pustovitDmytro/logger-decorator/commit/76349e6ee87b0e59f8fff9402eb10fa66d23a188))
+
+### Docs
+
+* adds node releases roadmap ([ba16142](https://github.com/pustovitDmytro/logger-decorator/commit/ba16142230db2895ecd9855d5746648075f0b8e8))
+* move Contributing Guidelines to separate file. ([081e4ed](https://github.com/pustovitDmytro/logger-decorator/commit/081e4ed03eebef0eda5305a1486a32cf91cdc62b))
+
 ## [1.3.1](https://github.com/pustovitDmytro/logger-decorator/compare/v1.3.0...v1.3.1) (2021-05-25)
 
 
