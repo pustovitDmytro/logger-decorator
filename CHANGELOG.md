@@ -1,3 +1,33 @@
+## [1.3.1](https://github.com/pustovitDmytro/logger-decorator/compare/v1.3.0...v1.3.1) (2021-05-25)
+
+
+### Chore
+
+* 'Chore' semanticCommitType for updating devDependencies ([4bf79e1](https://github.com/pustovitDmytro/logger-decorator/commit/4bf79e1ac2907ca07a355f63458b8bf3b41a3afc))
+* (tests) clearCache on module load is optional ([96c2ae5](https://github.com/pustovitDmytro/logger-decorator/commit/96c2ae5237b7eed47278471cbf3b04b2b99385d4))
+* (tests) moves load to factory ([4acb941](https://github.com/pustovitDmytro/logger-decorator/commit/4acb94181777f22e8fda16ea43b6a1cad3986629))
+* additional quotes in glob pattern ([f6d15cf](https://github.com/pustovitDmytro/logger-decorator/commit/f6d15cf2b6fc966f1b3a8b175b6bcf0144a80def))
+* adds appveyor ([d560b4e](https://github.com/pustovitDmytro/logger-decorator/commit/d560b4ee54ffb8d4d267fd2cb132ba8bb6dfe5b9))
+* delete duplicate LICENSE file ([7702171](https://github.com/pustovitDmytro/logger-decorator/commit/77021719745041d1ddcd64aa6d1df9bd4c697d90))
+* dont store package-tests artifacts ([50ebff1](https://github.com/pustovitDmytro/logger-decorator/commit/50ebff16449ff34f474587136dca4e4740ed4bf7))
+* fixes package tests ([dadd7f6](https://github.com/pustovitDmytro/logger-decorator/commit/dadd7f6597a0f7d840f48df52dc7f370b7bc68b8))
+* fixes prevent require handler ([7923f0e](https://github.com/pustovitDmytro/logger-decorator/commit/7923f0ed71ba537d7c50064a99e2e9af318fcb60))
+* fixes spellcheck in bugreport ([7d754b6](https://github.com/pustovitDmytro/logger-decorator/commit/7d754b605ed7fed3ea1a9c7d0d951a09806a1c37))
+* integrate APPVEYOR_BUILD_ID to build tests ([16cdd48](https://github.com/pustovitDmytro/logger-decorator/commit/16cdd48ddb7da5000c6df88ceb1f2513225a4a5b))
+* not fail package if no tmp exists ([5693813](https://github.com/pustovitDmytro/logger-decorator/commit/569381326c9b688c492aa29c825a61901419d1de))
+* package-tester improvements ([d5d868b](https://github.com/pustovitDmytro/logger-decorator/commit/d5d868bc7f529d94f79041be5b923b5967d7a704))
+* prevent package:test from using devdependencies ([dc896f3](https://github.com/pustovitDmytro/logger-decorator/commit/dc896f39fd79e6cb73c8cc458213c00f5f5a703d))
+* set myself as default assignee in pr ([0dcd0ce](https://github.com/pustovitDmytro/logger-decorator/commit/0dcd0ce95b50a1e8a2fef91307f7fd8964314f68))
+* tests/entry.js module resolving ([c840f8b](https://github.com/pustovitDmytro/logger-decorator/commit/c840f8b479234b7944b2d2708344ae24df231464))
+* update default renovate rules ([7e83bc4](https://github.com/pustovitDmytro/logger-decorator/commit/7e83bc4fb9b99bb74811cd55db0b94c81e18dcde))
+* Update dependency @rollup/plugin-commonjs to v19 ([bf29948](https://github.com/pustovitDmytro/logger-decorator/commit/bf2994851b033e64744e381f5f566ca9eed0aef5))
+* update eslint ([4aac03c](https://github.com/pustovitDmytro/logger-decorator/commit/4aac03c8db5f28d1d41838fc70e614df93e034d6))
+* update lock file ([4ffb878](https://github.com/pustovitDmytro/logger-decorator/commit/4ffb878e544a8cbe68fa7b3c5908b8ccdf9e394f))
+
+### Upgrade
+
+* Bump browserslist from 4.16.4 to 4.16.6 ([687d7d1](https://github.com/pustovitDmytro/logger-decorator/commit/687d7d140c66c138b18f1fc2775b79302d513e96))
+
 # [1.3.0](https://github.com/pustovitDmytro/logger-decorator/compare/v1.2.0...v1.3.0) (2021-05-05)
 
 
