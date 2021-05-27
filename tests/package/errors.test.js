@@ -33,8 +33,8 @@ test('Negative: async function throws error', async function () {
 
     try {
         await decorated();
-    } catch (err) {
-        assert.equal(err.toString(), error.toString());
+    } catch (error_) {
+        assert.equal(error_.toString(), error.toString());
     }
 
     assert.isEmpty(logger.stack.verbose);
@@ -56,13 +56,17 @@ test('Negative: function return rejected promise', async function () {
 
     try {
         await decorated();
-    } catch (err) {
-        assert.equal(err.toString(), error.toString());
+    } catch (error_) {
+        assert.equal(error_.toString(), error.toString());
     }
 
     assert.isEmpty(logger.stack.verbose);
     assert.include(logger.stack.error[0].error, error.toString());
 });
+
+function errored(err) {
+    throw err;
+}
 
 test('Negative: different errorLevels on different errors', function () {
     const logger = new Logger({ levels: [ 'warn', 'error' ] });
@@ -71,9 +75,8 @@ test('Negative: different errorLevels on different errors', function () {
         errorLevel : ({ error }) => error.message === 'NOT_FOUND' ? 'warn' : 'error'
     });
 
-    const decorated = decorator()(function (err) {
-        throw err;
-    });
+
+    const decorated = decorator()(errored);
 
     assert.throws(decorated.bind(null, new Error('NOT_FOUND')));
     assert.isEmpty(logger.stack.error);

@@ -36,13 +36,11 @@ test('Decorate async function', async function () {
     const logger = new Logger();
     const decorator = new Decorator({ logger });
     const decorated = decorator()(async function double(a) {
-        const t = await new Promise((res) => {
+        return new Promise((res) => {
             setTimeout(() => {
                 return res(a * 2);
             }, 50);
         });
-
-        return t;
     });
 
     const res = await decorated(5);
@@ -69,16 +67,17 @@ test('Decorate function, returning a promise', async function () {
     verifyStdout(logger, { params: '[ 5 ]', result: '15' });
 });
 
+function increment(a) {
+    return this.base + a;
+}
+
+const contextSanitizer = data => data.base;
 
 test('Function context', async function () {
     const logger = new Logger();
     const decorator = new Decorator({ logger });
 
-    function increment(a) {
-        return this.base + a;
-    }
 
-    const contextSanitizer = data => data.base;
     const context = { base: 10, _secret: 'wHHXHkd8n' };
     const decorated = decorator({ contextSanitizer })(increment).bind(context);
     const result = decorated(5);

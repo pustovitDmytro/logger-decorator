@@ -1,12 +1,14 @@
 const isGetter = (x, name) => (Object.getOwnPropertyDescriptor(x, name) || {}).get;
 
 const deepFunctions = x =>
-    x && x !== Object.prototype && Object.getOwnPropertyNames(x)
-        .filter(name => isGetter(x, name) || isFunction(x[name]))
-        .concat(deepFunctions(Object.getPrototypeOf(x)) || []);
+    x && x !== Object.prototype && [
+        ...Object.getOwnPropertyNames(x)
+            .filter(name => isGetter(x, name) || isFunction(x[name])),
+        ...(deepFunctions(Object.getPrototypeOf(x)) || [])
+    ];
 
 
-export const getMethodNames = x => Array.from(new Set(deepFunctions(x)));
+export const getMethodNames = x => [ ...new Set(deepFunctions(x)) ];
 
 export function isString(x) {
     return x && Object.prototype.toString.call(x) === '[object String]';
@@ -47,10 +49,10 @@ export function isStream(x) {
 }
 
 export function cleanUndefined(obj) {
-    Object.keys(obj).forEach(key => {
+    for (const key of Object.keys(obj)) {
         if (obj[key] && typeof obj[key] === 'object') cleanUndefined(obj[key]);
         else if (obj[key] === undefined) delete obj[key]; // eslint-disable-line no-param-reassign
-    });
+    }
 
     return obj;
 }
@@ -59,9 +61,9 @@ export function mergeConfigs(...configs) {
     const config = {};
 
     for (const [ conf = {} ] of configs.reverse()) {
-        Object.keys(conf).forEach(key => {
+        for (const key of Object.keys(conf)) {
             config[key] = conf[key];
-        });
+        }
     }
 
     return [ config ];

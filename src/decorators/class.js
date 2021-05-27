@@ -27,45 +27,42 @@ export function classMethodDecorator({ target, methodName, descriptor }, config 
         serviceName : config.serviceName || target.constructor.name
     };
 
-    methods
-        .filter(key => descriptor[key] && isFunction(descriptor[key]))
-        .forEach(key => {
-            const old = descriptor[key];
+    for (const key of methods
+        .filter(k => descriptor[k] && isFunction(descriptor[k]))) {
+        const old = descriptor[key];
 
-            descriptor[key] = key === 'initializer'// eslint-disable-line no-param-reassign
-                ? function () {
-                    return functionDecorator(old.call(target), functionDecoratorConfig);
-                }
-                : functionDecorator(descriptor[key], functionDecoratorConfig);
-        });
+        descriptor[key] = key === 'initializer'// eslint-disable-line no-param-reassign
+            ? function () {
+                return functionDecorator(old.call(target), functionDecoratorConfig);
+            }
+            : functionDecorator(descriptor[key], functionDecoratorConfig);
+    }
 
     return descriptor;
 }
 
 function decorateClass(target, config) {
-    getMethodNames(target)
-        .filter(methodName => {
-            if (config.include?.includes(methodName)) return true;
-            if (config.exclude?.includes(methodName)) return false;
+    for (const methodName of getMethodNames(target).filter(name => {
+        if (config.include?.includes(name)) return true;
+        if (config.exclude?.includes(name)) return false;
 
-            return isFunction(config.methodNameFilter)
-                ? config.methodNameFilter(methodName)
-                : defaults.methodNameFilter(methodName);
-        })
-        .forEach(methodName => {
-            const descriptor = getMethodDescriptor(methodName, target);
+        return isFunction(config.methodNameFilter)
+            ? config.methodNameFilter(name)
+            : defaults.methodNameFilter(name);
+    })) {
+        const descriptor = getMethodDescriptor(methodName, target);
 
-            if (!descriptor) return;
+        if (!descriptor) continue;
 
-            Object.defineProperty(
-                target,
-                methodName,
-                classMethodDecorator(
-                    { target, methodName, descriptor },
-                    { serviceName: target.name,  ...config }
-                )
-            );
-        });
+        Object.defineProperty(
+            target,
+            methodName,
+            classMethodDecorator(
+                { target, methodName, descriptor },
+                { serviceName: target.name,  ...config }
+            )
+        );
+    }
 }
 
 export default function getClassLoggerDecorator(target, config = {}) {

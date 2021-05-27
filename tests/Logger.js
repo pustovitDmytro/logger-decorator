@@ -6,16 +6,16 @@ export default class Logger {
     }
 
     init() {
-        this.levels.forEach(level => {
+        for (const level of this.levels) {
             this.stack[level] = [];
             this[level] = this._buildLevel(level);
-        });
+        }
     }
 
     clear() {
-        this.levels.forEach(level => {
+        for (const level of this.levels) {
             this.stack[level] = [];
-        });
+        }
     }
 
     _buildLevel = level => arg => {

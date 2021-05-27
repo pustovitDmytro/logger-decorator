@@ -13,12 +13,11 @@ function sanitize(data, { regexp, cache }) {
         cache.push(data);
         const sanitized = {};
 
-        Object.entries(data)
-            .forEach(([ key, value ]) => {
-                sanitized[key] = regexp.test(key)
-                    ? '***'
-                    : sanitize(value, { regexp, cache });
-            });
+        for (const [ key, value ] of Object.entries(data)) {
+            sanitized[key] = regexp.test(key)
+                ? '***'
+                : sanitize(value, { regexp, cache });
+        }
 
         return sanitized;
     }

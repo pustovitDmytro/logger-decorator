@@ -5,7 +5,7 @@ import { verifyConsoleStdout } from '../utils';
 
 suite('Configurations');
 
-const isIsoRegexp = /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+([+-][0-2]\d:[0-5]\d|Z))|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d([+-][0-2]\d:[0-5]\d|Z))|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d([+-][0-2]\d:[0-5]\d|Z))/; //eslint-disable-line
+const isIsoRegexp = /(\d{4}-[01]\d-[0-3]\dT[0-2](?:\d:[0-5]){2}\d\.\d+([+-][0-2]\d:[0-5]\d|Z))|(\d{4}-[01]\d-[0-3]\dT[0-2](?:\d:[0-5]){2}\d([+-][0-2]\d:[0-5]\d|Z))|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d([+-][0-2]\d:[0-5]\d|Z))/;
 
 function sum(a, b) {
     return a + b;
@@ -39,7 +39,7 @@ test('Default logger', function () {
 
     const expected = [
         /level.*:.*'info'/,
-        /params.*:.*'\[ 5 \]'/,
+        /params.*:.*'\[ 5 ]'/,
         /result.*:.*'6'/,
         /benchmark.*:.*'\d+\.\d+'/
     ];
@@ -59,7 +59,7 @@ test('Default configuration for functions', function () {
 
     const expected = [
         /level.*:.*'info'/,
-        /params.*:.*'\[ 5 \]'/,
+        /params.*:.*'\[ 5 ]'/,
         /result.*:.*'6'/,
         /benchmark.*:.*'\d+\.\d+'/
     ];
@@ -86,7 +86,7 @@ test('Default configuration for classes', function () {
         /level.*:.*'info'/,
         /method.*:.*'sum'/,
         /service.*:.*'Calc'/,
-        /params.*:.*'\[ 5, 1 \]'/,
+        /params.*:.*'\[ 5, 1 ]'/,
         /result.*:.*'6'/,
         /benchmark.*:.*'\d+\.\d+'/
     ];
@@ -104,7 +104,7 @@ test('Timestamp', function () {
     const expected = [
         /method.*:.*'sum'/,
         /level.*:.*'info'/,
-        /params.*:.*'\[ 5, 8 \]'/,
+        /params.*:.*'\[ 5, 8 ]'/,
         /result.*:.*'13'/,
         /benchmark.*:.*'\d+\.\d+'/,
         new RegExp(/timestamp.*:.*'/.source + isIsoRegexp.source)

@@ -8,17 +8,17 @@ import {
 suite('Sanitizers');
 
 test('simple sanitizer', function () {
-    [
+    for (const input of [
         {},
         null,
         [],
         [ 1, 2, 3, 4 ],
         { a: { b: { c: { d: 4 } } } }
-    ].forEach(input => {
+    ]) {
         const result = simpleSanitizer(input);
 
         assert.typeOf(result, 'string');
-    });
+    }
 });
 
 test('password sanitizer', function () {

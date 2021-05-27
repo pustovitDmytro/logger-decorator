@@ -16,12 +16,13 @@ export function verifyStdout(logger, expected, { level = 'info', single = true }
         assert.deepOwnInclude(logger.stdout(level)[0], expected);
     } else {
         assert.lengthOf(logger.stdout(level), toArray(expected).length);
-        logger.stdout(level).forEach((item, ind) => {
+        for (const [ ind, item ] of logger.stdout(level).entries()) {
             assert.deepOwnInclude(item, toArray(expected)[ind]);
-        });
+        }
     }
 }
 
+// eslint-disable-next-line unicorn/no-object-as-default-parameter
 export function verifyConsoleStdout(functionUnderTest, expected, opts = { json: true }) {
     const inspect = stdout.inspect();
 
@@ -40,6 +41,7 @@ export function verifyConsoleStdout(functionUnderTest, expected, opts = { json: 
     }
 
     if (opts.regexp) {
+        // eslint-disable-next-line unicorn/no-array-for-each
         return expected.forEach(reg => assert.match(output, reg));
     }
 

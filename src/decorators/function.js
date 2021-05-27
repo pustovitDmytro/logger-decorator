@@ -12,6 +12,13 @@ import {
 
 const _decorated = Symbol('_decorated');
 
+const buildLogLevel = (logLevel, data) => {
+    if (isFunction(logLevel)) return logLevel(data);
+
+    return logLevel;
+};
+
+// eslint-disable-next-line sonarjs/cognitive-complexity
 export default function functionDecorator(method, config = {}) {
     const {
         logger,
@@ -50,12 +57,6 @@ export default function functionDecorator(method, config = {}) {
         });
     };
 
-    const buildLogLevel = (logLevel, data) => {
-        if (isFunction(logLevel)) return logLevel(data);
-
-        return logLevel;
-    };
-
     const log = (logLevel, data) => {
         const lev = buildLogLevel(logLevel, data);
         const dat = buildLogObject(data);
@@ -88,6 +89,7 @@ export default function functionDecorator(method, config = {}) {
             const promise = method.apply(this, args);
 
             if (isPromise(promise)) {
+                /* eslint-disable promise/prefer-await-to-then,promise/prefer-await-to-callbacks */
                 return promise
                     .then(result => onSuccess({ result, ...loggerData }))
                     .catch(error => onError({ error, ...loggerData }));
