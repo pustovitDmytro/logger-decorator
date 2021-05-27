@@ -3,9 +3,9 @@ const { Module } = require('module');
 const path = require('path');
 
 function clearRequireCache() {
-    Object.keys(require.cache).forEach((key) => {
+    for (const key of Object.keys(require.cache)) {
         delete require.cache[key];
-    });
+    }
 }
 
 function isPathInside(childPath, parentPath) {
@@ -26,11 +26,11 @@ function preventParentScopeModules() {
 
     Module._nodeModulePaths = function (from) {
         const originalPath = nodeModulePaths.call(this, from);
-        const insideRootPaths = originalPath.filter(function (p) {
+
+
+        return originalPath.filter(function (p) {
             return isPathInside(p, ROOT_FOLDER);
         });
-
-        return insideRootPaths;
     };
 }
 

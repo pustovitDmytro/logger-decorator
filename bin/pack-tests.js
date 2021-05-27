@@ -40,7 +40,7 @@ async function run(tarFilePath) {
             [packajeInfo.name] : tarFilePath,
             ...packajeInfo.peerDependencies
         },
-        'devDependencies' : TEST_MODULES.reduce((prev, cur) => ({
+        'devDependencies' : TEST_MODULES.reduce((prev, cur) => ({ // eslint-disable-line unicorn/no-array-reduce
             [cur] : packajeInfo.devDependencies[cur],
             ...prev
         }), {})
