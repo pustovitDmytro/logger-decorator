@@ -1,5 +1,6 @@
 version: "{build}"
 environment:
+  YARGS_MIN_NODE_VERSION: 10
   TimeOutMins: 2
   matrix:
   - job_name: Build
