@@ -33,7 +33,7 @@ environment:
     job_depends_on: Build
     nodejs_version: 16
 
-    # MacOS
+  #   # MacOS
   
   - job_name: macOS Node.js v.10
     job_group: Tests
@@ -59,7 +59,7 @@ environment:
     job_depends_on: Build
     nodejs_version: 16
 
-    # Windows
+  #   # Windows
 
   - job_name: Windows Node.js v.10
     job_group: Tests
@@ -105,7 +105,7 @@ for:
       - sh: nvm use $nodejs_version
       - sh: npm config get user-agent
       - npm install
-      - ./bin/pack-tests.sh
+      - npx npt pack -c .package-tester.json
   -
     matrix:
       only:
@@ -142,5 +142,5 @@ for:
       - cd package-tests
       - npm i
     test_script:
-      - sh: npm run test
-      - cmd: npm run test-win
+      - npm run test
+
