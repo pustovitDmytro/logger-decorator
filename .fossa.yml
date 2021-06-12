@@ -1,0 +1,11 @@
+version: 2
+cli:
+  server: https://app.fossa.com
+  fetcher: custom
+  project: npm-boilerplate
+analyze:
+  modules:
+  - name: .
+    type: npm
+    target: .
+    path: .

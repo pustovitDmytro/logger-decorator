@@ -7,7 +7,7 @@
     "prepare": "babel src --out-dir ./lib --copy-files && husky install",
     "coveralls": "cat ./reports/coverage/lcov.info | coveralls",
     "test:security": "npm audit && npm run test:lock",
-    "test:lint": "eslint src bin tests",
+    "test:lint": "eslint src bin tests --no-error-on-unmatched-pattern",
     "test:mocha": "mocha  --config .mocharc.json 'tests/**/*test.js'",
     "test:package": "npt test -c .package-tester.json",
     "test:coverage": "BUILD=0 MODE=test nyc mocha --config .mocharc.json 'tests/**/*test.js'",
