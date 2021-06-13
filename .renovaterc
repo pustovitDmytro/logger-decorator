@@ -37,6 +37,9 @@
         "enabled": true
     },
 
+    "stabilityDays": 3,
+    "prCreation": "not-pending",
+
     "packageRules": [
         {
             "matchDepTypes": ["devDependencies"],

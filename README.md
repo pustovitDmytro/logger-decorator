@@ -18,6 +18,7 @@ Provides a unified and simple approach for class and function logging.
 [![Coverage Status][badge-coverage]][url-coverage]
 
 [![Commit activity][commit-activity-badge]][github]
+[![FOSSA][fossa-badge]][fossa-url]
 [![License][badge-lic]][github]
 
 ## Table of Contents
@@ -50,28 +51,30 @@ The package provides a simple decorator, so you can simply wrap functions or cla
 The recommended way for using 'logger-decorator' is to build own decorator singleton inside the app.
 
 ```javascript
-  import { Decorator } from 'logger-decorator';
+import { Decorator } from 'logger-decorator';
 
-  const decorator = new Decorator(config);
+const decorator = new Decorator(config);
 ```
 
 Or just use decorator with the default configuration: 
 
 ```javascript
-  import log from 'logger-decorator';
+import log from 'logger-decorator';
 
-  @log({level: 'verbose'})
-  class Rectangle {
-    constructor(height, width) {
-      this.height = height;
-      this.width = width;
-    }
-    get area() {
-      return this.calcArea();
-    }
-    calcArea() {
-      return this.height * this.width;
-    }
+  @log({ level: 'verbose' })
+class Rectangle {
+      constructor(height, width) {
+          this.height = height;
+          this.width = width;
+      }
+
+      get area() {
+          return this.calcArea();
+      }
+
+      calcArea() {
+          return this.height * this.width;
+      }
   }
 ```
 
@@ -105,15 +108,15 @@ Next parametrs could help in class method filtering:
 To decorate a function with ```logger-decorator``` the next approach can be applied:
 
 ```javascript
-  import { Decorator } from 'logger-decorator';
-  
-  const decorator = new Decorator({ logger });
-  const decorated = decorator()(function sum(a, b) {
-      return a + b;
-  });
+import { Decorator } from 'logger-decorator';
 
-  const res = decorated(5, 8); // res === 13
-  /*
+const decorator = new Decorator({ logger });
+const decorated = decorator()((a, b) => {
+    return a + b;
+});
+
+const res = decorated(5, 8); // res === 13
+/*
       logger will print:
       { method: 'sum', params: '[ 5, 8 ]', result: '13' }
   */
@@ -196,18 +199,18 @@ default *logger-decorator* sanitizers are:
 *Logger* can be a function, with the next structure:
 
 ```javascript
-  const logger = (level, data) => {
-    console.log(level, data)
-  }
+const logger = (level, data) => {
+    console.log(level, data);
+};
 ```
 Otherwise, you can define each logLevel separately in *Object* / *Class* logger:
 
 ```javascript
-  const logger = {
+const logger = {
     info    : console.log,
     verbose : console.log,
     error   : console.error
-  }
+};
 ```
 
 ## Contribute
@@ -254,4 +257,5 @@ Make the changes to the code and tests. Then commit to your branch. Be sure to f
 [appveyor-badge]: https://ci.appveyor.com/api/projects/status/73r7798qp97ccwxp/branch/master?svg=true
 [appveyor-url]: https://ci.appveyor.com/project/pustovitDmytro/logger-decorator/branch/master
 
-
+[fossa-badge]: https://app.fossa.com/api/projects/custom%2B24828%2Flogger-decorator.svg?type=shield
+[fossa-url]: https://app.fossa.com/projects/custom%2B24828%2Flogger-decorator?ref=badge_shield
