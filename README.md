@@ -13,7 +13,7 @@ Boilerplate for creating npm packages.
 [![Scrutinizer][scrutinizer-badge]][scrutinizer-url]
 
 [![Dependencies][badge-deps]][npm]
-[![Vulnerabilities][badge-vuln]](https://snyk.io/)
+[![Security][snyk-badge]][snyk-url]
 [![Build Status][tests-badge]][tests-url]
 [![Coverage Status][badge-coverage]][url-coverage]
 
@@ -59,11 +59,13 @@ Make the changes to the code and tests. Then commit to your branch. Be sure to f
 [github]: https://github.com/pustovitDmytro/npm-boilerplate
 [coveralls]: https://coveralls.io/github/pustovitDmytro/npm-boilerplate?branch=master
 [badge-deps]: https://img.shields.io/david/pustovitDmytro/npm-boilerplate.svg
-[badge-vuln]: https://img.shields.io/snyk/vulnerabilities/npm/npm-boilerplate.svg?style=popout
 [badge-vers]: https://img.shields.io/npm/v/npm-boilerplate.svg
 [badge-lic]: https://img.shields.io/github/license/pustovitDmytro/npm-boilerplate.svg
 [badge-coverage]: https://coveralls.io/repos/github/pustovitDmytro/npm-boilerplate/badge.svg?branch=master
 [url-coverage]: https://coveralls.io/github/pustovitDmytro/npm-boilerplate?branch=master
+
+[snyk-badge]: https://snyk-widget.herokuapp.com/badge/npm/npm-boilerplate/badge.svg
+[snyk-url]: https://snyk.io/advisor/npm-package/npm-boilerplate
 
 [tests-badge]: https://img.shields.io/circleci/build/github/pustovitDmytro/npm-boilerplate
 [tests-url]: https://app.circleci.com/pipelines/github/pustovitDmytro/npm-boilerplate
