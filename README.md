@@ -13,7 +13,7 @@ Provides a unified and simple approach for class and function logging.
 [![Scrutinizer][scrutinizer-badge]][scrutinizer-url]
 
 [![Dependencies][badge-deps]][npm]
-[![Vulnerabilities][badge-vuln]](https://snyk.io/)
+[![Security][snyk-badge]][snyk-url]
 [![Build Status][tests-badge]][tests-url]
 [![Coverage Status][badge-coverage]][url-coverage]
 
@@ -226,6 +226,10 @@ Make the changes to the code and tests. Then commit to your branch. Be sure to f
 [badge-lic]: https://img.shields.io/github/license/pustovitDmytro/logger-decorator.svg
 [badge-coverage]: https://coveralls.io/repos/github/pustovitDmytro/logger-decorator/badge.svg?branch=master
 [url-coverage]: https://coveralls.io/github/pustovitDmytro/logger-decorator?branch=master
+
+
+[snyk-badge]: https://snyk-widget.herokuapp.com/badge/npm/logger-decorator/badge.svg
+[snyk-url]: https://snyk.io/advisor/npm-package/logger-decorator
 
 [tests-badge]: https://img.shields.io/circleci/build/github/pustovitDmytro/logger-decorator
 [tests-url]: https://app.circleci.com/pipelines/github/pustovitDmytro/logger-decorator
