@@ -58,7 +58,7 @@
         {
             "matchDepTypes": ["dependencies"],
             "matchUpdateTypes": ["major"],
-            "semanticCommitType": "Breaking"
+            "semanticCommitType": "Breaking",
             "labels": ["dependencies", "breaking"],
             "automerge": false
         },               
