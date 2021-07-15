@@ -50,7 +50,14 @@
             "matchDepTypes": ["dependencies"],
             "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
             "automerge": true
-        },                
+        },    
+        {
+            "matchDepTypes": ["dependencies"],
+            "matchUpdateTypes": ["major"],
+            "semanticCommitType": "Breaking"
+            "labels": ["dependencies", "breaking"],
+            "automerge": false
+        },               
         {
             "matchDepTypes": [ "dependencies", "require" ],
             "rangeStrategy": "pin",
