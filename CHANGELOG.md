@@ -1,3 +1,35 @@
+# [1.4.0](https://github.com/pustovitDmytro/logger-decorator/compare/v1.3.3...v1.4.0) (2021-07-15)
+
+
+### Chore
+
+* adds 'typo' PR template ([e20404d](https://github.com/pustovitDmytro/logger-decorator/commit/e20404d5f844e87f38558d6986e31df4c214fc3f))
+* adds CODE_OF_CONDUCT ([a969a8d](https://github.com/pustovitDmytro/logger-decorator/commit/a969a8d7c4b9ea8552ef90d21d1cbef068c9ee4c))
+* adds sonarcloud config ([c92973d](https://github.com/pustovitDmytro/logger-decorator/commit/c92973d998ecee059594fbcdd35b9be0c08ffd0b))
+* Lock file maintenance ([cdf4f11](https://github.com/pustovitDmytro/logger-decorator/commit/cdf4f112eebab895c624210cc672ab00ba2fa443))
+* Lock file maintenance ([2545aba](https://github.com/pustovitDmytro/logger-decorator/commit/2545aba4cb8259af47c49218d7105a69611326a5))
+* regenerate package-lock.json ([50ada56](https://github.com/pustovitDmytro/logger-decorator/commit/50ada5640620e7744542f481bfd8d13b29cce086))
+* removes unused devDependencies ([ddb100a](https://github.com/pustovitDmytro/logger-decorator/commit/ddb100aa634ab2e1d2695de73d9aeb4a7795ccce))
+* Update dependency eslint-plugin-regexp to ^0.12.0 ([51ff304](https://github.com/pustovitDmytro/logger-decorator/commit/51ff3049b892e9ee5655761e53454e4c601fba27))
+* Update dependency eslint-plugin-regexp to ^0.12.0 ([5df2457](https://github.com/pustovitDmytro/logger-decorator/commit/5df2457837f3834ba47fde64d8610b4b5034b64c))
+* Update dependency eslint-plugin-regexp to ^0.13.0 ([a9021d4](https://github.com/pustovitDmytro/logger-decorator/commit/a9021d402faaef556a5c6dba7683c443036c0bf7))
+* Update dependency eslint-plugin-regexp to ^0.13.0 (#36) ([3a8d3ec](https://github.com/pustovitDmytro/logger-decorator/commit/3a8d3ecefa7c49575b4c6de6832690117d852dd7)), closes [#36](https://github.com/pustovitDmytro/logger-decorator/issues/36)
+* Update dependency eslint-plugin-sonarjs to ^0.9.0 ([81d9681](https://github.com/pustovitDmytro/logger-decorator/commit/81d9681ef601c70ee83a7ca26b199d647fc4ca0e))
+* Update dependency eslint-plugin-sonarjs to ^0.9.0 ([48669c4](https://github.com/pustovitDmytro/logger-decorator/commit/48669c48d6ae860ba998e3ba7e874479381253d2))
+* Update dependency eslint-plugin-unicorn to v34 ([fb44bff](https://github.com/pustovitDmytro/logger-decorator/commit/fb44bff6459ba208816c63ad2ab0e8104c45d3f4))
+* Update dependency eslint-plugin-unicorn to v34 (#34) ([86efbac](https://github.com/pustovitDmytro/logger-decorator/commit/86efbac96c6fbd1055c7e83fc3a42a861836b943)), closes [#34](https://github.com/pustovitDmytro/logger-decorator/issues/34)
+* Update dependency husky to v7 ([3578711](https://github.com/pustovitDmytro/logger-decorator/commit/35787117161955387aad52949d506c0fbaf42edf))
+* Update dependency husky to v7 ([daabd27](https://github.com/pustovitDmytro/logger-decorator/commit/daabd273c72eb5b4b1771f4671fd6fbdca7bd899))
+* Update dependency test-console to v2 ([33209bd](https://github.com/pustovitDmytro/logger-decorator/commit/33209bd19ce9bcc804803df4307cb1174d2512e1))
+
+### Docs
+
+* update snyk badge ([a7fbb1d](https://github.com/pustovitDmytro/logger-decorator/commit/a7fbb1d0e408bec8b8a8f37d1ffef3921d1dc106))
+
+### Update
+
+* integrate myrmidon decorators ([03d1c0a](https://github.com/pustovitDmytro/logger-decorator/commit/03d1c0aef21eab270e8a490c3b3739139fa1483c))
+
 ## [1.3.3](https://github.com/pustovitDmytro/logger-decorator/compare/v1.3.2...v1.3.3) (2021-06-13)
 
 
