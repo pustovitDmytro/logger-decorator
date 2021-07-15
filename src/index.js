@@ -1,6 +1,7 @@
-import { isClass, isFunction, mergeConfigs } from './utils';
+import { isClass, isFunction } from 'myrmidon';
+import { mergeConfigs } from './utils';
 import {
-    functionDecorator,
+    FunctionDecorator,
     classMethodDecorator,
     classDecorator
 } from  './decorators';
@@ -13,20 +14,24 @@ export class Decorator {
     constructor(...opts) {
         // eslint-disable-next-line no-constructor-return
         return (...args) => {
+            const config = mergeConfigs(args, opts, dfc);
+
             return (target, methodName, descriptor) => {
                 if (methodName && descriptor) {
                     return classMethodDecorator(
                         { target, methodName, descriptor },
-                        ...mergeConfigs(args, opts, dfc)
+                        config
                     );
                 }
 
                 if (isClass(target)) {
-                    return classDecorator(target, ...mergeConfigs(args, opts, dfc));
+                    return classDecorator(target, config);
                 }
 
                 if (isFunction(target)) {
-                    return functionDecorator(target, ...mergeConfigs(args, opts, dfc));
+                    const functionDecorator = new FunctionDecorator({ config });
+
+                    return functionDecorator.run(target);
                 }
 
                 throw new Error(`Can't decorate ${typeof target}, only functions, classes and class methods are allowed`);

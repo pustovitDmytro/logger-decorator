@@ -128,7 +128,7 @@ test('include/exlude methods', function () {
 test('Class with getters and setters', function () {
     const logger = new Logger();
     const decorator = new Decorator({ logger });
-    const verbose = decorator({ level: 'verbose', getters: true });
+    const verbose = decorator({ level: 'verbose', getters: true, setters: true });
 
     @verbose
     class Calculator {

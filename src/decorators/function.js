@@ -1,14 +1,13 @@
 
 import {
-    isPromise,
     isFunction,
-    cleanUndefined
-} from '../utils';
+    cleanUndefined,
 
-import {
     getBenchmark,
-    startBenchmark
-} from '../utils/benchmark';
+    startBenchmark,
+    FunctionDecorator as BaseFunctionDecorator
+} from 'myrmidon';
+
 
 const _decorated = Symbol('_decorated');
 
@@ -18,90 +17,92 @@ const buildLogLevel = (logLevel, data) => {
     return logLevel;
 };
 
-// eslint-disable-next-line sonarjs/cognitive-complexity
-export default function functionDecorator(method, config = {}) {
-    const {
-        logger,
-        methodName,
-        level,
-        paramsSanitizer,
-        resultSanitizer,
-        errorSanitizer,
-        contextSanitizer,
-        timestamp,
-        dublicates, // TODO: rename to duplicates
-        errorLevel
-    } = {
-        methodName : method.name,
-        ...config
-    };
+export default class FunctionDecorator extends BaseFunctionDecorator {
+    prepareData({ context, methodName }) {
+        const {
+            logger,
+            level,
+            paramsSanitizer,
+            resultSanitizer,
+            errorSanitizer,
+            contextSanitizer,
+            timestamp
+        } = this.config;
 
-    const basicLogObject = {
-        service     : config.serviceName,
-        method      : methodName,
-        application : config.name,
-        level
-    };
+        const basicLogObject = {
+            service     : this.config.serviceName,
+            method      : methodName,
+            application : this.name,
+            level
+        };
 
-    const buildLogObject = obj => {
-        const { args, result, error, time, context } = obj;
+        const buildLogObject = obj => {
+            const { args, result, error, time } = obj;
 
-        return cleanUndefined({
-            ...basicLogObject,
-            params    : paramsSanitizer(args),
-            result    : result && resultSanitizer(result),
-            error     : error && errorSanitizer(error),
-            context   : (contextSanitizer && context) ? contextSanitizer(context) : undefined,
-            benchmark : getBenchmark(time),
-            timestamp : timestamp ? (new Date()).toISOString() : undefined
-        });
-    };
+            return cleanUndefined({
+                ...basicLogObject,
+                params    : paramsSanitizer(args),
+                result    : result && resultSanitizer(result),
+                error     : error && errorSanitizer(error),
+                context   : (contextSanitizer && context) ? contextSanitizer(context) : undefined,
+                benchmark : getBenchmark(time),
+                timestamp : timestamp ? (new Date()).toISOString() : undefined
+            });
+        };
 
-    const log = (logLevel, data) => {
-        const lev = buildLogLevel(logLevel, data);
-        const dat = buildLogObject(data);
+        const log = (logLevel, data) => {
+            const lev = buildLogLevel(logLevel, data);
+            const dat = buildLogObject(data);
 
-        if (isFunction(logger)) return logger(lev, dat);
-        if (isFunction(logger[lev])) return logger[lev](dat);
-        throw new Error(`logger not supports ${lev} level`);
-    };
+            if (isFunction(logger)) return logger(lev, dat);
+            if (isFunction(logger[lev])) return logger[lev](dat);
+            throw new Error(`logger not supports ${lev} level`);
+        };
 
-    const onSuccess = data => {
-        log(level, data);
-
-        return data.result;
-    };
-
-    const onError = (data) => {
-        log(errorLevel, data);
-
-        throw data.error;
-    };
-
-    if (!dublicates && method[_decorated]) return method;
-
-    // eslint-disable-next-line func-style
-    const f =  function (...args) {
         const time = startBenchmark();
-        const loggerData = { args, time, context: this };
 
-        try {
-            const promise = method.apply(this, args);
+        return {
+            context,
+            methodName,
+            log,
+            time,
+            config : this.config
+        };
+    }
 
-            if (isPromise(promise)) {
-                /* eslint-disable promise/prefer-await-to-then,promise/prefer-await-to-callbacks */
-                return promise
-                    .then(result => onSuccess({ result, ...loggerData }))
-                    .catch(error => onError({ error, ...loggerData }));
-            }
+    onSuccess({ result, log, config, time, context, params }) {
+        log(config.level, {
+            result,
+            args : params,
+            time,
+            context
+        });
 
-            return onSuccess({ result: promise, ...loggerData });
-        } catch (error) {
-            onError({ error, ...loggerData });
-        }
-    };
+        return result;
+    }
 
-    f[_decorated] = true;
+    onError({ error, log, config, time, context, params }) {
+        log(config.errorLevel, {
+            error,
+            args : params,
+            time,
+            context
+        });
 
-    return f;
+        throw error;
+    }
+
+    run(method) {
+        const {
+            dublicates // TODO: rename to duplicates
+        } = this.config;
+
+        if (!dublicates && method[_decorated]) return method;
+
+        const f = super.run(method);
+
+        f[_decorated] = true;
+
+        return f;
+    }
 }

@@ -94,5 +94,8 @@
     "semantic-release-telegram": "^1.2.0",
     "test-console": "^2.0.0",
     "uuid": "^8.0.0"
+  },
+  "dependencies": {
+    "myrmidon": "1.6.0"
   }
 }

@@ -1,8 +1,8 @@
-import functionDecorator from './function';
+import FunctionDecorator from './function';
 import classDecorator, { classMethodDecorator } from './class';
 
 export {
-    functionDecorator,
+    FunctionDecorator,
     classDecorator,
     classMethodDecorator
 };

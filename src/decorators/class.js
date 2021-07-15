@@ -1,68 +1,71 @@
 
-import { getMethodNames, isFunction } from '../utils';
+import {
+    isFunction,
+    ClassMethodDecorator as BaseClassMethodDecorator,
+    ClassDecorator as BaseClassDecorator
+} from 'myrmidon';
 import defaults from '../defaults';
-import functionDecorator from './function';
+import FunctionDecorator from './function';
 
-function getMethodDescriptor(propertyName, target) {
-    if (target.hasOwnProperty(propertyName)) {
-        return Object.getOwnPropertyDescriptor(target, propertyName);
+class ClassMethodDecorator extends BaseClassMethodDecorator {
+    constructor(opts) {
+        const {
+            config
+        } = opts;
+
+        super(opts);
+
+        if (config.getters) this.methods.push('get');
+        if (config.setters) this.methods.push('set');
     }
 
-    return {
-        configurable : true,
-        enumerable   : true,
-        writable     : true,
-        value        : target[propertyName]
-    };
+    static FunctionDecorator = FunctionDecorator
+
+    getFunctionDecoratorConfig() {
+        return {
+            ...super.getFunctionDecoratorConfig(),
+            serviceName : this.config.serviceName || this.target.constructor.name
+        };
+    }
 }
 
 export function classMethodDecorator({ target, methodName, descriptor }, config = {}) {
-    const methods = [ 'value', 'initializer' ];
-
-    if (config.getters) methods.push('get');
-    if (config.setters) methods.push('set');
-    const functionDecoratorConfig = {
-        ...config,
+    const a = new ClassMethodDecorator({
         methodName,
-        serviceName : config.serviceName || target.constructor.name
-    };
+        descriptor,
+        config,
+        target
+    });
 
-    for (const key of methods
-        .filter(k => descriptor[k] && isFunction(descriptor[k]))) {
-        const old = descriptor[key];
+    return a.run();
+}
 
-        descriptor[key] = key === 'initializer'// eslint-disable-line no-param-reassign
-            ? function () {
-                return functionDecorator(old.call(target), functionDecoratorConfig);
-            }
-            : functionDecorator(descriptor[key], functionDecoratorConfig);
+class ClassDecorator extends BaseClassDecorator {
+    static ClassMethodDecorator = ClassMethodDecorator
+
+    getClassMethodDecoratorConfig(params) {
+        const { target } = params;
+
+        return {
+            ...super.getClassMethodDecoratorConfig(params),
+            serviceName : target.constructor.name
+        };
     }
 
-    return descriptor;
+    filterMethodName(name) {
+        if (this.config.include?.includes(name)) return true;
+        if (this.config.exclude?.includes(name)) return false;
+
+        return isFunction(this.config.methodNameFilter)
+            ? this.config.methodNameFilter(name)
+            : defaults.methodNameFilter(name);
+    }
 }
 
 function decorateClass(target, config) {
-    for (const methodName of getMethodNames(target).filter(name => {
-        if (config.include?.includes(name)) return true;
-        if (config.exclude?.includes(name)) return false;
+    const decorator = new ClassDecorator({ config });
 
-        return isFunction(config.methodNameFilter)
-            ? config.methodNameFilter(name)
-            : defaults.methodNameFilter(name);
-    })) {
-        const descriptor = getMethodDescriptor(methodName, target);
-
-        if (!descriptor) continue;
-
-        Object.defineProperty(
-            target,
-            methodName,
-            classMethodDecorator(
-                { target, methodName, descriptor },
-                { serviceName: target.name,  ...config }
-            )
-        );
-    }
+    return decorator.decorate(target);
 }
 
 export default function getClassLoggerDecorator(target, config = {}) {

@@ -17,14 +17,13 @@ test('cleanUndefined', function () {
 });
 
 test('mergeConfigs', function () {
-    const configs = mergeConfigs(
+    const config = mergeConfigs(
         [ { logger: console, contextSanitizer: () => 1 } ],
         [],
         [ { level: 'info', contextSanitizer: () => 2 } ]
     );
 
-    assert.isArray(configs);
-    const config = configs[0];
+    assert.isObject(config);
 
     assert.equal(config.level, 'info');
     assert.equal(config.contextSanitizer(), 1);
