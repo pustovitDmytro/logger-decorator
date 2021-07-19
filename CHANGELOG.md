@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/pustovitDmytro/logger-decorator/compare/v1.4.0...v1.4.1) (2021-07-19)
+
+
+### Upgrade
+
+* Update dependency myrmidon to v1.6.1 ([c191693](https://github.com/pustovitDmytro/logger-decorator/commit/c191693b72d19ae783b91a9536bfaa1043e150ca))
+
 # [1.4.0](https://github.com/pustovitDmytro/logger-decorator/compare/v1.3.3...v1.4.0) (2021-07-15)
 
 

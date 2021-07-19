@@ -1,6 +1,6 @@
 {
   "name": "logger-decorator",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "provides a unified and simple approach for class and function logging",
   "main": "./lib",
   "config": {
