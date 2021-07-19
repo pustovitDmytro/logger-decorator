@@ -85,9 +85,9 @@ environment:
     job_depends_on: Build
     nodejs_version: 16
 
-matrix:
-  allow_failures:
-    - nodejs_version: 16
+# matrix:
+#   allow_failures:
+#     - nodejs_version: 16
 
 artifacts:
   - path: tmp
