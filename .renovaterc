@@ -43,7 +43,8 @@
     "packageRules": [
         {
             "matchSourceUrlPrefixes": ["https://github.com/pustovitDmytro/"],
-            "groupName": "pustovitDmytro packages"
+            "groupName": "pustovitDmytro's packages",
+            "commitBodyTable": true
         },
         {
             "matchDepTypes": ["devDependencies"],
