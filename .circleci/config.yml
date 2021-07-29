@@ -108,6 +108,15 @@ jobs:
       - run: *lint
       - store_test_results:
           path: reports
+  test-leaks:
+    resource_class: small
+    docker:
+      - image: zricethezav/gitleaks
+    steps:
+      - checkout
+      - run:
+          name: Run gitleaks
+          command: "gitleaks -v --path . --config-path .gitleaks.toml"
   test-debt:
     <<: *defaults
     steps:
@@ -152,10 +161,14 @@ workflows:
       - test-coverage:
           requires:
             - install
+      - test-leaks:
+          requires:
+            - install
       - test-fossa:
           context: branches
           requires:
             - install
+            - test-package
       - deploy:
           context: npm-packages
           requires:
