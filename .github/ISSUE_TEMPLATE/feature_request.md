@@ -13,8 +13,8 @@ Ex. I'm always frustrated when [...]
 
 **Please follow the general troubleshooting steps first:**
 - [ ] I've searched on the [issue tracker](../) before creating one.
-- [ ] I'm running latest package version.
-- [ ] I'm ready to provide help with enhancement, if needed.
+- [ ] I'm running the latest package version.
+- [ ] I'm ready to provide help with enhancement if needed.
 - [ ] Feature will break current functionality
 
 **Describe the solution you'd like**
