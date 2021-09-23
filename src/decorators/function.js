@@ -71,12 +71,14 @@ export default class FunctionDecorator extends BaseFunctionDecorator {
     }
 
     onSuccess({ result, log, config, time, context, params }) {
-        log(config.level, {
-            result,
-            args : params,
-            time,
-            context
-        });
+        if (config.level && !config.errorsOnly) {
+            log(config.level, {
+                result,
+                args : params,
+                time,
+                context
+            });
+        }
 
         return result;
     }

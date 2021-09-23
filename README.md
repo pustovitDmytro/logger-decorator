@@ -88,6 +88,7 @@ Next values could also be passed to constructor config, but are customizable fro
   * **timestamp** - if set to *true* timestamps will be added to all logs.
   * **level** - default log-level, pay attention that logger must support it as ```logger.level(smth)```, *'info'* by default. Also *function* could be passed. The function will receive logged data and should return log-level as *string*.
   *  **errorLevel** - level, used for errors. *'error'* by default. Also *function* could be passed. The function will receive logged data and should return log-level as *string*.
+  * **errorsOnly** - if set to *true* logger will catch only errors.
   * **paramsSanitizer** - function to sanitize input parametrs from sensitive or redundant data, see [sanitizers](#sanitizers) for more details, by default [dataSanitizer](#sanitizers).
   * **resultSanitizer** - output data sanitizer, by default [dataSanitizer](#sanitizers)
   * **errorSanitizer** - error sanitizer, by default [simpleSanitizer](#sanitizers)
@@ -193,6 +194,10 @@ default *logger-decorator* sanitizers are:
 
 * ```simpleSanitizer``` - default [inspect](https://nodejs.org/api/util.html#util_util_inspect_object_options) function
 * ```dataSanitizer``` - firstly replace all values with key ```%password%``` replaced to ```***```, and then ```simpleSanitizer```.
+
+**Performance notes**
+
+`dataSanitizer` could impact performance greatly on complex objects and large arrays. If you don't need to sanitize sensitive patterns (tokens, passwords), use simpleSanitizer, or write a custom handler.
 
 ### Logger
 

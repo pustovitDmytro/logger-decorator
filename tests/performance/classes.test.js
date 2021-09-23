@@ -58,3 +58,20 @@ test('class-logger with inspect sanitizers', async function () {
 
     assert.isAtMost(result, seeds.default + allowedPerformanceLossesMS);
 });
+
+test('class-logger errorsOnly', async function () {
+    const decorator = new Decorator({
+        logger,
+
+        errorsOnly : true,
+        timestamp  : true
+    });
+
+    @decorator()
+    class Tester extends PerformanceTester {}
+    const runner = new Tester();
+
+    const result = await bench(() => runner.timer(5, seeds.largeArray));
+
+    assert.isAtMost(result, seeds.default + 4);
+});

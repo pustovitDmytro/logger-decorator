@@ -88,3 +88,19 @@ test('Negative: different errorLevels on different errors', function () {
     assert.notEmpty(logger.stack.error);
     assert.isEmpty(logger.stack.warn);
 });
+
+test('Positive: function errorsOnly', function () {
+    const logger = new Logger();
+    const decorator = new Decorator({ logger, errorsOnly: true });
+
+    const error = new Error('n should be positive');
+    const decorated = decorator()(function (n) {
+        if (n > 0) return n * 2;
+        throw error;
+    });
+
+    assert.throws(decorated.bind(null, -5), error);
+    decorated(10);
+    assert.include(logger.stack.error[0].error, error.toString());
+    assert.isEmpty(logger.stack.info);
+});
