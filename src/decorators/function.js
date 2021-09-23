@@ -21,7 +21,6 @@ export default class FunctionDecorator extends BaseFunctionDecorator {
     prepareData({ context, methodName }) {
         const {
             logger,
-            level,
             paramsSanitizer,
             resultSanitizer,
             errorSanitizer,
@@ -32,15 +31,15 @@ export default class FunctionDecorator extends BaseFunctionDecorator {
         const basicLogObject = {
             service     : this.config.serviceName,
             method      : methodName,
-            application : this.name,
-            level
+            application : this.name
         };
 
-        const buildLogObject = obj => {
+        const buildLogObject = (level, obj) => {
             const { args, result, error, time } = obj;
 
             return cleanUndefined({
                 ...basicLogObject,
+                level,
                 params    : paramsSanitizer(args),
                 result    : result && resultSanitizer(result),
                 error     : error && errorSanitizer(error),
@@ -52,7 +51,7 @@ export default class FunctionDecorator extends BaseFunctionDecorator {
 
         const log = (logLevel, data) => {
             const lev = buildLogLevel(logLevel, data);
-            const dat = buildLogObject(data);
+            const dat = buildLogObject(lev, data);
 
             if (isFunction(logger)) return logger(lev, dat);
             if (isFunction(logger[lev])) return logger[lev](dat);
@@ -84,12 +83,20 @@ export default class FunctionDecorator extends BaseFunctionDecorator {
     }
 
     onError({ error, log, config, time, context, params }) {
-        log(config.errorLevel, {
-            error,
-            args : params,
-            time,
-            context
-        });
+        const { logErrors, errorLevel } = config;
+
+        const isFirstOnly = logErrors && logErrors === 'deepest';
+
+        if (!isFirstOnly || !error[_decorated]) {
+            log(errorLevel, {
+                error,
+                args : params,
+                time,
+                context
+            });
+        }
+
+        if (isFirstOnly)  error[_decorated] = true; // eslint-disable-line no-param-reassign
 
         throw error;
     }

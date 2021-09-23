@@ -104,3 +104,36 @@ test('Positive: function errorsOnly', function () {
     assert.include(logger.stack.error[0].error, error.toString());
     assert.isEmpty(logger.stack.info);
 });
+
+test('Positive: logErrors === deepest', function () {
+    const logger = new Logger();
+    const decorator = new Decorator({ logger, logErrors: 'deepest' });
+    const error = new Error('Error occured');
+
+    @decorator()
+    class Bugged {
+        first() {
+            this.second();
+        }
+
+        second() {
+            this.third();
+        }
+
+        third() {
+            throw error;
+        }
+    }
+
+    const bug = new Bugged();
+
+    assert.throws(() => bug.first(), error);
+    assert.lengthOf(logger.stack.error, 1);
+    assert.deepOwnInclude(logger.stack.error[0], {
+        service : 'Bugged',
+        method  : 'third',
+        level   : 'error'
+    });
+    assert.include(logger.stack.error[0].error, error.toString());
+    assert.isEmpty(logger.stack.info);
+});

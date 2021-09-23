@@ -89,6 +89,8 @@ Next values could also be passed to constructor config, but are customizable fro
   * **level** - default log-level, pay attention that logger must support it as ```logger.level(smth)```, *'info'* by default. Also *function* could be passed. The function will receive logged data and should return log-level as *string*.
   *  **errorLevel** - level, used for errors. *'error'* by default. Also *function* could be passed. The function will receive logged data and should return log-level as *string*.
   * **errorsOnly** - if set to *true* logger will catch only errors.
+  * **logErrors**: next options available:
+    -   `deepest`: log only the deepest occurrence of the error. This option prevents 'error spam'
   * **paramsSanitizer** - function to sanitize input parametrs from sensitive or redundant data, see [sanitizers](#sanitizers) for more details, by default [dataSanitizer](#sanitizers).
   * **resultSanitizer** - output data sanitizer, by default [dataSanitizer](#sanitizers)
   * **errorSanitizer** - error sanitizer, by default [simpleSanitizer](#sanitizers)
