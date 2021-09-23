@@ -1,3 +1,42 @@
+# [1.5.0](https://github.com/pustovitDmytro/logger-decorator/compare/v1.4.1...v1.5.0) (2021-09-23)
+
+
+### Chore
+
+* adds  a security policy ([ed86aba](https://github.com/pustovitDmytro/logger-decorator/commit/ed86aba2326eab4d7ef6045913a06b8e80b73dce))
+* adds bump strategy for devDependencies (non-major) ([03c9587](https://github.com/pustovitDmytro/logger-decorator/commit/03c958728c482d04225d3368aebae8fadc7d6a4d))
+* adds gitleaks to circle pipeline ([114946e](https://github.com/pustovitDmytro/logger-decorator/commit/114946e5b0a0ec0437929c5963e7efe258391b9e))
+* adds performance tests for inspect sanitizers #45 ([255a46e](https://github.com/pustovitDmytro/logger-decorator/commit/255a46eef34590656aa25687948d4f72e299bc41)), closes [#45](https://github.com/pustovitDmytro/logger-decorator/issues/45)
+* adds sponsorships ([35ed8e0](https://github.com/pustovitDmytro/logger-decorator/commit/35ed8e0ddac94bdc52545be1d533be48495c8d60))
+* combine mine packages in renovate updates ([54c97b8](https://github.com/pustovitDmytro/logger-decorator/commit/54c97b8debfe5eae07fe83947378d03eaaea5763))
+* create auto pr for major dependencies ([d2583a6](https://github.com/pustovitDmytro/logger-decorator/commit/d2583a6277808bbd2aa5ec69dbd1639c10458c9a))
+* enhance own updates commit messages ([49a2365](https://github.com/pustovitDmytro/logger-decorator/commit/49a2365c0a49363e42365503939b98819a6c1864))
+* fixes audit [devDependencies] ([d08b1fc](https://github.com/pustovitDmytro/logger-decorator/commit/d08b1fc075b7eef59c59f755e1ee96748824e415))
+* fixes renovate config ([982abaf](https://github.com/pustovitDmytro/logger-decorator/commit/982abaf61a98de14dadc2fcb8b37b854577cbc64))
+* Lock file maintenance ([eea1ac0](https://github.com/pustovitDmytro/logger-decorator/commit/eea1ac055681e4acfe7c832f5bd9dfdc8c7518f7))
+* Lock file maintenance ([ffe9a40](https://github.com/pustovitDmytro/logger-decorator/commit/ffe9a400a4931654eace65e3024fa7e9c0f9f5f1))
+* Lock file maintenance ([b2432b7](https://github.com/pustovitDmytro/logger-decorator/commit/b2432b77eafab2ed7406c4c1b5da97f8a7680c47))
+* Lock file maintenance ([47bfacf](https://github.com/pustovitDmytro/logger-decorator/commit/47bfacf4e2ffe672c96345481ddfa6811d4d4d69))
+* Lock file maintenance ([19c2389](https://github.com/pustovitDmytro/logger-decorator/commit/19c23891056afb813e4dde92e7f40f0905896bc9))
+* Lock file maintenance ([2b00aec](https://github.com/pustovitDmytro/logger-decorator/commit/2b00aec84097bd21c51a43ab785225798753dbae))
+* Lock file maintenance ([dea06c9](https://github.com/pustovitDmytro/logger-decorator/commit/dea06c9d3e2dd4448e997ee081425b1a765fae87))
+* Lock file maintenance ([e0043d8](https://github.com/pustovitDmytro/logger-decorator/commit/e0043d89de5576939e701f567ab1a871c2c8a057))
+* Lock file maintenance ([66ba107](https://github.com/pustovitDmytro/logger-decorator/commit/66ba10726f112be1442b37ccb5a4bc77a928c615))
+* Lock file maintenance ([5d305a8](https://github.com/pustovitDmytro/logger-decorator/commit/5d305a8337cccbb1efcb4885805960941f40b143))
+* not allow to fail on node 16 ([22ed683](https://github.com/pustovitDmytro/logger-decorator/commit/22ed683ace773b242382c094b363a1713f9d8352))
+* Update commitlint monorepo to v13 ([d008fd9](https://github.com/pustovitDmytro/logger-decorator/commit/d008fd93c981f8337b5a6f5ab41d6df3b6d5e7e3))
+* Update dependency eslint-plugin-regexp to v1 (#40) ([adec72a](https://github.com/pustovitDmytro/logger-decorator/commit/adec72a5942441c7ed8332235fe512eb9c6b5a44)), closes [#40](https://github.com/pustovitDmytro/logger-decorator/issues/40)
+* Update dependency eslint-plugin-sonarjs to ^0.10.0 ([eb1417b](https://github.com/pustovitDmytro/logger-decorator/commit/eb1417b9c15325ef5a53a0d7321d25b69624d9cd))
+* Update dependency eslint-plugin-unicorn to v35 ([415e4f4](https://github.com/pustovitDmytro/logger-decorator/commit/415e4f4f56791f5df89683f2e3e82d98254d0259))
+* Update devDependencies (non-major) ([51200bf](https://github.com/pustovitDmytro/logger-decorator/commit/51200bf4f3ac07c957f6861fd819319a28710689))
+* Update devDependencies (non-major) ([33211c3](https://github.com/pustovitDmytro/logger-decorator/commit/33211c31d168fc187eb028f92eaeeff48ccfd085))
+* Update devDependencies (non-major) (#48) ([b3f6184](https://github.com/pustovitDmytro/logger-decorator/commit/b3f6184966d64e7a20a5176ddca6c63d1e275520)), closes [#48](https://github.com/pustovitDmytro/logger-decorator/issues/48)
+* Update devDependencies (non-major) to v13 ([6894ad9](https://github.com/pustovitDmytro/logger-decorator/commit/6894ad97aeac91f931506c360822f81c861e2e83))
+
+### New
+
+* adds errorsOnly option (closes #46) ([ea4b41a](https://github.com/pustovitDmytro/logger-decorator/commit/ea4b41aa96d2f128718fa314d20bd66e3be4a519)), closes [#46](https://github.com/pustovitDmytro/logger-decorator/issues/46)
+
 ## [1.4.1](https://github.com/pustovitDmytro/logger-decorator/compare/v1.4.0...v1.4.1) (2021-07-19)
 
 
