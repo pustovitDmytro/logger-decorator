@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/pustovitDmytro/logger-decorator/compare/v1.5.0...v1.6.0) (2021-09-23)
+
+
+### New
+
+* adds logErrors === deepest  #20 ([d43b467](https://github.com/pustovitDmytro/logger-decorator/commit/d43b46774115693d6b5761f2414b85ccea3c5c26)), closes [#20](https://github.com/pustovitDmytro/logger-decorator/issues/20)
+
 # [1.5.0](https://github.com/pustovitDmytro/logger-decorator/compare/v1.4.1...v1.5.0) (2021-09-23)
 
 
