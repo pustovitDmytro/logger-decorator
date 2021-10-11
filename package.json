@@ -75,7 +75,7 @@
     "jscpd": "^3.3.26",
     "lockfile-lint": "^4.6.2",
     "mocha": "^9.1.2",
-    "mocha-junit-reporter": "^2.0.0",
+    "mocha-junit-reporter": "^2.0.2",
     "node-package-tester": "^1.1.24",
     "nyc": "^15.1.0",
     "semantic-release": "^18.0.0",
