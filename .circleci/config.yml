@@ -79,6 +79,16 @@ jobs:
       - run: *danger-pr
       - run: *fossa-analize
       - save_cache: *cache-modules
+  test-security:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache:
+          <<: *cache-defaults
+      - run: *security
+       - run:
+          name: Security audit for dev-dependencies
+          command: "npm audit"
   test-coverage:
     <<: *defaults
     steps:
@@ -149,6 +159,9 @@ workflows:
     jobs:
       - install:
           context: branches
+      - test-security:
+          requires:
+            - install
       - test-package:
           requires:
             - install
