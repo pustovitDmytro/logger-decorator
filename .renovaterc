@@ -20,7 +20,7 @@
         "enabled": true,
         "automerge": true,
         "schedule": [
-            "before 7am every 10th day starting on the 5th"
+            "before 7:00 am every 10 days starting on the 5th day"
         ]
     },
 
@@ -61,7 +61,7 @@
             "rangeStrategy": "bump",
             "semanticCommitType": "Chore",
             "schedule": [
-                "before 7am every 10th day starting on the 1st"
+                "before 7:00 am every 10 days starting on the 1st day"
             ],
             "automerge": true
         },
