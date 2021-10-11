@@ -6,7 +6,7 @@ const src = danger.git.fileMatch('src/*');
 const tests = danger.git.fileMatch('tests/*');
 const system = danger.git.fileMatch('.*', '.*/**', 'LICENSE.md', 'package-lock.json', 'package.json');
 const isOwner = danger.github.pr.user.login === danger.github.thisPR.owner;
-const renovateBot = 29139614;
+const renovateBot = 29_139_614;
 const TrustedBots = [ renovateBot ];
 // const isBot = danger.github.pr.user.type === 'Bot';
 const isTrustedBot = TrustedBots.includes(danger.github.pr.user.id);
