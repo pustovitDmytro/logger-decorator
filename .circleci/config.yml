@@ -22,9 +22,6 @@ parameters:
   skip-deploy:
     type: boolean
     default: false
-  skip-danger:
-    type: boolean
-    default: false
 
 aliases:
   - &set-github-read-token
@@ -90,12 +87,20 @@ jobs:
   install:
     <<: *defaults
     steps:
-      - run: *fossa-install
+      - when:
+          condition:
+            not: << pipeline.parameters.skip-fossa >>
+          steps:
+            - run: *fossa-install
       - checkout
       - run: *install
       - run: *security
       - run: *danger-pr
-      - run: *fossa-analize
+      - when:
+          condition:
+            not: << pipeline.parameters.skip-fossa >>
+          steps:
+            - run: *fossa-analize
       - save_cache: *cache-modules
   test-security:
     <<: *defaults
@@ -120,15 +125,23 @@ jobs:
           path: reports
       - store_artifacts:
           path: reports
-      - run: *coveralls
+      - when:
+          condition:
+            not: << pipeline.parameters.skip-coveralls >>
+          steps:
+            - run: *coveralls
   test-fossa:
     <<: *defaults
     steps:
-      - run: *fossa-install
       - checkout
-      - restore_cache:
-          <<: *cache-defaults
-      - run: *fossa-test
+      - when:
+          condition:
+            not: << pipeline.parameters.skip-fossa >>
+          steps:
+            - run: *fossa-install
+            - restore_cache:
+                <<: *cache-defaults
+            - run: *fossa-test
   test-lint:
     <<: *defaults
     steps:
@@ -144,9 +157,13 @@ jobs:
       - image: zricethezav/gitleaks
     steps:
       - checkout
-      - run:
-          name: Run gitleaks
-          command: "gitleaks -v --path . --config-path .gitleaks.toml"
+      - when:
+          condition:
+            not: << pipeline.parameters.skip-leaks >>
+          steps:
+            - run:
+                name: Run gitleaks
+                command: "gitleaks -v --path . --config-path .gitleaks.toml"
   test-debt:
     <<: *defaults
     steps:
@@ -166,12 +183,16 @@ jobs:
   deploy:
     <<: *defaults
     steps:
-        - checkout
-        - restore_cache:
-            <<: *cache-defaults
-        - run:
-            name: Create Release
-            command: "[ -z ${CIRCLE_SKIP_DEPLOY+x} ] && npm run semantic-release || echo 'job skipped'"
+      - checkout
+      - when:
+          condition:
+            not: << pipeline.parameters.skip-deploy >>
+          steps:
+            - restore_cache:
+                <<: *cache-defaults
+            - run:
+                name: Create Release
+                command: "[ -z ${CIRCLE_SKIP_DEPLOY+x} ] && npm run semantic-release || echo 'job skipped'"
 
 workflows:
   version: 2
