@@ -7,7 +7,22 @@ cache-defaults: &cache-defaults
     - -{{ checksum "package-lock.json" }}
 
 parameters:
-  env-tests:
+  skip-fossa:
+    type: boolean
+    default: false
+  skip-coveralls:
+    type: boolean
+    default: false
+  skip-security:
+    type: boolean
+    default: false
+  skip-leaks:
+    type: boolean
+    default: false
+  skip-deploy:
+    type: boolean
+    default: false
+  skip-danger:
     type: boolean
     default: false
 
@@ -48,6 +63,9 @@ aliases:
   - &security
     name: Validate dependencies
     command: npm run test:security
+  - &security-all
+    name: Validate dev-dependencies
+    command: npm audit
   - &install
     name: Installing Dependencies
     command: npm ci
@@ -79,6 +97,18 @@ jobs:
       - run: *danger-pr
       - run: *fossa-analize
       - save_cache: *cache-modules
+  test-security:
+    <<: *defaults
+    steps:
+      - checkout
+      - when:
+          condition:
+            not: << pipeline.parameters.skip-security >>
+          steps:
+            - restore_cache:
+                <<: *cache-defaults
+            - run: *security
+            - run: *security-all
   test-coverage:
     <<: *defaults
     steps:
@@ -149,6 +179,9 @@ workflows:
     jobs:
       - install:
           context: branches
+      - test-security:
+          requires:
+            - install
       - test-package:
           requires:
             - install
@@ -183,7 +216,3 @@ workflows:
           filters:
             branches:
               only: /pull\/[0-9]+/
-  env-tests:
-    when: << pipeline.parameters.env-tests >>
-    jobs:
-      - install
