@@ -7,7 +7,19 @@ cache-defaults: &cache-defaults
     - -{{ checksum "package-lock.json" }}
 
 parameters:
-  env-tests:
+  skip-fossa:
+    type: boolean
+    default: false
+  skip-coveralls:
+    type: boolean
+    default: false
+  skip-security:
+    type: boolean
+    default: false
+  skip-leaks:
+    type: boolean
+    default: false
+  skip-deploy:
     type: boolean
     default: false
 
@@ -48,6 +60,9 @@ aliases:
   - &security
     name: Validate dependencies
     command: npm run test:security
+  - &security-all
+    name: Validate dev-dependencies
+    command: npm audit
   - &install
     name: Installing Dependencies
     command: npm ci
@@ -72,23 +87,33 @@ jobs:
   install:
     <<: *defaults
     steps:
-      - run: *fossa-install
+      - when:
+          condition:
+            not: << pipeline.parameters.skip-fossa >>
+          steps:
+            - run: *fossa-install
       - checkout
       - run: *install
       - run: *security
       - run: *danger-pr
-      - run: *fossa-analize
+      - when:
+          condition:
+            not: << pipeline.parameters.skip-fossa >>
+          steps:
+            - run: *fossa-analize
       - save_cache: *cache-modules
   test-security:
     <<: *defaults
     steps:
       - checkout
-      - restore_cache:
-          <<: *cache-defaults
-      - run: *security
-       - run:
-          name: Security audit for dev-dependencies
-          command: "npm audit"
+      - when:
+          condition:
+            not: << pipeline.parameters.skip-security >>
+          steps:
+            - restore_cache:
+                <<: *cache-defaults
+            - run: *security
+            - run: *security-all
   test-coverage:
     <<: *defaults
     steps:
@@ -100,15 +125,23 @@ jobs:
           path: reports
       - store_artifacts:
           path: reports
-      - run: *coveralls
+      - when:
+          condition:
+            not: << pipeline.parameters.skip-coveralls >>
+          steps:
+            - run: *coveralls
   test-fossa:
     <<: *defaults
     steps:
-      - run: *fossa-install
       - checkout
-      - restore_cache:
-          <<: *cache-defaults
-      - run: *fossa-test
+      - when:
+          condition:
+            not: << pipeline.parameters.skip-fossa >>
+          steps:
+            - run: *fossa-install
+            - restore_cache:
+                <<: *cache-defaults
+            - run: *fossa-test
   test-lint:
     <<: *defaults
     steps:
@@ -124,9 +157,13 @@ jobs:
       - image: zricethezav/gitleaks
     steps:
       - checkout
-      - run:
-          name: Run gitleaks
-          command: "gitleaks -v --path . --config-path .gitleaks.toml"
+      - when:
+          condition:
+            not: << pipeline.parameters.skip-leaks >>
+          steps:
+            - run:
+                name: Run gitleaks
+                command: "gitleaks -v --path . --config-path .gitleaks.toml"
   test-debt:
     <<: *defaults
     steps:
@@ -146,12 +183,16 @@ jobs:
   deploy:
     <<: *defaults
     steps:
-        - checkout
-        - restore_cache:
-            <<: *cache-defaults
-        - run:
-            name: Create Release
-            command: "[ -z ${CIRCLE_SKIP_DEPLOY+x} ] && npm run semantic-release || echo 'job skipped'"
+      - checkout
+      - when:
+          condition:
+            not: << pipeline.parameters.skip-deploy >>
+          steps:
+            - restore_cache:
+                <<: *cache-defaults
+            - run:
+                name: Create Release
+                command: "[ -z ${CIRCLE_SKIP_DEPLOY+x} ] && npm run semantic-release || echo 'job skipped'"
 
 workflows:
   version: 2
@@ -196,7 +237,3 @@ workflows:
           filters:
             branches:
               only: /pull\/[0-9]+/
-  env-tests:
-    when: << pipeline.parameters.env-tests >>
-    jobs:
-      - install
