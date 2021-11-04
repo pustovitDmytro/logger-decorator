@@ -1,0 +1,16 @@
+{
+  "branchPrefix": "lalaps",
+  "labels": [
+    "dependencies",
+    "security"
+  ],
+  "rules": [
+    {
+      "advisory": "npm",
+      "automerge": true,
+      "commitMessageFix": "Chore: fixes npm audit vulnerabilities",
+      "commitMessagePartialFix": "Chore: fixes some npm audit vulnerabilities",
+      "branch": "npm"
+    }
+  ]
+}
