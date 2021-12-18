@@ -192,7 +192,7 @@ jobs:
                 <<: *cache-defaults
             - run:
                 name: Create Release
-                command: "[ -z ${CIRCLE_SKIP_DEPLOY+x} ] && npm run semantic-release || echo 'job skipped'"
+                command: if [ -z ${CIRCLE_SKIP_DEPLOY+x} ]; then npm run semantic-release;else echo 'job skipped';fi
 
 workflows:
   version: 2

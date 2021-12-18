@@ -1,0 +1,31 @@
+{
+    "timezone": "Europe/Kiev",
+    "branchPrefix": "lalaps",
+    "labels": [ "dependencies", "security" ],
+    "schedule": [
+        "before 7:00 am every 10 days starting on the 5th day"
+    ],
+    "verbosity": 0,
+    "commitMessageFix": "Chore: fixes npm audit vulnerabilities",
+    "commitMessagePartialFix": "Chore: fixes some npm audit vulnerabilities",
+    "rules": [ 
+        {
+            "advisory": "npm",
+            "automerge": true,
+            "commitMessageFix": "Fix: fixes npm audit vulnerabilities",
+            "commitMessagePartialFix": "Fix: fixes some npm audit vulnerabilities",
+            "production": true,
+            "branch": "npm-production"
+        },
+        {
+            "advisory": "npm",
+            "automerge": true,
+            "branch": "npm"
+        },
+        {
+            "advisory": "npm",
+            "force": true,
+            "branch": "npm-force"
+        }
+    ]
+}
