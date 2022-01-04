@@ -154,7 +154,7 @@ jobs:
   test-leaks:
     resource_class: small
     docker:
-      - image: zricethezav/gitleaks
+      - image: zricethezav/gitleaks:v7.6.1
     steps:
       - checkout
       - when:
