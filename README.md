@@ -58,7 +58,7 @@ Make the changes to the code and tests. Then commit to your branch. Be sure to f
 [npm]: https://www.npmjs.com/package/npm-boilerplate
 [github]: https://github.com/pustovitDmytro/npm-boilerplate
 [coveralls]: https://coveralls.io/github/pustovitDmytro/npm-boilerplate?branch=master
-[badge-deps]: https://img.shields.io/david/pustovitDmytro/npm-boilerplate.svg
+[badge-deps]: https://img.shields.io/librariesio/release/npm/npm-boilerplate.svg
 [badge-vers]: https://img.shields.io/npm/v/npm-boilerplate.svg
 [badge-lic]: https://img.shields.io/github/license/pustovitDmytro/npm-boilerplate.svg
 [badge-coverage]: https://coveralls.io/repos/github/pustovitDmytro/npm-boilerplate/badge.svg?branch=master
