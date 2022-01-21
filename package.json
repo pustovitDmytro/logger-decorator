@@ -75,7 +75,7 @@
     "node-package-tester": "^1.1.24",
     "nyc": "^15.1.0",
     "semantic-release": "^19.0.2",
-    "semantic-release-telegram": "^1.2.16",
+    "semantic-release-telegram": "^1.5.0",
     "uuid": "^8.3.2"
   }
 }
