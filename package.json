@@ -74,7 +74,7 @@
     "mocha-junit-reporter": "^2.0.2",
     "node-package-tester": "^1.1.24",
     "nyc": "^15.1.0",
-    "semantic-release": "^18.0.0",
+    "semantic-release": "^19.0.2",
     "semantic-release-telegram": "^1.2.16",
     "uuid": "^8.3.2"
   }
