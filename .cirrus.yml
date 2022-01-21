@@ -1,0 +1,13 @@
+container:
+  image: docker/fossa-analyzer
+
+environment:
+    FOSSA_API_KEY: ENCRYPTED[!2c50354cec1793abe3c6b555b8121330149b461ee4e8d5ef810d467652b74352e5924ab613eea3ac002a3898c6c5a1ef!]
+
+analyze_task:
+  script: fossa analyze
+
+test_task:
+  depends_on:
+    - analyze
+  script: fossa test

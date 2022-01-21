@@ -7,9 +7,6 @@ cache-defaults: &cache-defaults
     - -{{ checksum "package-lock.json" }}
 
 parameters:
-  skip-fossa:
-    type: boolean
-    default: false
   skip-coveralls:
     type: boolean
     default: false
@@ -29,16 +26,6 @@ aliases:
     command: |
             echo 'export DANGER_GITHUB_API_TOKEN=$(echo Z2hwXzFldFVxODNZTUhCa0ZQUjk0WVV1blFXZTFCVmkzajRSOEpxRQo= | base64 --decode)' >> $BASH_ENV
             source $BASH_ENV
-  - &fossa-install
-    name: Install fossa
-    command: | 
-          curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/fossas/fossa-cli/master/install.sh | bash
-  - &fossa-analize
-    name: Send package to fossa
-    command: fossa analyze
-  - &fossa-test
-    name: Check fossa results
-    command: fossa test
   - &danger-pr
     name: Run danger
     command: npx danger ci -d .dangerfile.js
@@ -87,20 +74,10 @@ jobs:
   install:
     <<: *defaults
     steps:
-      - when:
-          condition:
-            not: << pipeline.parameters.skip-fossa >>
-          steps:
-            - run: *fossa-install
       - checkout
       - run: *install
       - run: *security
       - run: *danger-pr
-      - when:
-          condition:
-            not: << pipeline.parameters.skip-fossa >>
-          steps:
-            - run: *fossa-analize
       - save_cache: *cache-modules
   test-security:
     <<: *defaults
@@ -130,18 +107,6 @@ jobs:
             not: << pipeline.parameters.skip-coveralls >>
           steps:
             - run: *coveralls
-  test-fossa:
-    <<: *defaults
-    steps:
-      - checkout
-      - when:
-          condition:
-            not: << pipeline.parameters.skip-fossa >>
-          steps:
-            - run: *fossa-install
-            - restore_cache:
-                <<: *cache-defaults
-            - run: *fossa-test
   test-lint:
     <<: *defaults
     steps:
@@ -218,11 +183,6 @@ workflows:
       - test-leaks:
           requires:
             - install
-      - test-fossa:
-          context: branches
-          requires:
-            - install
-            - test-package
       - deploy:
           context: npm-packages
           requires:
