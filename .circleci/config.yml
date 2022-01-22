@@ -7,7 +7,16 @@ cache-defaults: &cache-defaults
     - -{{ checksum "package-lock.json" }}
 
 parameters:
-  env-tests:
+  skip-coveralls:
+    type: boolean
+    default: false
+  skip-security:
+    type: boolean
+    default: false
+  skip-leaks:
+    type: boolean
+    default: false
+  skip-deploy:
     type: boolean
     default: false
 
@@ -17,16 +26,6 @@ aliases:
     command: |
             echo 'export DANGER_GITHUB_API_TOKEN=$(echo Z2hwXzFldFVxODNZTUhCa0ZQUjk0WVV1blFXZTFCVmkzajRSOEpxRQo= | base64 --decode)' >> $BASH_ENV
             source $BASH_ENV
-  - &fossa-install
-    name: Install fossa
-    command: | 
-          curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/fossas/fossa-cli/master/install.sh | bash
-  - &fossa-analize
-    name: Send package to fossa
-    command: fossa analyze
-  - &fossa-test
-    name: Check fossa results
-    command: fossa test
   - &danger-pr
     name: Run danger
     command: npx danger ci -d .dangerfile.js
@@ -48,6 +47,9 @@ aliases:
   - &security
     name: Validate dependencies
     command: npm run test:security
+  - &security-all
+    name: Validate dev-dependencies
+    command: npm audit
   - &install
     name: Installing Dependencies
     command: npm ci
@@ -72,13 +74,23 @@ jobs:
   install:
     <<: *defaults
     steps:
-      - run: *fossa-install
       - checkout
       - run: *install
       - run: *security
       - run: *danger-pr
-      - run: *fossa-analize
       - save_cache: *cache-modules
+  test-security:
+    <<: *defaults
+    steps:
+      - checkout
+      - when:
+          condition:
+            not: << pipeline.parameters.skip-security >>
+          steps:
+            - restore_cache:
+                <<: *cache-defaults
+            - run: *security
+            - run: *security-all
   test-coverage:
     <<: *defaults
     steps:
@@ -90,15 +102,11 @@ jobs:
           path: reports
       - store_artifacts:
           path: reports
-      - run: *coveralls
-  test-fossa:
-    <<: *defaults
-    steps:
-      - run: *fossa-install
-      - checkout
-      - restore_cache:
-          <<: *cache-defaults
-      - run: *fossa-test
+      - when:
+          condition:
+            not: << pipeline.parameters.skip-coveralls >>
+          steps:
+            - run: *coveralls
   test-lint:
     <<: *defaults
     steps:
@@ -111,12 +119,16 @@ jobs:
   test-leaks:
     resource_class: small
     docker:
-      - image: zricethezav/gitleaks
+      - image: zricethezav/gitleaks:v7.6.1
     steps:
       - checkout
-      - run:
-          name: Run gitleaks
-          command: "gitleaks -v --path . --config-path .gitleaks.toml"
+      - when:
+          condition:
+            not: << pipeline.parameters.skip-leaks >>
+          steps:
+            - run:
+                name: Run gitleaks
+                command: "gitleaks -v --path . --config-path .gitleaks.toml"
   test-debt:
     <<: *defaults
     steps:
@@ -136,12 +148,16 @@ jobs:
   deploy:
     <<: *defaults
     steps:
-        - checkout
-        - restore_cache:
-            <<: *cache-defaults
-        - run:
-            name: Create Release
-            command: "[ -z ${CIRCLE_SKIP_DEPLOY+x} ] && npm run semantic-release || echo 'job skipped'"
+      - checkout
+      - when:
+          condition:
+            not: << pipeline.parameters.skip-deploy >>
+          steps:
+            - restore_cache:
+                <<: *cache-defaults
+            - run:
+                name: Create Release
+                command: if [ -z ${CIRCLE_SKIP_DEPLOY+x} ]; then npm run semantic-release;else echo 'job skipped';fi
 
 workflows:
   version: 2
@@ -149,6 +165,9 @@ workflows:
     jobs:
       - install:
           context: branches
+      - test-security:
+          requires:
+            - install
       - test-package:
           requires:
             - install
@@ -164,11 +183,6 @@ workflows:
       - test-leaks:
           requires:
             - install
-      - test-fossa:
-          context: branches
-          requires:
-            - install
-            - test-package
       - deploy:
           context: npm-packages
           requires:
@@ -183,7 +197,3 @@ workflows:
           filters:
             branches:
               only: /pull\/[0-9]+/
-  env-tests:
-    when: << pipeline.parameters.env-tests >>
-    jobs:
-      - install

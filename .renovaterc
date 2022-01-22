@@ -3,6 +3,8 @@
         "config:base"
     ],
 
+    "timezone": "Europe/Kiev",
+
     "rangeStrategy": "replace",
     "ignoreUnstable": true,
     
@@ -18,7 +20,7 @@
         "enabled": true,
         "automerge": true,
         "schedule": [
-            "before 3am on the 15th through 20th day of the month"
+            "before 7:00 am every 10 days starting on the 5th day"
         ]
     },
 
@@ -59,7 +61,7 @@
             "rangeStrategy": "bump",
             "semanticCommitType": "Chore",
             "schedule": [
-                "before 3am on the 1th through 5th day of the month"
+                "before 7:00 am every 10 days starting on the 1st day"
             ],
             "automerge": true
         },

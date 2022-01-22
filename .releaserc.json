@@ -30,7 +30,12 @@
         ],
         [ 
             "semantic-release-telegram", {
-                "chats": [ 238585617 ]
+                "chats": [ 238585617 ],
+                "telegra.ph"  : {
+                    "title"   : "{name} v.{version}",
+                    "message" : "<a href='{telegraph_url}'>Release Notes</a>",
+                    "content" : "{release_notes}"
+                }
             } 
         ]
     ],

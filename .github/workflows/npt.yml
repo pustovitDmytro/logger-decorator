@@ -1,0 +1,47 @@
+name: Node.js versions
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14
+      - name: Install dependencies
+        run: npm ci
+      - name: Pack tests
+        run: npx npt pack -c .package-tester.json
+      - uses: actions/upload-artifact@master
+        with:
+          name: package-tests
+          path: tmp
+  test:
+    runs-on: ${{ matrix.os }}
+    env:
+      YARGS_MIN_NODE_VERSION: ${{ matrix.node }}
+    strategy:
+      matrix:
+        os: [ macos-latest, windows-latest, ubuntu-latest ]
+        node: [ 10, 12, 14, 16 ]
+    needs: build
+    steps:
+      - uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node }}
+      - name: Show configuration
+        run: |
+          npm config get user-agent
+      - uses: actions/checkout@master
+      - uses: actions/download-artifact@master
+        with:
+          name: package-tests
+          path: tmp
+      - name: Install dependencies
+        working-directory: tmp/package-tests
+        run: npm install
+      - name: Run tests
+        working-directory: tmp/package-tests
+        run: npm run test
