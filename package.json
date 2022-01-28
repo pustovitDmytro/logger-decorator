@@ -92,6 +92,6 @@
     "uuid": "^8.3.2"
   },
   "dependencies": {
-    "myrmidon": "1.6.1"
+    "myrmidon": "1.7.2"
   }
 }
