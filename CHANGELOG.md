@@ -1,3 +1,17 @@
+## [1.6.2](https://github.com/pustovitDmytro/logger-decorator/compare/v1.6.1...v1.6.2) (2022-01-29)
+
+
+### Chore
+
+* Lock file maintenance (#50) ([cce0271](https://github.com/pustovitDmytro/logger-decorator/commit/cce02718894d2628fbd38773424927fd32341259)), closes [#50](https://github.com/pustovitDmytro/logger-decorator/issues/50)
+* Lock file maintenance (#67) ([e6d60e0](https://github.com/pustovitDmytro/logger-decorator/commit/e6d60e02478ae9edf53af928379f1a378559d64c)), closes [#67](https://github.com/pustovitDmytro/logger-decorator/issues/67)
+* Update dependency nanoid to 3.1.31 [SECURITY] (#66) ([eb234bf](https://github.com/pustovitDmytro/logger-decorator/commit/eb234bf355584734a106491b435c29d9aabf8313)), closes [#66](https://github.com/pustovitDmytro/logger-decorator/issues/66)
+* Update devDependencies (non-major) (#54) ([5e08e98](https://github.com/pustovitDmytro/logger-decorator/commit/5e08e98d15a7a3310038043b62fa0f243290af44)), closes [#54](https://github.com/pustovitDmytro/logger-decorator/issues/54)
+
+### Upgrade
+
+* Update dependency myrmidon to v1.7.2 (#69) ([4ca74f2](https://github.com/pustovitDmytro/logger-decorator/commit/4ca74f2c4192a9dc3b95a8c97299ed8ae626c99f)), closes [#69](https://github.com/pustovitDmytro/logger-decorator/issues/69)
+
 ## [1.6.1](https://github.com/pustovitDmytro/logger-decorator/compare/v1.6.0...v1.6.1) (2022-01-22)
 
 
