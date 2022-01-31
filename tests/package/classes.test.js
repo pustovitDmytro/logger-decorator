@@ -136,11 +136,11 @@ test('Class with getters and setters', function () {
             return 1;
         }
 
-        two = 2
+        two = 2;
 
         addOne = a => {
             return this._sum(a, this.one);
-        }
+        };
 
         _sum(a, b) {
             return a + b;
@@ -165,12 +165,12 @@ test('Class support for class-properties (as-class method)', function () {
             return 1;
         }
 
-        two = 2
+        two = 2;
 
         @verbose
-        addOne = a => {
-            return this._sum(a, this.one);
-        }
+            addOne = a => {
+                return this._sum(a, this.one);
+            };
 
         _sum(a, b) {
             return a + b;
@@ -194,11 +194,11 @@ test('Class support for class-properties in class decorator', function () {
             return 1;
         }
 
-        two = 2
+        two = 2;
 
         addOne = a => {
             return this._sum(a, this.one);
-        }
+        };
 
         _sum(a, b) {
             return a + b;
