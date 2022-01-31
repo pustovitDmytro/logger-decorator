@@ -19,7 +19,7 @@ class ClassMethodDecorator extends BaseClassMethodDecorator {
         if (config.setters) this.methods.push('set');
     }
 
-    static FunctionDecorator = FunctionDecorator
+    static FunctionDecorator = FunctionDecorator;
 
     getFunctionDecoratorConfig() {
         return {
@@ -41,7 +41,7 @@ export function classMethodDecorator({ target, methodName, descriptor }, config 
 }
 
 class ClassDecorator extends BaseClassDecorator {
-    static ClassMethodDecorator = ClassMethodDecorator
+    static ClassMethodDecorator = ClassMethodDecorator;
 
     getClassMethodDecoratorConfig(params) {
         const { target } = params;
