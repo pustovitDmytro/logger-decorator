@@ -19,7 +19,7 @@ class PerformanceTester {
 }
 
 const defaultPauseTime = 10;
-const allowedPerformanceLossesMS = 10;
+const allowedPerformanceLossesMS = 15;
 
 const seeds = {};
 
@@ -73,5 +73,5 @@ test('class-logger errorsOnly', async function () {
 
     const result = await bench(() => runner.timer(5, seeds.largeArray));
 
-    assert.isAtMost(result, seeds.default + 4);
+    assert.isAtMost(result, seeds.default + allowedPerformanceLossesMS);
 });
