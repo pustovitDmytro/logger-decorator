@@ -1,3 +1,19 @@
+## [1.6.3](https://github.com/pustovitDmytro/logger-decorator/compare/v1.6.2...v1.6.3) (2022-02-28)
+
+
+### Chore
+
+* fixes some npm audit vulnerabilities (#72) ([7674a5e](https://github.com/pustovitDmytro/logger-decorator/commit/7674a5e7ab123c68f2b47f6d39174e53b54fa048)), closes [#72](https://github.com/pustovitDmytro/logger-decorator/issues/72)
+* increase allowedPerformanceLossesMS. fixes #64 ([3ef2d51](https://github.com/pustovitDmytro/logger-decorator/commit/3ef2d510ad21734ee83857b787d90721be04c42b)), closes [#64](https://github.com/pustovitDmytro/logger-decorator/issues/64)
+* Lock file maintenance (#74) ([f59dd1e](https://github.com/pustovitDmytro/logger-decorator/commit/f59dd1ed8c518701b1a0b306a9755c66352713f5)), closes [#74](https://github.com/pustovitDmytro/logger-decorator/issues/74)
+* Lock file maintenance (#75) ([de09bd5](https://github.com/pustovitDmytro/logger-decorator/commit/de09bd586d2e36c98fa7c561050b238a031faab9)), closes [#75](https://github.com/pustovitDmytro/logger-decorator/issues/75)
+* Update devDependencies (non-major) (major) (#53) ([b920648](https://github.com/pustovitDmytro/logger-decorator/commit/b9206485a2c8fe27ff2bc01ac4360001d42e6801)), closes [#53](https://github.com/pustovitDmytro/logger-decorator/issues/53)
+
+### Docs
+
+* help Ukraine 🇺🇦 ([c005e6b](https://github.com/pustovitDmytro/logger-decorator/commit/c005e6bbc747affc77bcc3999800526ea7b35b12))
+* help Ukraine ukraine ([30568a7](https://github.com/pustovitDmytro/logger-decorator/commit/30568a78b39500db3e4af4dbb901532d12aef0a7))
+
 ## [1.6.2](https://github.com/pustovitDmytro/logger-decorator/compare/v1.6.1...v1.6.2) (2022-01-29)
 
 
