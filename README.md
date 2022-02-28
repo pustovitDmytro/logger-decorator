@@ -21,6 +21,14 @@ Provides a unified and simple approach for class and function logging.
 [![FOSSA][fossa-badge]][fossa-url]
 [![License][badge-lic]][github]
 
+# 🇺🇦 Help Ukraine
+I woke up on my 26th birthday at 5 am from the blows of russian missiles. They attacked the city of Kyiv, where I live, as well as the cities in which my family and friends live. Now my country is a war zone. 
+
+We fight for democratic values, for freedom, for our future! 
+I am stopping any support of my packages by the time until all russians leave my country on trucks or in boxes. 
+
+💛💙 Help Ukraine! We need your support! There are dozen ways to help us, just do it!I woke up at my 26th birthday at 5am from the blows of Russian missiles. They attacked the city of Kyiv in  where I live, as well as the cities in which my family and friends lives. Now my country is a war zone. We fight for democratic values, for freedom, for our future! 
+
 ## Table of Contents
   - [Requirements](#requirements)
   - [Installation](#installation)
