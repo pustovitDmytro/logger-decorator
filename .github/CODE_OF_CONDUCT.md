@@ -9,6 +9,11 @@ identity and expression, level of experience, education, socio-economic status,
 nationality, personal appearance, race, religion, or sexual identity
 and orientation.
 
+We denounces all forms of terrorism and will never knowingly support, tolerate or
+encourage terrorism or the activities of those who use and/or finance terrorism. In
+accordance with United Nations Security Council’s resolutions and the international instruments relating
+to the fight against terrorism.
+
 We pledge to act and interact in ways that contribute to an open, welcoming,
 diverse, inclusive, and healthy community.
 
@@ -33,6 +38,7 @@ Examples of unacceptable behavior include:
 * Public or private harassment
 * Publishing others' private information, such as a physical or email
   address, without their explicit permission
+* Supporting Russia's unprovoked and unjustified military aggression against Ukraine in any form.
 * Other conduct which could reasonably be considered inappropriate in a
   professional setting
 
