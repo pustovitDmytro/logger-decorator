@@ -8,8 +8,6 @@ Boilerplate for creating npm packages.
 [![CodeFactor][codefactor-badge]][codefactor-url]
 [![SonarCloud][sonarcloud-badge]][sonarcloud-url]
 [![Codacy][codacy-badge]][codacy-url]
-[![Total alerts][lgtm-alerts-badge]][lgtm-alerts-url]
-[![Language grade][lgtm-lg-badge]][lgtm-lg-url]
 [![Scrutinizer][scrutinizer-badge]][scrutinizer-url]
 
 [![Dependencies][badge-deps]][npm]
@@ -81,12 +79,6 @@ Make the changes to the code and tests. Then commit to your branch. Be sure to f
 
 [scrutinizer-badge]: https://scrutinizer-ci.com/g/pustovitDmytro/npm-boilerplate/badges/quality-score.png?b=master
 [scrutinizer-url]: https://scrutinizer-ci.com/g/pustovitDmytro/npm-boilerplate/?branch=master
-
-[lgtm-lg-badge]: https://img.shields.io/lgtm/grade/javascript/g/pustovitDmytro/npm-boilerplate.svg?logo=lgtm&logoWidth=18
-[lgtm-lg-url]: https://lgtm.com/projects/g/pustovitDmytro/npm-boilerplate/context:javascript
-
-[lgtm-alerts-badge]: https://img.shields.io/lgtm/alerts/g/pustovitDmytro/npm-boilerplate.svg?logo=lgtm&logoWidth=18
-[lgtm-alerts-url]: https://lgtm.com/projects/g/pustovitDmytro/npm-boilerplate/alerts/
 
 [codacy-badge]: https://app.codacy.com/project/badge/Grade/8667aa23afaa4725854f098c4b5e8890
 [codacy-url]: https://www.codacy.com/gh/pustovitDmytro/npm-boilerplate/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=pustovitDmytro/npm-boilerplate&amp;utm_campaign=Badge_Grade
