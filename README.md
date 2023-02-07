@@ -8,8 +8,6 @@ Provides a unified and simple approach for class and function logging.
 [![CodeFactor][codefactor-badge]][codefactor-url]
 [![SonarCloud][sonarcloud-badge]][sonarcloud-url]
 [![Codacy][codacy-badge]][codacy-url]
-[![Total alerts][lgtm-alerts-badge]][lgtm-alerts-url]
-[![Language grade][lgtm-lg-badge]][lgtm-lg-url]
 [![Scrutinizer][scrutinizer-badge]][scrutinizer-url]
 
 [![Dependencies][badge-deps]][npm]
@@ -20,6 +18,8 @@ Provides a unified and simple approach for class and function logging.
 [![Commit activity][commit-activity-badge]][github]
 [![FOSSA][fossa-badge]][fossa-url]
 [![License][badge-lic]][github]
+[![Made in Ukraine][ukr-badge]][ukr-link]
+
 
 # 🇺🇦 Help Ukraine
 I woke up on my 26th birthday at 5 am from the blows of russian missiles. They attacked the city of Kyiv, where I live, as well as the cities in which my family and friends live. Now my country is a war zone. 
@@ -30,9 +30,17 @@ I am stopping any support of my packages by the time until all russians leave my
 💛💙  Help Ukraine! We need your support! There are dozen ways to help us, just do it!
 
 ## Table of Contents
+- [logger-decorator](#logger-decorator)
+- [🇺🇦 Help Ukraine](#-help-ukraine)
+  - [Table of Contents](#table-of-contents)
   - [Requirements](#requirements)
   - [Installation](#installation)
   - [Usage](#usage)
+    - [Configuration](#configuration)
+    - [Functions](#functions)
+    - [Classes](#classes)
+    - [Sanitizers](#sanitizers)
+    - [Logger](#logger)
   - [Contribute](#contribute)
 
 ## Requirements
@@ -257,12 +265,6 @@ Make the changes to the code and tests. Then commit to your branch. Be sure to f
 [scrutinizer-badge]: https://scrutinizer-ci.com/g/pustovitDmytro/logger-decorator/badges/quality-score.png?b=master
 [scrutinizer-url]: https://scrutinizer-ci.com/g/pustovitDmytro/logger-decorator/?branch=master
 
-[lgtm-lg-badge]: https://img.shields.io/lgtm/grade/javascript/g/pustovitDmytro/logger-decorator.svg?logo=lgtm&logoWidth=18
-[lgtm-lg-url]: https://lgtm.com/projects/g/pustovitDmytro/logger-decorator/context:javascript
-
-[lgtm-alerts-badge]: https://img.shields.io/lgtm/alerts/g/pustovitDmytro/logger-decorator.svg?logo=lgtm&logoWidth=18
-[lgtm-alerts-url]: https://lgtm.com/projects/g/pustovitDmytro/logger-decorator/alerts/
-
 [codacy-badge]: https://app.codacy.com/project/badge/Grade/735696cc49164e52a890530e974e7377
 [codacy-url]: https://www.codacy.com/gh/pustovitDmytro/logger-decorator/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=pustovitDmytro/logger-decorator&amp;utm_campaign=Badge_Grade
 
@@ -278,3 +280,6 @@ Make the changes to the code and tests. Then commit to your branch. Be sure to f
 
 [fossa-badge]: https://app.fossa.com/api/projects/custom%2B24828%2Flogger-decorator.svg?type=shield
 [fossa-url]: https://app.fossa.com/projects/custom%2B24828%2Flogger-decorator?ref=badge_shield
+
+[ukr-badge]: https://img.shields.io/badge/made_in-ukraine-ffd700.svg?labelColor=0057b7
+[ukr-link]: https://war.ukraine.ua
