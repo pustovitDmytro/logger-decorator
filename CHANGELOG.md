@@ -1,3 +1,32 @@
+## [1.6.4](https://github.com/pustovitDmytro/logger-decorator/compare/v1.6.3...v1.6.4) (2023-02-07)
+
+
+### Chore
+
+* anti-terrorism disclaimer ([96327fe](https://github.com/pustovitDmytro/logger-decorator/commit/96327fef4c90f65fd297960d73872398334774c5))
+* fixes eslint-plugin-unicorn version ([dd45e9a](https://github.com/pustovitDmytro/logger-decorator/commit/dd45e9a86498e621de2cd9bc49aa1f8430c8ed6c))
+* fixes npm audit ([0500470](https://github.com/pustovitDmytro/logger-decorator/commit/05004700c0fd75120bebf51a70e25dfee1e3b840))
+* fixes npm audit vulnerabilities (#107) ([08741e9](https://github.com/pustovitDmytro/logger-decorator/commit/08741e92ead8aa9366fa7f16c68d0836a47ad127)), closes [#107](https://github.com/pustovitDmytro/logger-decorator/issues/107)
+* fixes some npm audit vulnerabilities ([b913fee](https://github.com/pustovitDmytro/logger-decorator/commit/b913feef549bb124a121f8b0ff3b56148321140a))
+* fixes some npm audit vulnerabilities (#100) ([04f24e9](https://github.com/pustovitDmytro/logger-decorator/commit/04f24e9cd053081279654d031c49e628f7551db7)), closes [#100](https://github.com/pustovitDmytro/logger-decorator/issues/100)
+* fixes some npm audit vulnerabilities (#101) ([9603b17](https://github.com/pustovitDmytro/logger-decorator/commit/9603b17d021d2ab1e64aa12f22d5a70eaca5b3ff)), closes [#101](https://github.com/pustovitDmytro/logger-decorator/issues/101)
+* fixes some npm audit vulnerabilities (#86) ([eb549de](https://github.com/pustovitDmytro/logger-decorator/commit/eb549de6e36aba89fdf308f053f487c5bed0e1aa)), closes [#86](https://github.com/pustovitDmytro/logger-decorator/issues/86)
+* Lock file maintenance ([85b7c09](https://github.com/pustovitDmytro/logger-decorator/commit/85b7c09390c7a91407dd35ae8d997982a15ecc1a))
+* Update dependency danger to v11 ([1779a27](https://github.com/pustovitDmytro/logger-decorator/commit/1779a271eb3527ca1e6e5e5354cb3294ff6797e5))
+* Update dependency nanoid to 3.1.31 [SECURITY] (#83) ([89d3014](https://github.com/pustovitDmytro/logger-decorator/commit/89d30145ca8e48ab718b3a3d6ca376d6972e3ce1)), closes [#83](https://github.com/pustovitDmytro/logger-decorator/issues/83)
+* Update dependency node-fetch to 2.6.7 [SECURITY] (#84) ([11e82bc](https://github.com/pustovitDmytro/logger-decorator/commit/11e82bc5133b8b2d7bc18fa7730252c6068e134b)), closes [#84](https://github.com/pustovitDmytro/logger-decorator/issues/84)
+* Update devDependencies (non-major) ([01bd6c0](https://github.com/pustovitDmytro/logger-decorator/commit/01bd6c09f1ba5886abdb991b436317f741eeb20b))
+* Update devDependencies (non-major) ([85a0161](https://github.com/pustovitDmytro/logger-decorator/commit/85a0161b7426b877ec45f6956238f93810e5b3c9))
+* Update devDependencies (non-major) (#65) ([d60ef28](https://github.com/pustovitDmytro/logger-decorator/commit/d60ef28cb4cbf187b61fd4c5b70b3bfb5338e6c0)), closes [#65](https://github.com/pustovitDmytro/logger-decorator/issues/65)
+* Update devDependencies (non-major) (#66) ([69aac8f](https://github.com/pustovitDmytro/logger-decorator/commit/69aac8f4b52fcb9a626780be4c14d211f86b62b6)), closes [#66](https://github.com/pustovitDmytro/logger-decorator/issues/66)
+* Update devDependencies (non-major) (#92) ([f492769](https://github.com/pustovitDmytro/logger-decorator/commit/f492769892ff31c1dad30248c58ae7c5ae7aec85)), closes [#92](https://github.com/pustovitDmytro/logger-decorator/issues/92)
+
+### Docs
+
+* add logo ([bf6f064](https://github.com/pustovitDmytro/logger-decorator/commit/bf6f0645e51386f0ff68bd717c6920d48399dba8))
+* drop lgtm ([b1841f2](https://github.com/pustovitDmytro/logger-decorator/commit/b1841f24770563faafb609444868658fba298b81))
+* update year in license ([64521cb](https://github.com/pustovitDmytro/logger-decorator/commit/64521cb04f41c46b7bdcbba18bec8d4673736a31))
+
 ## [1.6.3](https://github.com/pustovitDmytro/logger-decorator/compare/v1.6.2...v1.6.3) (2022-02-28)
 
 
