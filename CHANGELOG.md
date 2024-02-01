@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/pustovitDmytro/logger-decorator/compare/v1.6.4...v1.7.0) (2024-02-01)
+
+
+### New
+
+* adds keepReflectMetadata option. closes #124 ([3a1fcba](https://github.com/pustovitDmytro/logger-decorator/commit/3a1fcbad1a6ff7b3f543b97e004a8f1888374293)), closes [#124](https://github.com/pustovitDmytro/logger-decorator/issues/124)
+
 ## [1.6.4](https://github.com/pustovitDmytro/logger-decorator/compare/v1.6.3...v1.6.4) (2023-02-07)
 
 
