@@ -7,7 +7,8 @@
     "MOCHA_OPTS": "--timeout 60000 --exit --reporter spec --ui qunit tests/**/*.js"
   },
   "scripts": {
-    "prepare": "babel src --out-dir ./lib --copy-files && husky install",
+    "build:src": "babel src --out-dir ./lib --copy-files",
+    "prepare": "npm run build:src && husky install",
     "coveralls": "cat ./reports/coverage/lcov.info | coveralls",
     "test:security": "npm audit --production && npm run test:lock",
     "test:lint": "eslint src bin tests --no-error-on-unmatched-pattern",
@@ -92,6 +93,6 @@
     "uuid": "^8.3.2"
   },
   "dependencies": {
-    "myrmidon": "1.7.2"
+    "myrmidon": "1.10.0"
   }
 }

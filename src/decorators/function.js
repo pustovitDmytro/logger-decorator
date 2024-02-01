@@ -8,7 +8,6 @@ import {
     FunctionDecorator as BaseFunctionDecorator
 } from 'myrmidon';
 
-
 const _decorated = Symbol('_decorated');
 
 const buildLogLevel = (logLevel, data) => {
@@ -18,6 +17,17 @@ const buildLogLevel = (logLevel, data) => {
 };
 
 export default class FunctionDecorator extends BaseFunctionDecorator {
+    constructor({ config }) {
+        super({
+            config : {
+                ...config,
+                duplicates : config.dublicates
+            }
+        });
+    }
+
+    decoratedKey = _decorated;
+
     prepareData({ context, methodName }) {
         const {
             logger,
@@ -99,19 +109,5 @@ export default class FunctionDecorator extends BaseFunctionDecorator {
         if (isFirstOnly)  error[_decorated] = true; // eslint-disable-line no-param-reassign
 
         throw error;
-    }
-
-    run(method) {
-        const {
-            dublicates // TODO: rename to duplicates
-        } = this.config;
-
-        if (!dublicates && method[_decorated]) return method;
-
-        const f = super.run(method);
-
-        f[_decorated] = true;
-
-        return f;
     }
 }

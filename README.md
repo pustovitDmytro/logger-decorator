@@ -110,7 +110,8 @@ Next values could also be passed to constructor config, but are customizable fro
   * **resultSanitizer** - output data sanitizer, by default [dataSanitizer](#sanitizers)
   * **errorSanitizer** - error sanitizer, by default [simpleSanitizer](#sanitizers)
   * **contextSanitizer** - function context sanitizer, if ommited, no context will be logged.
-  *  **dublicates** - if set to *true*, it is possible to use multiple decorators at once (see [example](#duplicates))
+  * **dublicates** - if set to *true*, it is possible to use multiple decorators at once (see [example](#duplicates)). **Note:** `duplicates` key also works, `dublicates` will be completle renamed to `duplicates` in version 2.0.
+  * **keepReflectMetadata** - if `logger-decorator` is used with other decorators, they can set own [reflect metadata](https://blog.bitsrc.io/typescripts-reflect-metadata-what-it-is-and-how-to-use-it-fb7b19cfc7e2). by passing `keepReflectMetadata` array, you can prevent metadata from reset. For example for nestJS its good idea to use `{ keepReflectMetadata: ['method', 'path'] }`.
   
 Next parametrs could help in class method filtering:
   *  **getters** - if set to *true*, [getters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get) will also be logged (applied to class and class-method decorators)
