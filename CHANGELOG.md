@@ -1,3 +1,10 @@
+# [1.8.0](https://github.com/pustovitDmytro/logger-decorator/compare/v1.7.0...v1.8.0) (2024-02-03)
+
+
+### New
+
+* adds paramsLevel prop. closes #125 ([1d87f0a](https://github.com/pustovitDmytro/logger-decorator/commit/1d87f0ad19642bd2f8543aae1282a654cca0cf18)), closes [#125](https://github.com/pustovitDmytro/logger-decorator/issues/125)
+
 # [1.7.0](https://github.com/pustovitDmytro/logger-decorator/compare/v1.6.4...v1.7.0) (2024-02-01)
 
 
