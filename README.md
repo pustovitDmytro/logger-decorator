@@ -95,31 +95,33 @@ class Rectangle {
 
 ### Configuration
 
-Config must be a JavaScript ```Object``` with  the following attributes:
-  * **logger** - logger, which build decorator will use, *[console](https://nodejs.org/api/console.html)* by default, see [logger](#logger) for more details 
-  * **name** - the app name, to include in all logs, could be omitted.
-  
-Next values could also be passed to constructor config, but are customizable from ```decorator(customConfig)``` invokation:
-  * **timestamp** - if set to *true* timestamps will be added to all logs.
-  * **level** - default log-level, pay attention that logger must support it as ```logger.level(smth)```, *'info'* by default. Also *function* could be passed. The function will receive logged data and should return log-level as *string*.
-  *  **errorLevel** - level, used for errors. *'error'* by default. Also *function* could be passed. The function will receive logged data and should return log-level as *string*.
-  * **errorsOnly** - if set to *true* logger will catch only errors.
+Config must be a JavaScript `Object` with the following attributes:
+  * **logger** - the logger that the build decorator will use. *[console](https://nodejs.org/api/console.html)* by default; see [logger](#logger) for more details.
+  * **name** - the app name to include in all logs; it could be omitted.
+
+Next values could also be passed to the constructor config, but are customizable from the `decorator(customConfig)` invocation:
+  * **timestamp** - if set to *true*, timestamps will be added to all logs.
+  * **level** - the default log-level; pay attention that the logger must support it as `logger.level(smth)`, *'info'* by default. Also, a *function* could be passed. The function will receive logged data and should return the log-level as a *string*.
+  * **errorLevel** - the level used for errors; *'error'* by default. Also, a *function* could be passed. The function will receive logged data and should return the log-level as a *string*.
+  * **paramsLevel** - the level used for logging params. Logger will print input params before the function starts executing. Also, a *function* could be passed. The function will receive logged data and should return the log-level as a *string*. If omitted, nothing will be logged before execution.
+  * **errorsOnly** - if set to *true*, the logger will catch only errors.
   * **logErrors**: next options available:
-    -   `deepest`: log only the deepest occurrence of the error. This option prevents 'error spam'
-  * **paramsSanitizer** - function to sanitize input parametrs from sensitive or redundant data, see [sanitizers](#sanitizers) for more details, by default [dataSanitizer](#sanitizers).
-  * **resultSanitizer** - output data sanitizer, by default [dataSanitizer](#sanitizers)
-  * **errorSanitizer** - error sanitizer, by default [simpleSanitizer](#sanitizers)
-  * **contextSanitizer** - function context sanitizer, if ommited, no context will be logged.
-  * **dublicates** - if set to *true*, it is possible to use multiple decorators at once (see [example](#duplicates)). **Note:** `duplicates` key also works, `dublicates` will be completle renamed to `duplicates` in version 2.0.
-  * **keepReflectMetadata** - if `logger-decorator` is used with other decorators, they can set own [reflect metadata](https://blog.bitsrc.io/typescripts-reflect-metadata-what-it-is-and-how-to-use-it-fb7b19cfc7e2). by passing `keepReflectMetadata` array, you can prevent metadata from reset. For example for nestJS its good idea to use `{ keepReflectMetadata: ['method', 'path'] }`.
-  
-Next parametrs could help in class method filtering:
-  *  **getters** - if set to *true*, [getters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get) will also be logged (applied to class and class-method decorators)
-  *  **setters** - if set to *true*, [setters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set) will also be logged (applied to class and class-method decorators)
-  *  **classProperties** - if set to *true*, [class-properties](https://babeljs.io/docs/en/babel-plugin-proposal-class-properties) will also be logged (applied to class decorators only)
-  *  **include** - array with method names, for which logs will be added.
-  *  **exclude** - array with method names, for which logs won't be added.
-  *  **methodNameFilter** - function, to filter method names
+    -   `deepest`: log only the deepest occurrence of the error. This option prevents 'error spam.'
+  * **paramsSanitizer** - function to sanitize input parameters from sensitive or redundant data; see [sanitizers](#sanitizers) for more details, by default [dataSanitizer](#sanitizers).
+  * **resultSanitizer** - output data sanitizer, by default [dataSanitizer](#sanitizers).
+  * **errorSanitizer** - error sanitizer, by default [simpleSanitizer](#sanitizers).
+  * **contextSanitizer** - function context sanitizer; if omitted, no context will be logged.
+  * **duplicates** - if set to *true*, it is possible to use multiple decorators at once (see [example](#duplicates)).
+  * **keepReflectMetadata** - if `logger-decorator` is used with other decorators, they can set own [reflect metadata](https://blog.bitsrc.io/typescripts-reflect-metadata-what-it-is-and-how-to-use-it-fb7b19cfc7e2). By passing `keepReflectMetadata` array, you can prevent metadata from resetting. For example, for NestJS, it's a good idea to use `{ keepReflectMetadata: ['method', 'path'] }`.
+
+Next parameters could help in class method filtering:
+  *  **getters** - if set to *true*, [getters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get) will also be logged (applied to class and class-method decorators).
+  *  **setters** - if set to *true*, [setters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set) will also be logged (applied to class and class-method decorators).
+  *  **classProperties** - if set to *true*, [class-properties](https://babeljs.io/docs/en/babel-plugin-proposal-class-properties) will also be logged (applied to class decorators only).
+  *  **include** - array with method names for which logs will be added.
+  *  **exclude** - array with method names for which logs won't be added.
+  *  **methodNameFilter** - function to filter method names.
+
 
 
 ### Functions

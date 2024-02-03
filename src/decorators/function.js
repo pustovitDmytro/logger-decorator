@@ -54,7 +54,7 @@ export default class FunctionDecorator extends BaseFunctionDecorator {
                 result    : result && resultSanitizer(result),
                 error     : error && errorSanitizer(error),
                 context   : (contextSanitizer && context) ? contextSanitizer(context) : undefined,
-                benchmark : getBenchmark(time),
+                benchmark : time ? getBenchmark(time) : undefined,
                 timestamp : timestamp ? (new Date()).toISOString() : undefined
             });
         };
@@ -77,6 +77,19 @@ export default class FunctionDecorator extends BaseFunctionDecorator {
             time,
             config : this.config
         };
+    }
+
+    onParams({ params, config, log, context }) {
+        const { paramsLevel } = config;
+
+        if (paramsLevel) {
+            log(paramsLevel, {
+                args : params,
+                context
+            });
+        }
+
+        return params;
     }
 
     onSuccess({ result, log, config, time, context, params }) {

@@ -4,5 +4,8 @@
     ],
     "globals": {
         "performance": true
+    },
+    "rules": {
+        "unicorn/expiring-todo-comments": 0
     }
 }
