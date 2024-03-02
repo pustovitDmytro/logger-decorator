@@ -131,7 +131,7 @@ test('Negative: broken logger', function () {
 
     assert.throws(() => {
         decorated(5, 9);
-    }, Error, 'logger not supports');
+    }, Error, 'logger does not support');
 });
 
 test('Positive: function logger', function () {
