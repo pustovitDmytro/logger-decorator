@@ -1,3 +1,14 @@
+## [1.8.1](https://github.com/pustovitDmytro/logger-decorator/compare/v1.8.0...v1.8.1) (2024-04-05)
+
+
+### Chore
+
+* Update devDependencies (non-major) ([15a82eb](https://github.com/pustovitDmytro/logger-decorator/commit/15a82eb1bd7bf031194eb6dfb6ca8e04f12b8ae2))
+
+### Fix
+
+* config option name not printing as application; Minor grammar fix for unsupported logger error (#130) ([4e73cd1](https://github.com/pustovitDmytro/logger-decorator/commit/4e73cd1e6acb6b3bcf83bdafdb37843642e3e6af)), closes [#130](https://github.com/pustovitDmytro/logger-decorator/issues/130) [#128](https://github.com/pustovitDmytro/logger-decorator/issues/128)
+
 # [1.8.0](https://github.com/pustovitDmytro/logger-decorator/compare/v1.7.0...v1.8.0) (2024-02-03)
 
 
