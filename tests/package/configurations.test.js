@@ -131,7 +131,7 @@ test('Negative: broken logger', function () {
 
     assert.throws(() => {
         decorated(5, 9);
-    }, Error, 'logger not supports');
+    }, Error, 'logger does not support');
 });
 
 test('Positive: function logger', function () {
@@ -148,3 +148,39 @@ test('Positive: function logger', function () {
         result : '14'
     });
 });
+
+test('Positive: specify application name', function () {
+    const catched = [];
+    const decorator = new Decorator({
+        name   : 'Atons Forts Bassent',
+        logger : (type, data) => catched.push({ type, data })
+    });
+    const decorated = decorator()(sum);
+    const res = decorated(5, 11);
+
+    assert.equal(res, 16);
+    assert.deepOwnInclude(catched[0].data, {
+        method      : 'sum',
+        params      : '[ 5, 11 ]',
+        result      : '16',
+        application : 'Atons Forts Bassent'
+    });
+});
+
+test('Negative: dont specify application name', function () {
+    const catched = [];
+    const decorator = new Decorator({
+        logger : (type, data) => catched.push({ type, data })
+    });
+    const decorated = decorator()(sum);
+    const res = decorated(2, 1);
+
+    assert.equal(res, 3);
+    assert.deepOwnInclude(catched[0].data, {
+        method : 'sum',
+        params : '[ 2, 1 ]',
+        result : '3'
+    });
+    assert.notExists(catched[0].data.application);
+});
+

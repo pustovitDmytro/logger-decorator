@@ -35,13 +35,14 @@ export default class FunctionDecorator extends BaseFunctionDecorator {
             resultSanitizer,
             errorSanitizer,
             contextSanitizer,
-            timestamp
+            timestamp,
+            name
         } = this.config;
 
         const basicLogObject = {
+            application : name,
             service     : this.config.serviceName,
-            method      : methodName,
-            application : this.name
+            method      : methodName
         };
 
         const buildLogObject = (level, obj) => {
@@ -65,7 +66,7 @@ export default class FunctionDecorator extends BaseFunctionDecorator {
 
             if (isFunction(logger)) return logger(lev, dat);
             if (isFunction(logger[lev])) return logger[lev](dat);
-            throw new Error(`logger not supports ${lev} level`);
+            throw new Error(`logger does not support ${lev} level`); // Alternatively - logger level ${lev} not supported
         };
 
         const time = startBenchmark();
