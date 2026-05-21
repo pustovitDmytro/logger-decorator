@@ -90,7 +90,7 @@
     "semantic-release": "^19.0.5",
     "semantic-release-telegram": "^1.6.2",
     "test-console": "^2.0.0",
-    "uuid": "^8.3.2"
+    "uuid": "^11.0.0"
   },
   "dependencies": {
     "myrmidon": "1.10.0"
